@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Thesis Manager - Login</title>
+	<meta charset="UTF-8">
+	
+	<style>
+	.titleDiv {
+  		height: 50px;
+  		background-color: lightblue;
+  		text-align: center;
+	}
+	.messageDiv {
+		height: 40px;
+		text-align: center;
+		color : red;
+	}
+	.elementDiv {
+		height: 32px;
+		text-align: right;
+		margin-right: 75px;
+		font-style: normal;
+		font-family: Arial;
+	}
+	.formDiv {
+		width: 400px;
+		margin: auto;
+	}
+	</style>
+</head>
+<body>
+	<div class="titleDiv">
+		<h1>Thesis Management for Students and Professors</h1>
+	</div>
+	
+	<div class="messageDiv"></div>
+	
+	<div class="formDiv">
+			<div class="elementDiv">
+				<label for="loginUname">Username:  </label>
+			</div>
+			<div class="elementDiv">
+				<label for="loginPass">Password:  </label>
+			</div>
+			<div style="text-align:center">
+				<input class= "btn btn-primary" type="submit" name="log_in" value="Login">
+			</div>
+	</div>
+	
+	<div class="formDiv">
+			<div class="elementDiv">
+				<label for="regUname">Username:  </label>
+			</div>
+			<div class="elementDiv">
+				<label for="regPass1">Password:  </label>
+			</div>
+			<div class="elementDiv">
+				<label for="regPass2">Repeat Password:  </label>
+			</div>
+			<div style="text-align:center">
+				<input class= "btn btn-primary" type="submit" name="register" value="Register">
+			</div>
+	</div>
+	
+</body>
+</html>
