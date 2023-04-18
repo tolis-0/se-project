@@ -14,7 +14,11 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		http.authorizeHttpRequests()
-		.antMatchers("/", "/login").permitAll();
+		// URL matching for accessibility
+		.antMatchers("/", "/login").permitAll()
+		.antMatchers("/student/**").hasAnyAuthority("STUDENT")
+		.antMatchers("/professor/**").hasAnyAuthority("PROFESSOR")
+		.anyRequest().authenticated();
 
 		return http.build();
 	}
