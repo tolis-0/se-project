@@ -1,51 +1,60 @@
 CREATE DATABASE  IF NOT EXISTS `myy803db`;
 USE `myy803db`;
 
--- DROP TABLE IF EXISTS `users`;
--- DROP TABLE IF EXISTS `students`;
--- DROP TABLE IF EXISTS `professors`;
--- DROP TABLE IF EXISTS `thesis`;
--- DROP TABLE IF EXISTS `application`;
+-- DROP TABLE IF EXISTS Users;
+-- DROP TABLE IF EXISTS Students;
+-- DROP TABLE IF EXISTS Professors;
+-- DROP TABLE IF EXISTS Subjects;
+-- DROP TABLE IF EXISTS Thesis;
+-- DROP TABLE IF EXISTS Applications;
 
-CREATE TABLE IF NOT EXISTS `users` (
- `username` varchar(32) not null primary key,
- `password` text default null,
- `enabled` boolean not null
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1; 
-
-CREATE TABLE IF NOT EXISTS `students` (
-  `full_name` varchar(64) default null,
-  `password` text default null,
-  `average_grade` real,
-  `remaining_courses` int,
-  `year` int,
-  `username` varchar(32) not null,
-  foreign key (username) references users (username)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1; 
-
-CREATE TABLE IF NOT EXISTS `professors` (
-  `full_name` varchar(64) default null,
-  `password` text default null,
-  `specialty` varchar(32) default null
-  `username` varchar(32) not null,
-  foreign key (username) references users (username)
+CREATE TABLE Users (
+  id int not null auto_increment primary key,
+  username varchar(32) default null,
+  password text default null,
+  role text default null  									--TODO
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `thesis` (
- `professor` varchar(32) not null references professor(username),
- `thesis_id` int not null primary key,
- `objectives` text not null,
- `student` varchar(32) references Student(username),
- `assigned` boolean not null,
- `imp_grade` real,
- `rep_grade` real,
- `pres_grade` real
+
+CREATE TABLE IF NOT EXISTS Students (
+	id int references users(id) not null primary key,
+	full_name varchar(64) default null,
+	average_grade real,
+	remaining_courses int,
+	year int
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1; 
+
+
+CREATE TABLE IF NOT EXISTS Professors (
+	id int references Users(id) not null primary key,
+	full_name varchar(64) default null,
+	specialty varchar(32) default null
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE IF NOT EXISTS Subjects (
+	id int not null auto_increment primary key,
+	professor int not null references Professors(id),
+	name text not null,
+	objectives text not null,
+	assigned boolean default false
 ); ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `application`(
- `thesis` int not null references thesis(thesis_id),
- `student` varchar(32) not null references student(username),
- `message` text,
- primary key (thesis, student)
+
+CREATE TABLE IF NOT EXISTS Thesis (
+	id int not null references Subjects(id) primary key,
+	student int not null references Student(id),
+	imp_grade real,
+	rep_grade real,
+	pres_grade real
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE IF NOT EXISTS Applications (
+	subject int not null references Subjects(id),
+	student int not null references Students(id),
+	message text,
+	primary key (subject, student)
 ); ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
 
