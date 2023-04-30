@@ -16,6 +16,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 @Entity
 @Table(name="users")
 public class User implements UserDetails{
@@ -27,7 +28,7 @@ public class User implements UserDetails{
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="user_name", unique=true)
+	@Column(name="user_name", unique=true, length=32)
 	private String username;
 	
 	@Column(name="password")

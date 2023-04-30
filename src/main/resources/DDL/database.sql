@@ -10,7 +10,7 @@ USE `myy803db`;
 
 CREATE TABLE Users (
   id int not null auto_increment primary key,
-  username varchar(32) default null,
+  username varchar(32) default null unique,
   password text default null,
   role text default null  									--TODO
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS Students (
 	id int references users(id) not null primary key,
 	full_name varchar(64) default null,
 	average_grade real,
-	remaining_courses int,
+	rem_courses int,
 	year int
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1; 
 

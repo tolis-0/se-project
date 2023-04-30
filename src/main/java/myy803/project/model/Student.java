@@ -1,15 +1,28 @@
 package myy803.project.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="students")
+@Table(name="Students")
 public class Student{
 
+	@Id
+	@Column(name="id", nullable=false)
+	private User user; 			// TODO int
+	
+	@Column(name="full_name", length=64)
 	private String full_name;
+	
+	@Column(name="rem_courses")
 	private int rem_courses;
+	
+	@Column(name="year")
 	private int year;
+	
+	@Column(name="avg_grade")
 	private float avg_grade;
 	
 	public Student(String full_name, int rem_courses, int year, float avg_grade) {
