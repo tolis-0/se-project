@@ -5,9 +5,9 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -15,11 +15,11 @@ import javax.persistence.Table;
 public class Professor{
 	
 	@Id 
-	@Column(name = "id", nullable=false)
+	@Column(name="id", nullable=false)
 	private int id;
 	
 	@OneToOne
-	@JoinColumn(name="id")
+	@PrimaryKeyJoinColumn(name="id", referencedColumnName="id")
 	private User user;
 	
 	@Column(name="full_name", length=64)

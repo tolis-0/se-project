@@ -15,10 +15,7 @@ public class Subject {
 	@Column(name="id", nullable=false)
 	private int id;
 	
-	@Column(name = "professor", nullable=false)
-	private int professorId;
-	
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name = "professor", nullable=false)
 	private Professor professor;
 	
@@ -28,7 +25,7 @@ public class Subject {
 	@Column(name="objectives", nullable = false)
 	private String objectives;
 	
-	@Column(name="objectives", columnDefinition = "boolean default false")
+	@Column(name="assigned", columnDefinition = "boolean default false")
 	private boolean assigned;
 
 }

@@ -3,8 +3,8 @@ package myy803.project.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -12,11 +12,11 @@ import javax.persistence.Table;
 public class Student{
 
 	@Id 
-	@Column(name = "id", nullable=false)
+	@Column(name="id", nullable=false)
 	private int id;
 	
 	@OneToOne
-	@JoinColumn(name="id")
+	@PrimaryKeyJoinColumn(name="id", referencedColumnName="id")
 	private User user;
 	
 	@Column(name="full_name", length=64)

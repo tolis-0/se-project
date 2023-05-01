@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -12,15 +13,12 @@ import javax.persistence.Table;
 public class Thesis {
 
 	@Id
-	@Column(name="id")
+	@Column(name="id", nullable=false)
 	private int id;
 	
 	@OneToOne
-	@JoinColumn(name="id" , nullable=false)
-	private int subject;
-	
-	@Column(name="student", nullable=false)
-	private int studentId;
+	@PrimaryKeyJoinColumn(name="id", referencedColumnName="id")
+	private Subject subject;
 	
 	@OneToOne
 	@JoinColumn(name="student")
