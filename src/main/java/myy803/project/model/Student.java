@@ -1,8 +1,11 @@
 package myy803.project.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -30,6 +33,9 @@ public class Student{
 	
 	@Column(name="avg_grade")
 	private float avg_grade;
+	
+	@OneToMany(mappedBy="student")
+	private List<Application> applications;
 	
 	public Student(String full_name, int rem_courses, int year, float avg_grade) {
 		this.full_name = full_name;
