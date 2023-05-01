@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -23,6 +24,9 @@ public class Thesis {
 	@OneToOne
 	@JoinColumn(name="student")
 	private Student student;
+	
+	@ManyToOne
+	private Professor professor; 	// TODO
 	
 	@Column(name="imp_grade")
 	private float ImplementationGrade;

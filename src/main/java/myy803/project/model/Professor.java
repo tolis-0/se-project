@@ -28,10 +28,10 @@ public class Professor{
 	@Column(name="specialty", length=32)
 	private String specialty;
 	
-	@OneToMany()
+	@OneToMany(mappedBy="professor")
 	private List<Subject> SubjectList;
 	
-	@OneToMany()						// TODO
+	@OneToMany(mappedBy="professor")
 	private List<Thesis> ThesisList;
 	
 	public Professor(String full_name, String specialty) {
