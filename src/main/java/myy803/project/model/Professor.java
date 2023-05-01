@@ -5,16 +5,22 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Professors")
 public class Professor{
 	
-	@Id
-	@Column(name="id", nullable=false)
-	private User user; 			// TODO int
+	@Id 
+	@Column(name = "id", nullable=false)
+	private int id;
+	
+	@OneToOne
+	@JoinColumn(name="id")
+	private User user;
 	
 	@Column(name="full_name", length=64)
 	private String full_name;
@@ -22,10 +28,10 @@ public class Professor{
 	@Column(name="specialty", length=32)
 	private String specialty;
 	
-	@OneToMany(mappedBy="professor")
+	@OneToMany()
 	private List<Subject> SubjectList;
 	
-	@OneToMany(mappedBy="professor")
+	@OneToMany()						// TODO
 	private List<Thesis> ThesisList;
 	
 	public Professor(String full_name, String specialty) {

@@ -15,9 +15,12 @@ public class Subject {
 	@Column(name="id", nullable=false)
 	private int id;
 	
+	@Column(name = "professor", nullable=false)
+	private int professorId;
+	
 	@ManyToOne()
-	@JoinColumn(name = "professor", nullable = false)
-	private Professor professor;	// TODO int
+	@JoinColumn(name = "professor", nullable=false)
+	private Professor professor;
 	
 	@Column(name="name", nullable = false)
 	private String name;

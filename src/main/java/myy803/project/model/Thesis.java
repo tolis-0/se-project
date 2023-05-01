@@ -3,6 +3,8 @@ package myy803.project.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -10,13 +12,19 @@ import javax.persistence.Table;
 public class Thesis {
 
 	@Id
-	@Column(name="id", nullable=false)
-	private Subject subject;		// TODO int
+	@Column(name="id")
+	private int id;
 	
-	private Professor professor;
+	@OneToOne
+	@JoinColumn(name="id" , nullable=false)
+	private int subject;
 	
 	@Column(name="student", nullable=false)
-	private Student student;		// TODO int
+	private int studentId;
+	
+	@OneToOne
+	@JoinColumn(name="student")
+	private Student student;
 	
 	@Column(name="imp_grade")
 	private float ImplementationGrade;

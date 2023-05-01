@@ -5,22 +5,22 @@ import java.io.Serializable;
 public class ApplicationId implements Serializable {
     private static final long serialVersionUID = 1L;
     
-	private Long userIdFrom;
-    private Long userIdTo;
+	private Subject subject;
+    private Student student;
     
-	public Long getUserIdTo() {
-		return userIdTo;
+	public Subject getSubject() {
+		return subject;
 	}
 	
-	public void setUserIdTo(Long userIdTo) {
-		this.userIdTo = userIdTo;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 	
-	public Long getUserIdFrom() {
-		return userIdFrom;
+	public Student getStudent() {
+		return student;
 	}
 	
-	public void setUserIdFrom(Long userIdFrom) {
-		this.userIdFrom = userIdFrom;
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 }

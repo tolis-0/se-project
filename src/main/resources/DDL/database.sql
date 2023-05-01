@@ -9,26 +9,28 @@ USE `myy803db`;
 -- DROP TABLE IF EXISTS Applications;
 
 CREATE TABLE Users (
-  id int not null auto_increment primary key,
-  username varchar(32) default null unique,
-  password text default null,
-  role text default null  									--TODO
+	id int not null auto_increment primary key,
+	username varchar(32) default null unique,
+	password text default null,
+	role text default null
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 CREATE TABLE IF NOT EXISTS Students (
-	id int references users(id) not null primary key,
+	id int not null primary key,
 	full_name varchar(64) default null,
 	average_grade real,
 	rem_courses int,
-	year int
+	year int,
+	foreign key (id) references Users(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1; 
 
 
 CREATE TABLE IF NOT EXISTS Professors (
-	id int references Users(id) not null primary key,
+	id int not null primary key,
 	full_name varchar(64) default null,
-	specialty varchar(32) default null
+	specialty varchar(32) default null,
+	foreign key (id) references Users(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
@@ -42,11 +44,13 @@ CREATE TABLE IF NOT EXISTS Subjects (
 
 
 CREATE TABLE IF NOT EXISTS Thesis (
-	id int not null references Subjects(id) primary key,
-	student int not null references Student(id),
+	id int not null primary key,
+	student int not null,
 	imp_grade real,
 	rep_grade real,
-	pres_grade real
+	pres_grade real,
+	foreign key (id) references Subjects(id),
+	foreign key (student) references Student(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 

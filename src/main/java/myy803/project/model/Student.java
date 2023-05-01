@@ -3,15 +3,21 @@ package myy803.project.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Students")
 public class Student{
 
-	@Id
-	@Column(name="id", nullable=false)
-	private User user; 			// TODO int
+	@Id 
+	@Column(name = "id", nullable=false)
+	private int id;
+	
+	@OneToOne
+	@JoinColumn(name="id")
+	private User user;
 	
 	@Column(name="full_name", length=64)
 	private String full_name;
