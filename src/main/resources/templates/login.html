@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	
 	<style>
+	.button {background-color: #e7e7e7;} 
 	.titleDiv {
   		height: 50px;
   		background-color: lightblue;
@@ -24,11 +25,12 @@
 	}
 	.formDiv {
 		width: 400px;
+		height: 120px;
 		margin: auto;
 	}
 	</style>
 </head>
-<body>
+<body style="background-color:lightgray;">
 	<div class="titleDiv">
 		<h1>Thesis Management for Students and Professors</h1>
 	</div>
@@ -38,27 +40,28 @@
 	<div class="formDiv">
 			<div class="elementDiv">
 				<label for="loginUname">Username:  </label>
+				<input type="text" id="username1" name="username1"><br><br>
 			</div>
 			<div class="elementDiv">
 				<label for="loginPass">Password:  </label>
-			</div>
-			<div style="text-align:center">
-				<input class= "btn btn-primary" type="submit" name="log_in" value="Login">
+				<input type="text" id="password1" name="password1"><br><br>
+				<button type="submit" class= "button"> Login</button>
 			</div>
 	</div>
 	
 	<div class="formDiv">
 			<div class="elementDiv">
 				<label for="regUname">Username:  </label>
+				<input type="text" id="username2" name="username2"><br><br>
 			</div>
 			<div class="elementDiv">
 				<label for="regPass1">Password:  </label>
+				<input type="text" id="password3" name="password2"><br><br>
 			</div>
 			<div class="elementDiv">
 				<label for="regPass2">Repeat Password:  </label>
-			</div>
-			<div style="text-align:center">
-				<input class= "btn btn-primary" type="submit" name="register" value="Register">
+				<input type="text" id="password3" name="password2"><br><br>
+				<button type="submit" class= "button"> Submit</button>
 			</div>
 	</div>
 	
