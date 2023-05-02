@@ -20,13 +20,13 @@ public class AuthController {
 	@GetMapping("/login")
 	public String loginPage(Model model) {
 		model.addAttribute("user", new User());
-		return "login";
+		return "professor";
 	}
 	
 	@GetMapping("/register")
 	public String registerPage(Model model) {
 		model.addAttribute("user", new User());
-		return "login";
+		return "student";
 	}
 	
 	@PostMapping("/post/login")

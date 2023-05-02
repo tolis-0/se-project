@@ -46,12 +46,8 @@
 		<form th:action="@{/post/login}" th:object="${user}" method="post">
 			<div class="elementDiv">
 				<h3>Member Login</h3>
-			</div>
-			<div class="elementDiv">
-				<input type="text" th:field="*{username}" placeholder="Type your username"><br><br>
-			</div>
-			<div class="elementDiv">
-				<input type="password" th:field="*{password}" placeholder="Type your password"><br><br>
+				<input type="text"  placeholder="Type your username"><br><br>
+				<input type="password"  placeholder="Type your password"><br><br>
 				<button type="submit" class= "button">Login</button>
 			</div>
 		</form>
@@ -61,12 +57,8 @@
 		<form th:action="@{/post/register}" th:object="${user}" method="post">
 			<div class="elementDiv">
 				<h3>Member Register</h3>
-			</div>
-			<div class="elementDiv">
-				<input type="text" th:field="*{username}" placeholder="Type your username"><br><br>
-			</div>
-			<div class="elementDiv">
-				<input type="password" th:field="*{password}" placeholder="Type your password"> <br><br>
+				<input type="text"  placeholder="Type your username"><br><br>
+				<input type="password"  placeholder="Type your password"> <br><br>
 				<button type="submit" class= "button">Register</button>
 			</div>
 		</form>
