@@ -9,6 +9,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Formula;
+
 @Entity
 @Table(name="Thesis")
 public class Thesis {
@@ -25,16 +27,19 @@ public class Thesis {
 	@JoinColumn(name="student")
 	private Student student;
 	
-	@ManyToOne
-	private Professor professor; 	// TODO
+	@ManyToOne(targetEntity=Professor.class)
+	private Professor professor;
 	
 	@Column(name="imp_grade")
-	private float ImplementationGrade;
+	private float implementationGrade;
 	
 	@Column(name="rep_grade")
-	private float ReportGrade;
+	private float reportGrade;
 	
 	@Column(name="pres_grade")
-	private float PresentationGrade;
+	private float presentationGrade;
+	
+	@Formula("0.7*imp_grade + 0.15*rep_grade + 0.15*pres_grade")
+	private float totalGrade;
 	
 }

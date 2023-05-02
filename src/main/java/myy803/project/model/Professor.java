@@ -23,19 +23,19 @@ public class Professor{
 	private User user;
 	
 	@Column(name="full_name", length=64)
-	private String full_name;
+	private String fullName;
 	
 	@Column(name="specialty", length=32)
 	private String specialty;
 	
 	@OneToMany(mappedBy="professor")
-	private List<Subject> SubjectList;
+	private List<Subject> subjectList;
 	
 	@OneToMany(mappedBy="professor")
-	private List<Thesis> ThesisList;
+	private List<Thesis> thesisList;
 	
 	public Professor(String full_name, String specialty) {
-		this.full_name = full_name;
+		this.fullName = full_name;
 		this.specialty = specialty;
 	}
 	
@@ -44,7 +44,7 @@ public class Professor{
 	}
 	
 	public void setFullName(String full_name) {
-		this.full_name = full_name;
+		this.fullName = full_name;
 	}
 	
 	public void setSpecialty(String specialty) {
@@ -52,7 +52,7 @@ public class Professor{
 	}
 	
 	public String getFullName() {
-		return this.full_name;
+		return this.fullName;
 	}
 	
 	public String getSpecialty() {
@@ -62,6 +62,6 @@ public class Professor{
 	
 	@Override
 	public String toString() {
-		return "Professor [full_name=" + full_name + ", specialty=" + specialty + "]";
+		return "Professor [full_name=" + fullName + ", specialty=" + specialty + "]";
 	}
 }

@@ -23,25 +23,25 @@ public class Student{
 	private User user;
 	
 	@Column(name="full_name", length=64)
-	private String full_name;
+	private String fullName;
 	
 	@Column(name="rem_courses")
-	private int rem_courses;
+	private int remainingCourses;
 	
 	@Column(name="year")
 	private int year;
 	
 	@Column(name="avg_grade")
-	private float avg_grade;
+	private float averageGrade;
 	
 	@OneToMany(mappedBy="student")
 	private List<Application> applications;
 	
 	public Student(String full_name, int rem_courses, int year, float avg_grade) {
-		this.full_name = full_name;
-		this.rem_courses = rem_courses;
+		this.fullName = full_name;
+		this.remainingCourses = rem_courses;
 		this.year = year;
-		this.avg_grade = avg_grade;
+		this.averageGrade = avg_grade;
 	}
 	
 	public Student() {
@@ -49,11 +49,11 @@ public class Student{
 	}
 	
 	public void setFull_name(String full_name) {
-		this.full_name = full_name;
+		this.fullName = full_name;
 	}
 	
 	public void setRem_courses(int rem_courses) {
-		this.rem_courses = rem_courses;
+		this.remainingCourses = rem_courses;
 	}
 	
 	public void setYear(int year) {
@@ -61,15 +61,15 @@ public class Student{
 	}
 	
 	public void setAvg_grade(float avg_grade) {
-		this.avg_grade = avg_grade;
+		this.averageGrade = avg_grade;
 	}
 	
 	public String getFull_name() {
-		return this.full_name;
+		return this.fullName;
 	}
 	
 	public int getRem_courses() {
-		return this.rem_courses;
+		return this.remainingCourses;
 	}
 	
 	public int getYear() {
@@ -77,11 +77,11 @@ public class Student{
 	}
 	
 	public float getAvg_grades() {
-		return this.avg_grade;
+		return this.averageGrade;
 	}
 	
 	@Override
 	public String toString() {
-		return "Student [full_name=" + full_name + ", rem_courses=" + rem_courses + ", year=" + year + ", avg_grade=" + avg_grade + "]";
+		return "Student [full_name=" + fullName + ", rem_courses=" + remainingCourses + ", year=" + year + ", avg_grade=" + averageGrade + "]";
 	}
 }
