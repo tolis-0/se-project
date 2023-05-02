@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Autowired
-    private CustomSecuritySuccessHandler customSecuritySuccessHandler;
+    private LoginSuccessHandler loginSuccessHandler;
 	
 	@Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -28,7 +28,7 @@ public class SecurityConfig {
 			.formLogin()
 			.loginPage("/login")
 			.failureUrl("/login?error=true")
-			.successHandler(customSecuritySuccessHandler);
+			.successHandler(loginSuccessHandler);
 		
 
 		return http.build();
