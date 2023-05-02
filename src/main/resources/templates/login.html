@@ -10,22 +10,25 @@
   		height: 50px;
   		background-color: lightblue;
   		text-align: center;
+  		font-style: italic;
 	}
 	.messageDiv {
 		height: 40px;
 		text-align: center;
-		color : red;
+		color : rgb(0, 0, 0);
+		font-style: normal;
+		font-family: Arial;
 	}
 	.elementDiv {
 		height: 32px;
-		text-align: right;
+		text-align: center;
 		margin-right: 75px;
 		font-style: normal;
 		font-family: Arial;
 	}
 	.formDiv {
 		width: 400px;
-		height: 120px;
+		height: 150px;
 		margin: auto;
 	}
 	</style>
@@ -39,29 +42,30 @@
 	
 	<div class="formDiv">
 			<div class="elementDiv">
-				<label for="loginUname">Username:  </label>
-				<input type="text" id="username1" name="username1"><br><br>
+				<h3>Member Login</h3>
 			</div>
 			<div class="elementDiv">
-				<label for="loginPass">Password:  </label>
-				<input type="text" id="password1" name="password1"><br><br>
+				<input type="text" id="username1" name="username1" placeholder="Type your usename"><br><br>
+			</div>
+			<div class="elementDiv">
+				<input type="text" id="password1" name="password1" placeholder="Type your password"><br><br>
 				<button type="submit" class= "button"> Login</button>
 			</div>
 	</div>
 	
 	<div class="formDiv">
 			<div class="elementDiv">
-				<label for="regUname">Username:  </label>
-				<input type="text" id="username2" name="username2"><br><br>
+				<h3>Member Register</h3>
 			</div>
 			<div class="elementDiv">
-				<label for="regPass1">Password:  </label>
-				<input type="text" id="password3" name="password2"><br><br>
+				<input type="text" id="username2" name="username2" placeholder="Type your usename"><br><br>
 			</div>
 			<div class="elementDiv">
-				<label for="regPass2">Repeat Password:  </label>
-				<input type="text" id="password3" name="password2"><br><br>
-				<button type="submit" class= "button"> Submit</button>
+				<input type="text" id="password3" name="password2" placeholder="Type your password"> <br><br>
+			</div>
+			<div class="elementDiv">
+				<input type="text" id="password3" name="password2" placeholder="Repeat password"><br><br>
+				<button type="submit" class= "button"> Register</button>
 			</div>
 	</div>
 	
