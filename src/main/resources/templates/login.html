@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<title>Thesis Manager - Login</title>
 	<meta charset="UTF-8">
@@ -42,32 +43,33 @@
 	<div class="messageDiv"></div>
 	
 	<div class="formDiv">
+		<form th:action="@{/post/login}" th:object="${user}" method="post">
 			<div class="elementDiv">
 				<h3>Member Login</h3>
 			</div>
 			<div class="elementDiv">
-				<input type="text" id="username1" name="username1" placeholder="Type your usename"><br><br>
+				<input type="text" th:field="*{username}" placeholder="Type your username"><br><br>
 			</div>
 			<div class="elementDiv">
-				<input type="text" id="password1" name="password1" placeholder="Type your password"><br><br>
-				<button type="submit" class= "button"> Login</button>
+				<input type="password" th:field="*{password}" placeholder="Type your password"><br><br>
+				<button type="submit" class= "button">Login</button>
 			</div>
+		</form>
 	</div>
 	
 	<div class="formDiv">
+		<form th:action="@{/post/login}" th:object="${user}" method="post">
 			<div class="elementDiv">
 				<h3>Member Register</h3>
 			</div>
 			<div class="elementDiv">
-				<input type="text" id="username2" name="username2" placeholder="Type your usename"><br><br>
+				<input type="text" th:field="*{username}" placeholder="Type your username"><br><br>
 			</div>
 			<div class="elementDiv">
-				<input type="text" id="password3" name="password2" placeholder="Type your password"> <br><br>
+				<input type="password" th:field="*{password}" placeholder="Type your password"> <br><br>
+				<button type="submit" class= "button">Register</button>
 			</div>
-			<div class="elementDiv">
-				<input type="text" id="password3" name="password2" placeholder="Repeat password"><br><br>
-				<button type="submit" class= "button"> Register</button>
-			</div>
+		</form>
 	</div>
 	
 </body>
