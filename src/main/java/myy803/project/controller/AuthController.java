@@ -37,6 +37,15 @@ public class AuthController {
 	
 	@PostMapping("/post/register")
 	public String registerAttempt(@ModelAttribute("user") User user, Model model) {
-		return null; //TODO
+        
+		if(userService.isUserPresent(user)){
+            model.addAttribute("successMessage", "User already registered!");
+            return "auth/signin";
+        }
+
+        userService.saveUser(user);
+        model.addAttribute("successMessage", "User registered successfully!");
+
+        return "login";
 	}
 }

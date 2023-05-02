@@ -8,7 +8,7 @@ USE `myy803db`;
 -- DROP TABLE IF EXISTS Thesis;
 -- DROP TABLE IF EXISTS Applications;
 
-CREATE TABLE Users (
+CREATE TABLE IF NOT EXISTS Users (
 	id int not null auto_increment primary key,
 	username varchar(32) default null unique,
 	password text default null,
