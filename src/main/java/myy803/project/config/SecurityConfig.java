@@ -1,5 +1,6 @@
 package myy803.project.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,15 +11,25 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
+    @Autowired
+    private CustomSecuritySuccessHandler customSecuritySuccessHandler;
+	
+	@Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-		http.authorizeHttpRequests()
-		// URL matching for accessibility
-		.antMatchers("/", "/login").permitAll()
-		.antMatchers("/student/**").hasAnyAuthority("STUDENT")
-		.antMatchers("/professor/**").hasAnyAuthority("PROFESSOR")
-		.anyRequest().authenticated();
+		http
+			.authorizeRequests()
+			// URL matching for accessibility
+			.antMatchers("/", "/login").permitAll()
+			.antMatchers("/student/**").hasAnyAuthority("STUDENT")
+			.antMatchers("/professor/**").hasAnyAuthority("PROFESSOR")
+			.anyRequest().authenticated();
+		http
+			.formLogin()
+			.loginPage("/login")
+			.failureUrl("/login?error=true")
+			.successHandler(customSecuritySuccessHandler);
+		
 
 		return http.build();
 	}
