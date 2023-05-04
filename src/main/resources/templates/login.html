@@ -77,11 +77,7 @@
 		</form>
 	</div>
 	
-<<<<<<< HEAD
-	<div class="elementDiv" th:if="${param.LoginError}">Username or Password is invalid!</div> <br/>
-=======
 	<div class="errorMessage" th:if="${param.LoginError}">Username or Password is invalid!</div> <br/>
->>>>>>> 7ef84d7 (css and html update)
 
 	<div class="formDiv">
 		<form th:action="@{/post/register}" th:object="${user}" method="post">
@@ -106,15 +102,9 @@
 			</div>
 		</form>
 	</div>
-<<<<<<< HEAD
-	<br/><br/>
-	<div class="elementDiv" th:if="${param.AlreadyRegistered}">User already registered!</div>
-	<div class="elementDiv" th:if="${param.RegisterSuccess}">Account Successfully created!</div>
-=======
 	
 	<div class="yellowMessage" th:if="${param.AlreadyRegistered}">User already registered!</div>
 	<div class="successMessage" th:if="${param.RegisterSuccess}">Account successfully created!</div>
->>>>>>> 7ef84d7 (css and html update)
 
 </body>
 </html>
