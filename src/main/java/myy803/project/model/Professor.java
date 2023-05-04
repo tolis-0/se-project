@@ -34,14 +34,11 @@ public class Professor{
 	@OneToMany(mappedBy="professor")
 	private List<Thesis> thesisList;
 	
-	public Professor(String full_name, String specialty) {
-		this.fullName = full_name;
-		this.specialty = specialty;
+	public Professor(int id) {
+		this.id = id;
 	}
 	
-	public Professor() {
-		
-	}
+	public Professor() {}
 	
 	public void setFullName(String full_name) {
 		this.fullName = full_name;

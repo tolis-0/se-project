@@ -31,22 +31,17 @@ public class Student{
 	@Column(name="year")
 	private int year;
 	
-	@Column(name="avg_grade")
+	@Column(name="average_grade")
 	private float averageGrade;
 	
 	@OneToMany(mappedBy="student")
 	private List<Application> applications;
 	
-	public Student(String full_name, int rem_courses, int year, float avg_grade) {
-		this.fullName = full_name;
-		this.remainingCourses = rem_courses;
-		this.year = year;
-		this.averageGrade = avg_grade;
+	public Student(int id) {
+		this.id = id;
 	}
 	
-	public Student() {
-		
-	}
+	public Student() {}
 	
 	public void setFull_name(String full_name) {
 		this.fullName = full_name;
