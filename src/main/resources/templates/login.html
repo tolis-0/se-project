@@ -48,10 +48,10 @@
 				<h3>Member Login</h3>
 			</div>
 			<div class="elementDiv">
-				<input type="text" th:field="*{username}" placeholder="Type your username"><br><br>
+				<input type="text" th:field="*{username}" placeholder="Type your username" required><br><br>
 			</div>
 			<div class="elementDiv">
-				<input type="password" th:field="*{password}" placeholder="Type your password"><br><br>
+				<input type="password" th:field="*{password}" placeholder="Type your password" required><br><br>
 				<button type="submit" class= "button">Login</button>
 			</div>
 		</form>
@@ -63,10 +63,17 @@
 				<h3>Member Register</h3>
 			</div>
 			<div class="elementDiv">
-				<input type="text" th:field="*{username}" placeholder="Type your username"><br><br>
+				<input type="text" th:field="*{username}" placeholder="Type your username" required><br><br>
 			</div>
 			<div class="elementDiv">
-				<input type="password" th:field="*{password}" placeholder="Type your password"><br><br>
+				<input type="password" th:field="*{password}" placeholder="Type your password" required><br><br>
+			</div>
+			<div class="elementDiv">
+			    <select th:field="*{role}" required>
+      			<option value="">Select</option>
+      			<option value="STUDENT">Student</option>
+      			<option value="PROFESSOR">Professor</option>
+    			</select> <br/><br/>
 				<button type="submit" class= "button">Register</button>
 			</div>
 		</form>

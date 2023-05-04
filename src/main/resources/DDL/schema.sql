@@ -11,9 +11,9 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE IF NOT EXISTS users (
 	id int not null auto_increment primary key,
-	username varchar(32) default null unique,
-	password text default null,
-	role text default null
+	username varchar(32) not null unique,
+	password text not null,
+	role text not null
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
