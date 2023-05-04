@@ -63,4 +63,3 @@ CREATE TABLE IF NOT EXISTS applications (
 	constraint fk_appstu foreign key (student) references students(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-

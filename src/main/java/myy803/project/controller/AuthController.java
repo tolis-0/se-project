@@ -6,9 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import myy803.project.service.ProfessorService;
+import myy803.project.service.StudentService;
 import myy803.project.service.UserService;
+import myy803.project.model.Professor;
+import myy803.project.model.Student;
 import myy803.project.model.User;
 
 
@@ -17,7 +20,13 @@ public class AuthController {
 
     @Autowired
     UserService userService;
+    
+    @Autowired
+    StudentService studentService;
 	
+    @Autowired
+    ProfessorService professorService;
+    
 	@GetMapping("/login")
 	public String loginPage(Model model) {
 		model.addAttribute("user", new User());
@@ -38,6 +47,13 @@ public class AuthController {
         }
 
         userService.saveUser(user);
+        String roleValue = user.getRole().getValue();
+        if (roleValue == "Student") {
+        	studentService.saveStudent(new Student(user.getId()));
+        } else if (roleValue == "Professor") {
+        	professorService.saveProfessor(new Professor(user.getId()));
+        }
+
         return "redirect:/login?RegisterSuccess=true";
 	}
 }
