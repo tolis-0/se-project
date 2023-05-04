@@ -16,7 +16,7 @@
 	.messageDiv {
 		height: 40px;
 		text-align: center;
-		color : rgb(0, 0, 0);
+		color: rgb(0, 0, 0);
 		font-style: normal;
 		font-family: Arial;
 	}
@@ -29,8 +29,26 @@
 	}
 	.formDiv {
 		width: 400px;
-		height: 150px;
+		height:100%;
 		margin: auto;
+	}
+	.errorMessage {
+		color: #b40000;
+		margin-right: 75px;
+		text-align: center;
+		font-style: italic;
+	}
+	.successMessage {
+		color: #009408;
+		margin-right: 75px;
+		text-align: center;
+		font-style: italic;
+	}
+	.yellowMessage {
+		color: #b39c00;
+		margin-right: 75px;
+		text-align: center;
+		font-style: italic;
 	}
 	</style>
 </head>
@@ -48,16 +66,22 @@
 				<h3>Member Login</h3>
 			</div>
 			<div class="elementDiv">
-				<input type="text" th:field="*{username}" placeholder="Type your username" required><br><br>
+				<input type="text" th:field="*{username}" placeholder="Type your username" required>
 			</div>
 			<div class="elementDiv">
-				<input type="password" th:field="*{password}" placeholder="Type your password" required><br><br>
+				<input type="password" th:field="*{password}" placeholder="Type your password" required>
+			</div>
+			<div class="elementDiv">
 				<button type="submit" class= "button">Login</button>
 			</div>
 		</form>
 	</div>
 	
+<<<<<<< HEAD
 	<div class="elementDiv" th:if="${param.LoginError}">Username or Password is invalid!</div> <br/>
+=======
+	<div class="errorMessage" th:if="${param.LoginError}">Username or Password is invalid!</div> <br/>
+>>>>>>> 7ef84d7 (css and html update)
 
 	<div class="formDiv">
 		<form th:action="@{/post/register}" th:object="${user}" method="post">
@@ -65,24 +89,32 @@
 				<h3>Member Register</h3>
 			</div>
 			<div class="elementDiv">
-				<input type="text" th:field="*{username}" placeholder="Type your username" required><br><br>
+				<input type="text" th:field="*{username}" placeholder="Type your username" required>
 			</div>
 			<div class="elementDiv">
-				<input type="password" th:field="*{password}" placeholder="Type your password" required><br><br>
+				<input type="password" th:field="*{password}" placeholder="Type your password" required>
 			</div>
 			<div class="elementDiv">
 			    <select th:field="*{role}" required>
       			<option value="">Select</option>
       			<option value="STUDENT">Student</option>
       			<option value="PROFESSOR">Professor</option>
-    			</select> <br/><br/>
+    			</select>
+    		</div>
+    		<div class="elementDiv">
 				<button type="submit" class= "button">Register</button>
 			</div>
 		</form>
 	</div>
+<<<<<<< HEAD
 	<br/><br/>
 	<div class="elementDiv" th:if="${param.AlreadyRegistered}">User already registered!</div>
 	<div class="elementDiv" th:if="${param.RegisterSuccess}">Account Successfully created!</div>
+=======
+	
+	<div class="yellowMessage" th:if="${param.AlreadyRegistered}">User already registered!</div>
+	<div class="successMessage" th:if="${param.RegisterSuccess}">Account successfully created!</div>
+>>>>>>> 7ef84d7 (css and html update)
 
 </body>
 </html>
