@@ -27,7 +27,7 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 	}
 
 	protected String determineTargetUrl(Authentication authentication) {
-		String url = "/login?error=true";
+		String url = "/login?LoginError=true";
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		List<String> roles = new ArrayList<String>();
 	        

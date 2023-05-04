@@ -31,16 +31,13 @@ public class AuthController {
 	}
 	
 	@PostMapping("/post/register")
-	public String registerAttempt(@ModelAttribute("user") User user, RedirectAttributes redirectAttrs) {
+	public String registerAttempt(@ModelAttribute("user") User user) {
         
 		if(userService.isUserPresent(user)){
-			redirectAttrs.addFlashAttribute("successMessage", "User already registered!");
-            return "redirect:/login";
+            return "redirect:/login?AlreadyRegistered=true";
         }
 
         userService.saveUser(user);
-        redirectAttrs.addFlashAttribute("successMessage", "User registered successfully!");
-
-        return "redirect:/login";
+        return "redirect:/login?RegisterSuccess=true";
 	}
 }

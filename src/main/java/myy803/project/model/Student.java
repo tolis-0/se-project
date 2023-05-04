@@ -11,7 +11,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Students")
+@Table(name="students")
 public class Student{
 
 	@Id 
