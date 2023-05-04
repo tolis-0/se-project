@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import myy803.project.service.UserService;
 import myy803.project.model.User;
@@ -29,22 +30,16 @@ public class AuthController {
 		return "login";
 	}
 	
-	@PostMapping("/post/login")
-	public String loginAttempt(@ModelAttribute("user") User user, Model model) {
-		return null; //TODO
-		
-	}
-	
 	@PostMapping("/post/register")
-	public String registerAttempt(@ModelAttribute("user") User user, Model model) {
+	public String registerAttempt(@ModelAttribute("user") User user, RedirectAttributes redirectAttrs) {
         
 		if(userService.isUserPresent(user)){
-            model.addAttribute("successMessage", "User already registered!");
+			redirectAttrs.addFlashAttribute("successMessage", "User already registered!");
             return "redirect:/login";
         }
 
         userService.saveUser(user);
-        model.addAttribute("successMessage", "User registered successfully!");
+        redirectAttrs.addFlashAttribute("successMessage", "User registered successfully!");
 
         return "redirect:/login";
 	}

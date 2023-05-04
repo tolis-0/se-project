@@ -41,7 +41,8 @@ public class SecurityConfig {
 			.anyRequest().authenticated();
 		http
 			.formLogin()
-			.loginPage("/login")
+			.loginPage("/login.html")
+			.loginProcessingUrl("/post/login")
 			.failureUrl("/login?error=true")
 			.successHandler(loginSuccessHandler);
 		

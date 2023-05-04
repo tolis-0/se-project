@@ -56,6 +56,8 @@
 			</div>
 		</form>
 	</div>
+	
+	<div th:if="${param.error}"><p>Username or Password is invalid.</p></div> <br/>
 
 	<div class="formDiv">
 		<form th:action="@{/post/register}" th:object="${user}" method="post">
@@ -76,6 +78,8 @@
     			</select> <br/><br/>
 				<button type="submit" class= "button">Register</button>
 			</div>
+			
+			<span th:utext="${successMessage}"></span>
 		</form>
 	</div>
 
