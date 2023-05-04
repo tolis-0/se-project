@@ -1,14 +1,15 @@
-CREATE DATABASE  IF NOT EXISTS `myy803db`;
+CREATE DATABASE IF NOT EXISTS `myy803db`;
 USE `myy803db`;
 
--- DROP TABLE IF EXISTS Users;
--- DROP TABLE IF EXISTS Students;
--- DROP TABLE IF EXISTS Professors;
--- DROP TABLE IF EXISTS Subjects;
--- DROP TABLE IF EXISTS Thesis;
--- DROP TABLE IF EXISTS Applications;
+DROP TABLE IF EXISTS applications;
+DROP TABLE IF EXISTS thesis;
+DROP TABLE IF EXISTS subjects;
+DROP TABLE IF EXISTS professors;
+DROP TABLE IF EXISTS students;
+DROP TABLE IF EXISTS users;
 
-CREATE TABLE IF NOT EXISTS Users (
+
+CREATE TABLE IF NOT EXISTS users (
 	id int not null auto_increment primary key,
 	username varchar(32) default null unique,
 	password text default null,
@@ -16,49 +17,52 @@ CREATE TABLE IF NOT EXISTS Users (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE IF NOT EXISTS Students (
+CREATE TABLE IF NOT EXISTS students (
 	id int not null primary key,
 	full_name varchar(64) default null,
 	average_grade real,
 	rem_courses int,
 	year int,
-	foreign key (id) references Users(id)
+	constraint fk_stuid foreign key (id) references users(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1; 
 
 
-CREATE TABLE IF NOT EXISTS Professors (
+CREATE TABLE IF NOT EXISTS professors (
 	id int not null primary key,
 	full_name varchar(64) default null,
 	specialty varchar(32) default null,
-	foreign key (id) references Users(id)
+	constraint fk_proid foreign key (id) references users(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE IF NOT EXISTS Subjects (
+CREATE TABLE IF NOT EXISTS subjects (
 	id int not null auto_increment primary key,
-	professor int not null references Professors(id),
+	professor int not null,
 	name text not null,
 	objectives text not null,
-	assigned boolean default false
-); ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+	assigned boolean default false,
+	constraint fk_subid foreign key (professor) references professors(id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE IF NOT EXISTS Thesis (
+CREATE TABLE IF NOT EXISTS thesis (
 	id int not null primary key,
 	student int not null,
 	imp_grade real,
 	rep_grade real,
 	pres_grade real,
-	foreign key (id) references Subjects(id),
-	foreign key (student) references Student(id)
+	constraint fk_thesub foreign key (id) references subjects(id),
+	constraint fk_thestu foreign key (student) references students(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE IF NOT EXISTS Applications (
-	subject int not null references Subjects(id),
-	student int not null references Students(id),
+CREATE TABLE IF NOT EXISTS applications (
+	subject int not null,
+	student int not null,
 	message text,
-	primary key (subject, student)
-); ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+	primary key (subject, student),
+	constraint fk_appsub foreign key (subject) references subjects(id),
+	constraint fk_appstu foreign key (student) references students(id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 

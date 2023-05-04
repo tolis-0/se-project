@@ -26,7 +26,7 @@ public class AuthController {
 	@GetMapping("/register")
 	public String registerPage(Model model) {
 		model.addAttribute("user", new User());
-		return "student";
+		return "login";
 	}
 	
 	@PostMapping("/post/login")
@@ -40,12 +40,12 @@ public class AuthController {
         
 		if(userService.isUserPresent(user)){
             model.addAttribute("successMessage", "User already registered!");
-            return "auth/signin";
+            return "redirect:/login";
         }
 
         userService.saveUser(user);
         model.addAttribute("successMessage", "User registered successfully!");
 
-        return "login";
+        return "redirect:/login";
 	}
 }
