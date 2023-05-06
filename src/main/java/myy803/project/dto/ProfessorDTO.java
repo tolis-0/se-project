@@ -1,11 +1,14 @@
 package myy803.project.dto;
 
-public class ProfessorDetails {
+public class ProfessorDTO {
 	
 	private String fullName;
 	private String specialty;
 
-	public ProfessorDetails() {}
+	public ProfessorDTO(String fullname, String specialty) {
+		this.fullName = fullname;
+		this.specialty = specialty;
+	}
 
 	public String getFullName() {
 		return fullName;

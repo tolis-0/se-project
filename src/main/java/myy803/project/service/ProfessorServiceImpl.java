@@ -1,5 +1,7 @@
 package myy803.project.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class ProfessorServiceImpl implements ProfessorService {
 	@Override
 	public void saveProfessor(Professor professor) {
 		professorDAO.save(professor);
+	}
+
+	@Override
+	public Optional<Professor> getProfessorById(int id) {
+		return professorDAO.findById(id);
 	}
 
 }
