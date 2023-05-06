@@ -85,7 +85,7 @@ public class AuthController {
 		}
 
         userService.saveUser(user);
-        saveRoleSpecificData(user);
+        saveRoleSpecificData(user, registerDTO.getFullName());
         
         return "redirect:/login?RegisterSuccess=true";
 	}
@@ -184,12 +184,12 @@ public class AuthController {
 		return true;
 	}
 	
-	private void saveRoleSpecificData(User user) {
+	private void saveRoleSpecificData(User user, String fullName) {
         String roleValue = user.getRole().getValue();
         if (roleValue == "Student") {
-        	studentService.saveStudent(new Student(user.getId()));
+        	studentService.saveStudent(new Student(user.getId(), fullName));
         } else if (roleValue == "Professor") {
-        	professorService.saveProfessor(new Professor(user.getId()));
+        	professorService.saveProfessor(new Professor(user.getId(), fullName));
         }
 	}
 }
