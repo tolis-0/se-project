@@ -32,6 +32,11 @@
 		height: 18px;
 		width: 142px;
 	}
+	.successMessage {
+		color: #009408;
+		text-align: center;
+		font-style: italic;
+	}
 	</style>
 </head>
 
@@ -41,7 +46,7 @@
 	</div>
 	
 	<div class="formDiv">
-		<form th:action="@{/post/professor}" th:object="${professorDetails}" method="post">
+		<form th:action="@{post/details}" th:object="${professorDetails}" method="post">
 			<div class="elementDiv">
 				<label class="textDiv" for="username">Username:</label>
 				<div class="field" id="username" sec:authentication="principal.username"></div>
@@ -54,6 +59,11 @@
 				<label class="textDiv" for="specialty">Specialty:</label>
 				<input type="text" class="field" id="specialty" th:field="*{specialty}">
 			</div>
+			<div class="elementDiv">
+				<button type="submit" class= "button">Save</button>
+			</div>
 		</form>
 	</div>
+	
+	<div class="successMessage" th:if="${param.ChangedInfo}">Profile Information Updated!</div>
 </body>
