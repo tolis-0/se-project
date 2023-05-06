@@ -26,16 +26,11 @@
 		text-align: left;
 		height: 18px;
 		width: 150px;
-		padding: 7px;
+		padding: 1px;
 	}
 	.field {
-		text-align: left;
 		height: 18px;
-		width: 150px;
-		padding: 2px;
-	}
-	.inputField {
-		border: 1px solid black;
+		width: 142px;
 	}
 	</style>
 </head>
@@ -53,11 +48,11 @@
 			</div>
 			<div class="elementDiv">
 				<label class="textDiv" for="fullname">Full Name:</label>
-				<input type="text" id="fullname" th:field="*{fullName}">
+				<input type="text" class="field" id="fullname" th:field="*{fullName}">
 			</div>
 			<div class="elementDiv">
 				<label class="textDiv" for="specialty">Specialty:</label>
-				<input type="text" id="specialty" th:field="*{specialty}">
+				<input type="text" class="field" id="specialty" th:field="*{specialty}">
 			</div>
 		</form>
 	</div>
