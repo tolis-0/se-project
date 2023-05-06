@@ -8,5 +8,6 @@ import myy803.project.model.Professor;
 public interface ProfessorService {
 
 	public void saveProfessor(Professor professor);
+	
 
 }

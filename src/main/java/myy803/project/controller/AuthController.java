@@ -42,9 +42,45 @@ public class AuthController {
 	@PostMapping("/post/register")
 	public String registerAttempt(@ModelAttribute("user") User user) {
         
+		boolean hasLetter = false;
+		boolean hasDigit = false;
+		boolean hasSymbol = false;
+		
 		if(userService.isUserPresent(user)){
             return "redirect:/login?AlreadyRegistered=true";
         }
+	
+		if(user.getPassword().length()<8 || user.getPassword().length()>25) {
+			return "redirect:/login?InvalidPassword=true";
+		}
+		
+		for (int i = 0; i < user.getPassword().length(); i++) {
+			if (Character.isLetter(user.getPassword().charAt(i)) ) {
+				hasLetter = true;
+			}
+			if (Character.isDigit(user.getPassword().charAt(i)) ) {
+				hasDigit = true;
+			}
+			if (!user.getPassword().substring(i, i+1).matches("[A-Za-z0-9]")) {
+				hasSymbol = true;
+			}			
+		}
+		if (hasLetter == false || hasDigit == false || hasSymbol == false) {
+			return "redirect:/login?InvalidPassword=true";
+		}
+		
+		
+		if (Character.isDigit(user.getUsername().charAt(0))) {
+			return "redirect:/login?InvalidUsername=true";
+		}
+		
+		for (int i = 0; i < user.getUsername().length(); i++) {
+			if (!Character.isLetterOrDigit(user.getUsername().charAt(i))) {
+				if(user.getUsername().charAt(i) != '_') {
+					return "redirect:/login?InvalidUsername=true";
+				}
+			}
+		}
 
         userService.saveUser(user);
         String roleValue = user.getRole().getValue();
