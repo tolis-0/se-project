@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Professor Dashboard</title>
+	<title>Thesis Manager</title>
 	<meta charset="UTF-8">
 	
 	<style>
@@ -46,11 +46,20 @@
 	</div>
 	
 	<div class="formDiv">
-		<form th:action="@{post/details}" th:object="${professorDetails}" method="post">
+		<form th:action="@{password}" method="post"> 
 			<div class="elementDiv">
 				<label class="textDiv" for="username">Username:</label>
 				<div class="field" id="username" sec:authentication="principal.username"></div>
 			</div>
+			<div class="elementDiv">
+				<label class="textDiv" for="password">Password:</label>
+				<button class="field" type="submit" id="password" class="button">Change</button>
+			</div>
+		</form>
+	</div>
+	
+	<div class="formDiv">
+		<form th:action="@{post/details}" th:object="${professorDetails}" method="post">
 			<div class="elementDiv">
 				<label class="textDiv" for="fullname">Full Name:</label>
 				<input type="text" class="field" id="fullname" th:field="*{fullName}">
@@ -60,7 +69,7 @@
 				<input type="text" class="field" id="specialty" th:field="*{specialty}">
 			</div>
 			<div class="elementDiv">
-				<button type="submit" class= "button">Save</button>
+				<button type="submit" class="button">Save</button>
 			</div>
 		</form>
 	</div>

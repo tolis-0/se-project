@@ -41,55 +41,81 @@ public class AuthController {
 	
 	@PostMapping("/post/register")
 	public String registerAttempt(@ModelAttribute("user") User user) {
+		
+		if(userService.isUserPresent(user)) {
+            return "redirect:/login?AlreadyRegistered=true";
+        }
+		
+		String errors = checkForErrors(user.getUsername(), user.getPassword());
+		if (!errors.isEmpty()) {
+			return "redirect:/login?" + errors;
+		}
+
+        userService.saveUser(user);
+        saveRoleSpecificData(user);
         
+        return "redirect:/login?RegisterSuccess=true";
+	}
+	
+	
+	private String checkForErrors(String username, String password) {
+		
+		if (!usernameMeetsRequirements(username)) {
+			return "InvalidUsername=true";
+		}
+		
+		if (Character.isDigit(username.charAt(0))) {
+			return "InvalidUsername=true";
+		}
+	
+		if(password.length() < 8 || password.length() > 25) {
+			return "InvalidPassword=true";
+		}
+		
+		if (!passwordMeetsRequirements(password)) {
+			return "InvalidPassword=true";
+		}
+		
+		return "";
+	}
+	
+	private boolean passwordMeetsRequirements(String password) {
 		boolean hasLetter = false;
 		boolean hasDigit = false;
 		boolean hasSymbol = false;
 		
-		if(userService.isUserPresent(user)){
-            return "redirect:/login?AlreadyRegistered=true";
-        }
-	
-		if(user.getPassword().length()<8 || user.getPassword().length()>25) {
-			return "redirect:/login?InvalidPassword=true";
-		}
-		
-		for (int i = 0; i < user.getPassword().length(); i++) {
-			if (Character.isLetter(user.getPassword().charAt(i)) ) {
+		for (int i = 0; i < password.length(); i++) {
+			if (Character.isLetter(password.charAt(i)) ) {
 				hasLetter = true;
 			}
-			if (Character.isDigit(user.getPassword().charAt(i)) ) {
+			if (Character.isDigit(password.charAt(i)) ) {
 				hasDigit = true;
 			}
-			if (!user.getPassword().substring(i, i+1).matches("[A-Za-z0-9]")) {
+			if (!password.substring(i, i+1).matches("[A-Za-z0-9]")) {
 				hasSymbol = true;
 			}			
 		}
-		if (hasLetter == false || hasDigit == false || hasSymbol == false) {
-			return "redirect:/login?InvalidPassword=true";
-		}
 		
-		
-		if (Character.isDigit(user.getUsername().charAt(0))) {
-			return "redirect:/login?InvalidUsername=true";
-		}
-		
-		for (int i = 0; i < user.getUsername().length(); i++) {
-			if (!Character.isLetterOrDigit(user.getUsername().charAt(i))) {
-				if(user.getUsername().charAt(i) != '_') {
-					return "redirect:/login?InvalidUsername=true";
+		return hasLetter && hasDigit && hasSymbol;
+	}
+	
+	private boolean usernameMeetsRequirements(String username) {
+		for (int i = 0; i < username.length(); i++) {
+			if (!Character.isLetterOrDigit(username.charAt(i))) {
+				if(username.charAt(i) != '_') {
+					return false;
 				}
 			}
 		}
-
-        userService.saveUser(user);
+		return true;
+	}
+	
+	private void saveRoleSpecificData(User user) {
         String roleValue = user.getRole().getValue();
         if (roleValue == "Student") {
         	studentService.saveStudent(new Student(user.getId()));
         } else if (roleValue == "Professor") {
         	professorService.saveProfessor(new Professor(user.getId()));
         }
-
-        return "redirect:/login?RegisterSuccess=true";
 	}
 }

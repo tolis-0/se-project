@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import myy803.project.dto.PasswordDTO;
 import myy803.project.dto.ProfessorDTO;
 import myy803.project.model.Professor;
 import myy803.project.model.User;
@@ -24,8 +25,7 @@ public class ProfessorController {
     ProfessorService professorService;
 	
 	@GetMapping("/dashboard")
-	public String professorDashboardPage(Model model,
-			@AuthenticationPrincipal User user) {
+	public String professorDashboardPage(Model model, @AuthenticationPrincipal User user) {
 		
 		Optional<Professor> opt = professorService.getProfessorById(user.getId());
 		if (!opt.isPresent()) {/*TODO*/}
@@ -51,4 +51,19 @@ public class ProfessorController {
 		
 		return "redirect:/professor/dashboard?ChangedInfo=true";
 	}
+	
+	@GetMapping("/password")
+	public String changePasswordPage(Model model) {
+		
+		model.addAttribute("passwordData", new PasswordDTO());
+		return "password";
+	}
+	
+	@PostMapping("/post/password")
+	public String changePassword(@ModelAttribute("passwordData") PasswordDTO passwordData,
+			@AuthenticationPrincipal User user) {
+		
+		return "redirect:/professor/dashboard?ChangedPassword=true";
+	}
+	
 }
