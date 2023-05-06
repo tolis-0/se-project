@@ -40,6 +40,16 @@ public class AuthController {
     @Autowired
     LoginSuccessHandler loginSuccessHandler;
     
+    @GetMapping("/")
+    public String mainPage(Authentication authentication) {
+    	if (authentication == null) {
+    		return "redirect:/login";
+    	}
+    	
+    	String url = loginSuccessHandler.determineTargetUrl(authentication);
+    	
+    	return "redirect:" + url;
+    }
     
 	@GetMapping("/login")
 	public String loginPage(Model model) {
