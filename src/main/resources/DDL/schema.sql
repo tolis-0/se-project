@@ -1,10 +1,10 @@
 
-DROP TABLE IF EXISTS applications;
-DROP TABLE IF EXISTS thesis;
-DROP TABLE IF EXISTS subjects;
-DROP TABLE IF EXISTS professors;
-DROP TABLE IF EXISTS students;
-DROP TABLE IF EXISTS users;
+-- DROP TABLE IF EXISTS applications;
+-- DROP TABLE IF EXISTS thesis;
+-- DROP TABLE IF EXISTS subjects;
+-- DROP TABLE IF EXISTS professors;
+-- DROP TABLE IF EXISTS students;
+-- DROP TABLE IF EXISTS users;
 
 
 CREATE TABLE IF NOT EXISTS users (

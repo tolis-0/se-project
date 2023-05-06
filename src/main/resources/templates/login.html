@@ -23,6 +23,7 @@
 	.elementDiv {
 		height: 32px;
 		text-align: center;
+		margin-right: 75px;
 		font-style: normal;
 		font-family: Arial;
 	}
@@ -33,49 +34,21 @@
 	}
 	.errorMessage {
 		color: #b40000;
+		margin-right: 75px;
 		text-align: center;
 		font-style: italic;
 	}
 	.successMessage {
 		color: #009408;
+		margin-right: 75px;
 		text-align: center;
 		font-style: italic;
 	}
 	.yellowMessage {
 		color: #b39c00;
+		margin-right: 75px;
 		text-align: center;
 		font-style: italic;
-	}
-	#message {
-		text-align: center;
-		width: 300px;
-  		display:block;
-  		background: #f1f1f1;
-  		color: #000;
- 		padding: 10px;
- 		margin: auto;
- 		font-family: Arial;
- 		margin-top: 30px;
- 		font-size: 14px;
-	}
-
-	#message p {
- 		padding: 10px 35px;
-		font-size: 14px;
-	}
-
-	.two:before {
- 		position: relative;
-		left: -35px;
-		bottom: -3px;
-		content: "➋";
-	}
-
-	.one:before {
-		position: relative;
-		left: -35px;
-		bottom: -3px;
-		content: "➊";
 	}
 	</style>
 </head>
@@ -115,10 +88,7 @@
 				<input type="text" th:field="*{username}" placeholder="Type your username" required>
 			</div>
 			<div class="elementDiv">
-				<input type="password" th:field="*{password}" placeholder="Type your password:" pattern="[0-9a-zA-Z]{3,}" onchange="if(this.checkValidity()) form.password_verify.pattern = this.value;" required>
-			</div>
-			<div class="elementDiv">
-				<input id="password_verify" type="password" placeholder="Verify your password:" pattern="[0-9a-zA-Z]{3,}" required>
+				<input type="password" th:field="*{password}" placeholder="Type your password" required>
 			</div>
 			<div class="elementDiv">
 			    <select th:field="*{role}" required>
@@ -132,16 +102,9 @@
 			</div>
 		</form>
 	</div>
-	<br> <br/>
+	
 	<div class="yellowMessage" th:if="${param.AlreadyRegistered}">User already registered!</div>
 	<div class="successMessage" th:if="${param.RegisterSuccess}">Account successfully created!</div>
-	<div id="message">
-		<h3>Password must contain the following:</h3>
-		<p id="letter" class="one">Only <b>letters</b> and <b>numbers</b></p>
-		<p id="length" class="two">Minimum <b>8 characters</b></p>
-	</div>
-	
-
 
 </body>
 </html>
