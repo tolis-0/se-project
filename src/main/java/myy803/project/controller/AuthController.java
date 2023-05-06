@@ -1,6 +1,11 @@
 package myy803.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import myy803.project.service.ProfessorService;
 import myy803.project.service.StudentService;
 import myy803.project.service.UserService;
+import myy803.project.config.LoginSuccessHandler;
+import myy803.project.dto.PasswordDTO;
 import myy803.project.model.Professor;
 import myy803.project.model.Student;
 import myy803.project.model.User;
@@ -26,6 +33,13 @@ public class AuthController {
 	
     @Autowired
     ProfessorService professorService;
+    
+    @Autowired
+    AuthenticationManager authManager;
+    
+    @Autowired
+    LoginSuccessHandler loginSuccessHandler;
+    
     
 	@GetMapping("/login")
 	public String loginPage(Model model) {
@@ -55,6 +69,43 @@ public class AuthController {
         saveRoleSpecificData(user);
         
         return "redirect:/login?RegisterSuccess=true";
+	}
+	
+	@GetMapping("/password")
+	public String changePasswordPage(Model model) {
+		
+		model.addAttribute("passwordData", new PasswordDTO());
+		return "password";
+	}
+	
+	@PostMapping("/post/password")
+	public String changePassword(@ModelAttribute("passwordData") PasswordDTO passwordData,
+			@AuthenticationPrincipal User user, Authentication authentication) {
+		
+		if (!validUsernamePassword(user.getUsername(), passwordData.getOldPassword())) {
+			return "redirect:/password?InvalidPassword=true";
+		}
+		
+		if (!passwordData.getNewPassword1().equals(passwordData.getNewPassword2())) {
+			return "redirect:/password?DifferentPasswords=true";
+		}
+		
+		userService.changePassword(user, passwordData.getNewPassword1());
+		return "redirect:" + loginSuccessHandler.determineTargetUrl(authentication) + "?ChangedPassword=true";
+	}
+	
+	
+	public boolean validUsernamePassword(String username, String password) { 
+	    UsernamePasswordAuthenticationToken authReq
+	      = new UsernamePasswordAuthenticationToken(username, password);
+	    try {
+	    	Authentication auth = authManager.authenticate(authReq);
+	    	if (auth == null) return false;
+	    } catch (AuthenticationException e) {
+	    	return false;
+	    }
+	    
+	    return true;
 	}
 	
 	

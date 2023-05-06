@@ -46,14 +46,14 @@
 	</div>
 	
 	<div class="formDiv">
-		<form th:action="@{password}" method="post"> 
+		<form action="/password" method="post"> 
 			<div class="elementDiv">
 				<label class="textDiv" for="username">Username:</label>
 				<div class="field" id="username" sec:authentication="principal.username"></div>
 			</div>
 			<div class="elementDiv">
 				<label class="textDiv" for="password">Password:</label>
-				<button class="field" type="submit" id="password" class="button">Change</button>
+				<button type="submit" id="password" class="button">Change</button>
 			</div>
 		</form>
 	</div>

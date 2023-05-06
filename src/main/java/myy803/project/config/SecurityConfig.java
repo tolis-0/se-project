@@ -38,6 +38,7 @@ public class SecurityConfig {
 			.antMatchers("/student/**").hasAnyAuthority("STUDENT")
 			.antMatchers("/professor/**").hasAnyAuthority("PROFESSOR")
 			.antMatchers("/admin/**").hasAnyAuthority("ADMIN")
+			.antMatchers("/password").hasAnyAuthority("STUDENT", "PROFESSOR", "ADMIN")
 			.anyRequest().authenticated();
 		http
 			.formLogin()

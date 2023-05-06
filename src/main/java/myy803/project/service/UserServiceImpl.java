@@ -43,5 +43,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		return storedUser.isPresent();
 	}
 
+	@Override
+	public void changePassword(User user, String password) {
+		String encodedPassword = bCryptPasswordEncoder.encode(password);
+		user.setPassword(encodedPassword);
+		userDAO.save(user);
+	}
 
 }

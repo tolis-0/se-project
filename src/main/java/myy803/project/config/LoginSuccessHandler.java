@@ -26,7 +26,7 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 		redirectStrategy.sendRedirect(request, response, targetUrl);
 	}
 
-	protected String determineTargetUrl(Authentication authentication) {
+	public String determineTargetUrl(Authentication authentication) {
 		String url = "/login?LoginError=true";
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		List<String> roles = new ArrayList<String>();
