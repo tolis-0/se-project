@@ -31,25 +31,14 @@
 		height:100%;
 		margin: auto;
 	}
-	.errorMessage {
-		color: #b40000;
+	.message {
 		text-align: center;
 		font-style: italic;
-		font-size: 20px;
+		font-size: 18px;
 	}
-	.successMessage {
-		color: #009408;
-		text-align: center;
-		font-style: italic;
-		font-size: 20px;
-	}
-	.yellowMessage {
-		color: #b39c00;
-		text-align: center;
-		font-style: italic;
-		font-size: 20px;
-	}
-
+	.red {color: #b40000;}
+	.green {color: #009408;}
+	.yellow {color: #b39c00;}
 	</style>
 </head>
 
@@ -63,7 +52,7 @@
 	<div class="formDiv">
 		<form th:action="@{/post/login}" th:object="${user}" method="post">
 			<div class="elementDiv">
-				<h3>Member Login</h3>
+				<h2>Member Login</h2>
 			</div>
 			<div class="elementDiv">
 				<input type="text" th:field="*{username}" placeholder="Type your username" required>
@@ -77,21 +66,24 @@
 		</form>
 	</div>
 	
-	<div class="errorMessage" th:if="${param.LoginError}">Username or Password is invalid!</div> <br/>
+	<div class="red message" th:if="${param.LoginError}">Username or Password is invalid!</div> <br/>
 
 	<div class="formDiv">
-		<form th:action="@{/post/register}" th:object="${user}" method="post">
+		<form th:action="@{/post/register}" th:object="${registerDTO}" method="post">
 			<div class="elementDiv">
-				<h3>Member Register</h3>
+				<h2>Member Register</h2>
 			</div>
 			<div class="elementDiv">
 				<input type="text" th:field="*{username}" placeholder="Type your username" required>
 			</div>
 			<div class="elementDiv">
-				<input type="password" th:field="*{password}" placeholder="Type your password:" onchange="if(this.checkValidity()) form.password_verify.pattern = this.value;" required>
+				<input type="text" th:field="*{fullName}" placeholder="Type your full name">
 			</div>
 			<div class="elementDiv">
-				<input id="password_verify" type="password" placeholder="Verify your password:" required>
+				<input type="password" th:field="*{password1}" placeholder="Type your password" required>
+			</div>
+			<div class="elementDiv">
+				<input type="password" th:field="*{password2}" placeholder="Repeat your password" required>
 			</div>
 			<div class="elementDiv">
 			    <select th:field="*{role}" required>
@@ -106,10 +98,13 @@
 		</form>
 	</div>
 	<br> <br/>
-	<div class="yellowMessage" th:if="${param.AlreadyRegistered}">User already registered!</div>
-	<div class="successMessage" th:if="${param.RegisterSuccess}">Account successfully created!</div>
-	<div class="yellowMessage" th:if="${param.InvalidUsername}">A valid username does not start with a number and only contains letters, numbers and _ !</div>
-	<div class="yellowMessage" th:if="${param.InvalidPassword}">A valid password is between 8-25 characters long and contains at least one letter, number and symbol!</div>
+	<div class="yellow message" th:if="${param.AlreadyRegistered}">User already registered!</div>
+	<div class="green message" th:if="${param.RegisterSuccess}">Account successfully created!</div>
+	<div class="red message" th:if="${param.InvalidUsername}">Invalid username!</div>
+	<div class="red message" th:if="${param.SmallPassword}">Password is too small!</div>
+	<div class="red message" th:if="${param.HugePassword}">Password is too large!</div>
+	<div class="red message" th:if="${param.WeakPassword}">Password is not strong enough!</div>
+	<div class="red message" th:if="${param.DifferentPasswords}">Passwords are not the same!</div>
 
 </body>
 </html>

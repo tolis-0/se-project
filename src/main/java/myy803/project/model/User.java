@@ -19,7 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name="users")
-public class User implements UserDetails{
+public class User implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
@@ -43,6 +43,14 @@ public class User implements UserDetails{
 		 SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.name());
 	     return Collections.singletonList(authority);
 	}
+	
+	public User(String username, String password, Role role) {
+		this.username = username;
+		this.password = password;
+		this.role = role;
+	}
+	
+	public User() {}
 
 	@Override
 	public String getPassword() {

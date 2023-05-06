@@ -17,6 +17,7 @@ import myy803.project.service.StudentService;
 import myy803.project.service.UserService;
 import myy803.project.config.LoginSuccessHandler;
 import myy803.project.dto.PasswordDTO;
+import myy803.project.dto.RegisterDTO;
 import myy803.project.model.Professor;
 import myy803.project.model.Student;
 import myy803.project.model.User;
@@ -54,17 +55,21 @@ public class AuthController {
 	@GetMapping("/login")
 	public String loginPage(Model model) {
 		model.addAttribute("user", new User());
+		model.addAttribute("registerDTO", new RegisterDTO());
 		return "login";
 	}
 	
 	@GetMapping("/register")
 	public String registerPage(Model model) {
 		model.addAttribute("user", new User());
+		model.addAttribute("registerDTO", new RegisterDTO());
 		return "login";
 	}
 	
 	@PostMapping("/post/register")
-	public String registerAttempt(@ModelAttribute("user") User user) {
+	public String registerAttempt(@ModelAttribute("registerDTO") RegisterDTO registerDTO) {
+		
+		User user = new User(registerDTO.getUsername(), registerDTO.getPassword1(), registerDTO.getRole());
 		
 		if(userService.isUserPresent(user)) {
             return "redirect:/login?AlreadyRegistered=true";
@@ -73,6 +78,10 @@ public class AuthController {
 		String errors = checkForErrors(user.getUsername(), user.getPassword());
 		if (!errors.isEmpty()) {
 			return "redirect:/login?" + errors;
+		}
+		
+		if (!registerDTO.getPassword1().equals(registerDTO.getPassword2())) {
+			return "redirect:/login?DifferentPasswords=true";
 		}
 
         userService.saveUser(user);
@@ -129,12 +138,16 @@ public class AuthController {
 			return "InvalidUsername=true";
 		}
 	
-		if(password.length() < 8 || password.length() > 25) {
-			return "InvalidPassword=true";
+		if (password.length() < 8) {
+			return "SmallPassword=true";
+		}
+		
+		if (password.length() > 25) {
+			return "HugePassword=true";
 		}
 		
 		if (!passwordMeetsRequirements(password)) {
-			return "InvalidPassword=true";
+			return "WeakPassword=true";
 		}
 		
 		return "";
