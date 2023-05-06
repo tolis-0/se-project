@@ -51,4 +51,9 @@ public class ProfessorController {
 		return "redirect:/professor/dashboard?ChangedInfo=true";
 	}
 	
+	@PostMapping("/post/password")
+	public String changePasswordPage() {
+		return "redirect:/password";
+	}
+	
 }

@@ -46,7 +46,7 @@
 	</div>
 	
 	<div class="formDiv">
-		<form action="/password" method="post"> 
+		<form th:action="@{post/password}" method="post"> 
 			<div class="elementDiv">
 				<label class="textDiv" for="username">Username:</label>
 				<div class="field" id="username" sec:authentication="principal.username"></div>
