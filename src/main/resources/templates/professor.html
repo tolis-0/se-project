@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Thesis Manager</title>
+	<title>Professor Dashboard</title>
 	<meta charset="UTF-8">
 	
 	<style>
-	.button {background-color: #e7e7e7;}
 	.titleDiv {
   		height: 50px;
-  		background-color: lightblue;
   		text-align: center;
   		font-style: italic;
 	}
-	.space {height: 40px;}
 	.formDiv {
 		width: 300px;
 		height: 100%;
@@ -23,19 +20,17 @@
 		width: 300px;
 		font-style: normal;
 		font-family: Arial;
+		display: flex;
 	}
 	.textDiv {
 		text-align: left;
 		height: 18px;
 		width: 150px;
-		display: inline-block;
-		float: left;
+		padding: 1px;
 	}
 	.field {
 		height: 18px;
 		width: 142px;
-		display: inline-block;
-		float: right;
 	}
 	.successMessage {
 		color: #009408;
@@ -50,26 +45,12 @@
 		<h1>Professor Dashboard</h1>
 	</div>
 	
-	<div class="space"></div>
-	
-	<div class="formDiv">
-		<form th:action="@{post/password}" method="post"> 
-			<div class="elementDiv">
-				<h2>Profile Information</h2>
-			</div>
-			<div class="elementDiv">
-				<label class="textDiv" for="username">Username:</label>
-				<div style="text-align: left;" id="username" sec:authentication="principal.username"></div>
-			</div>
-			<div class="elementDiv">
-				<label class="textDiv" for="password">Password:</label>
-				<button type="submit" id="password" class="button">Change</button>
-			</div>
-		</form>
-	</div>
-	
 	<div class="formDiv">
 		<form th:action="@{post/details}" th:object="${professorDetails}" method="post">
+			<div class="elementDiv">
+				<label class="textDiv" for="username">Username:</label>
+				<div class="field" id="username" sec:authentication="principal.username"></div>
+			</div>
 			<div class="elementDiv">
 				<label class="textDiv" for="fullname">Full Name:</label>
 				<input type="text" class="field" id="fullname" th:field="*{fullName}">
@@ -79,7 +60,7 @@
 				<input type="text" class="field" id="specialty" th:field="*{specialty}">
 			</div>
 			<div class="elementDiv">
-				<button type="submit" class="button">Save</button>
+				<button type="submit" class= "button">Save</button>
 			</div>
 		</form>
 	</div>
