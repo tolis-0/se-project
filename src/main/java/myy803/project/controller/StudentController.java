@@ -32,6 +32,6 @@ public class StudentController {
 		model.addAttribute("studentDetails", 
 				new StudentDTO(student.getFull_name(), student.getRem_courses(), student.getYear(), student.getAvg_grades())); 
 		
-		return "professor";
+		return "student";
 	}
 }

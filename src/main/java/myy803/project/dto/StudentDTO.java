@@ -3,15 +3,15 @@ package myy803.project.dto;
 public class StudentDTO {
 	
 	private String fullName;
-	private int remainingCourses;
+	private int remCourses;
 	private int year;
-	private float averageGrade;
+	private float avgGrade;
 
 	public StudentDTO(String fullname, int rem_courses, int year, float average_grade) {
 		this.fullName = fullname;
-		this.remainingCourses = rem_courses;
+		this.remCourses = rem_courses;
 		this.year = year;
-		this.averageGrade = average_grade;
+		this.avgGrade = average_grade;
 	}
 
 	//GETTERS
@@ -20,7 +20,7 @@ public class StudentDTO {
 	}
 	
 	public int getRemCourses() {
-		return remainingCourses;
+		return remCourses;
 	}
 	
 	public int getYear() {
@@ -28,7 +28,7 @@ public class StudentDTO {
 	}
 	
 	public float getAvgGrade() {
-		return averageGrade;
+		return avgGrade;
 	}
 
 	//SETTERS
@@ -36,15 +36,15 @@ public class StudentDTO {
 		this.fullName = fullName;
 	}
 
-	public void setSpecialty(int remcourses) {
-		this.remainingCourses = remcourses;
+	public void setRemCourses(int rem_courses) {
+		this.remCourses = rem_courses;
 	}
 	
 	public void setYear(int year) {
 		this.year = year;
 	}
 	
-	public void setAvgGrade(int avg_grade) {
-		this.averageGrade = avg_grade;
+	public void setAvgGrade(float avg_grade) {
+		this.avgGrade = avg_grade;
 	}
 }

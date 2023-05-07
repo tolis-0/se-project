@@ -2,10 +2,105 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Thesis Manager</title>
+	<meta charset="UTF-8">
+	
+	<style>
+	.button {
+		background-color: cornflowerblue;
+		color: white;
+		width: 80px;
+	}
+	.titleDiv {
+  		height: 50px;
+  		background-color: lightblue;
+  		text-align: center;
+  		font-style: italic;
+  		margin-bottom: 40px;
+	}
+	.formDiv {
+		width: 300px;
+		height: 100%;
+		margin: auto;
+	}
+	.elementDiv {
+		height: 32px;
+		width: 300px;
+		font-style: normal;
+		font-family: Arial;
+		margin-top: 2px;
+	}
+	.textDiv {
+		text-align: left;
+		height: 18px;
+		width: 150px;
+		float: left;
+	}
+	.field {
+		height: 18px;
+		width: 142px;
+		float: right;
+	}
+	.successMessage {
+		color: #009408;
+		text-align: center;
+		font-style: italic;
+	}
+	</style>
 </head>
 
-<body>
+<body style="background-color: azure;">
 	<div class="titleDiv">
 		<h1>Student Dashboard</h1>
 	</div>
+	
+	<div class="formDiv">
+		<form th:action="@{post/password}" method="post"> 
+			<div class="elementDiv">
+				<h2 style="text-align: center;">Profile Information</h2>
+			</div><br></br>
+			<div class="elementDiv">
+				<label class="textDiv" for="username">Username:</label>
+				<div style="text-align: left;" id="username" sec:authentication="principal.username"></div>
+			</div>
+			<div class="elementDiv">
+				<label class="textDiv" for="password">Password:</label>
+				<button type="submit" id="password" class="button">Change</button>
+			</div>
+		</form>
+	</div>
+	
+	<div class="formDiv">
+		<form th:action="@{post/details}" th:object="${studentDetails}" method="post">
+			<div class="elementDiv">
+				<label class="textDiv" for="fullname">Full Name:</label>
+				<input type="text" class="field" id="fullname" th:field="*{fullName}">
+			</div>
+			<div class="elementDiv">
+				<label class="textDiv" for="remCourses">Remaining Courses:</label>
+				<input type="text" class="field" id="remCourses" th:field="*{remCourses}">
+			</div>
+			<div class="elementDiv">
+				<label class="textDiv" for="year">Year of study:</label>
+				<input type="text" class="field" id="year" th:field="*{year}">
+			</div>
+			<div class="elementDiv">
+				<label class="textDiv" for="avgGrade">Average Grade:</label>
+				<input type="text" class="field" id="avgGrade" th:field="*{avgGrade}">
+			</div>
+			<div class="elementDiv" style="text-align: center;">
+				<button type="submit" class="button">Save</button>
+			</div>
+		</form>
+	</div>
+	
+	<div class="successMessage" th:if="${param.ChangedInfo}">Profile Information Updated!</div>
+	
+	<hr>
+	
+	<div class="list-group" style="text-align: center;" th:each="subject : ${subjects}">
+		<a th:href="@{/professor/subject(id=${subject.id})}">
+			<p th:text="${subject.name}" />
+		</a>
+	</div>
+	
 </body>
