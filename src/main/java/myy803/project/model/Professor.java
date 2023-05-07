@@ -49,6 +49,10 @@ public class Professor{
 		this.specialty = specialty;
 	}
 	
+	public void setSubjectList(List<Subject> subjectList) {
+		this.subjectList = subjectList;
+	}
+	
 	public String getFullName() {
 		return this.fullName;
 	}
@@ -57,6 +61,9 @@ public class Professor{
 		return this.specialty;
 	}
 	
+	public List<Subject> getSubjectList() {
+		return subjectList;
+	}
 	
 	@Override
 	public String toString() {

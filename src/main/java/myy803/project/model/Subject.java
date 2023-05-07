@@ -33,5 +33,13 @@ public class Subject {
 	
 	@OneToMany(mappedBy="subject")
 	private List<Application> applications;
+	
+	public int getId() {
+		return id;
+	}
+	
+	public String getName() {
+		return name;
+	}
 
 }

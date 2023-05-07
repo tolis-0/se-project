@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Thesis Manager</title>
+	<meta charset="UTF-8">
+	
+	<style>
+	.button {background-color: #e7e7e7;}
+	.titleDiv {
+  		height: 50px;
+  		background-color: lightblue;
+  		text-align: center;
+  		font-style: italic;
+	}
+	.space {height: 40px;}
+	.formDiv {
+		width: 300px;
+		height: 100%;
+		margin: auto;
+	}
+	.largeElementDiv {
+		height: 300px;
+		width: 300px;
+		font-style: normal;
+		font-family: Arial;
+	}
+	.textDiv {
+		text-align: left;
+		height: 18px;
+		width: 150px;
+		display: inline-block;
+		float: left;
+	}
+	.field {
+		height: 18px;
+		width: 142px;
+		display: inline-block;
+		float: right;
+	}
+	</style>
+</head>
+
+<body style="background-color:lightgray;">
+	<div class="titleDiv">
+		<h1>Edit Subject</h1>
+	</div>
+	
+	<div class="space"></div>
+	
+	<div class="formDiv">
+		<form th:action="@{edit}" th:object="${subjectDTO}" method="post">
+			<div class="elementDiv">
+				<label class="textDiv" for="specialty">Specialty:</label>
+				<input type="text" class="field" id="specialty" th:field="*{name}">
+			</div>
+			<label class="textDiv" for="username">Username:</label>
+			<textarea rows = "5" cols = "60" name = "description" th:field="*{objectives}">
+            	Enter details here...
+         	</textarea>
+			<div class="elementDiv">
+				<label class="textDiv" for="password">Password:</label>
+				<button type="submit" id="password" class="button">Change</button>
+			</div>
+		</form>
+	</div>
+</body>
