@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import myy803.project.dto.ProfessorDTO;
+import myy803.project.dto.SubjectDTO;
 import myy803.project.model.Professor;
 import myy803.project.model.Subject;
 import myy803.project.model.User;
@@ -82,9 +83,25 @@ public class ProfessorController {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
 		}
 		
-		model.addAttribute("subjectDetails");
+		model.addAttribute("subject", subject);
+		model.addAttribute("subjectDetails", new SubjectDTO(subject.getName(), subject.getObjectives()));
 		
 		return "subject";
+	}
+	
+	@PostMapping("/subject/edit")
+	public String editSubject(@RequestParam(name="id") int subjectId, 
+			@ModelAttribute("subjectDetails") SubjectDTO subjectDetails) {
+		
+		Optional<Subject> opt = subjectService.getSubjectById(subjectId);
+		if (!opt.isPresent()) {/*TODO*/}
+		
+		Subject subject = opt.get();
+		subject.setName(subjectDetails.getName());
+		subject.setObjectives(subjectDetails.getObjectives());
+		subjectService.saveSubject(subject);
+
+		return "redirect:/professor/dashboard";
 	}
 	
 }

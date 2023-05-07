@@ -41,5 +41,17 @@ public class Subject {
 	public String getName() {
 		return name;
 	}
+	
+	public String getObjectives() {
+		return objectives;
+	}
+
+	public void setName(String name) {
+		this.name= name ;
+	}
+	
+	public void setObjectives(String objectives) {
+		this.objectives = objectives ;
+	}
 
 }
