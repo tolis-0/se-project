@@ -75,14 +75,14 @@ public class AuthController {
             return "redirect:/login?AlreadyRegistered=true";
         }
 		
-		String errors = checkForErrors(user.getUsername(), user.getPassword());
+		/*String errors = checkForErrors(user.getUsername(), user.getPassword());
 		if (!errors.isEmpty()) {
 			return "redirect:/login?" + errors;
 		}
 		
 		if (!registerDTO.getPassword1().equals(registerDTO.getPassword2())) {
 			return "redirect:/login?DifferentPasswords=true";
-		}
+		}*/
 
         userService.saveUser(user);
         saveRoleSpecificData(user, registerDTO.getFullName());

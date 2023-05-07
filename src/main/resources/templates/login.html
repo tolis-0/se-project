@@ -40,14 +40,14 @@
 	.yellow {color: #b39c00;}
 	
 	#message {
-		display:block;
+		display: block;
 		background: lightblue;
 		color: #000;
 		margin: auto;
 		padding-top: 1px;
 		padding-bottom: 1px;
-		text-align: center;
-		width: 330px;
+		text-align: left;
+		width: 340px;
 	}
 
 	</style>
@@ -116,12 +116,12 @@
 	<div class="red message" th:if="${param.DifferentPasswords}">Passwords are not the same!</div>
 	
 	<div id="message">
-		<h3>A valid password:</h3>
-		<h4>* is between 8 and 25 characters long </h4> 
-		<h4>* has at least one letter, number and symbol</h4>
-		<h3>A valid username:</h3>
-		<h4>* contains only letters, numbers and _ </h4> 
-		<h4>* does not start with a number</h4>
+		A valid password: <br>
+		&#x2022; is between 8 and 25 characters long <br>
+		&#x2022; has at least one letter, number and symbol <br>
+		A valid username: <br>
+		&#x2022; contains only letters, numbers and _ <br>
+		&#x2022; does not start with a number <br>
 	</div>
 
 </body>
