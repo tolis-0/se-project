@@ -48,18 +48,17 @@
 	<div class="space"></div>
 	
 	<div class="formDiv">
-		<form th:action="@{edit}" th:object="${subjectDTO}" method="post">
+		<form th:action="@{subject/edit(id=${subject.id})}" th:object="${subjectDetails}" method="post">
 			<div class="elementDiv">
-				<label class="textDiv" for="specialty">Specialty:</label>
-				<input type="text" class="field" id="specialty" th:field="*{name}">
+				<label class="textDiv" for="name">Name:</label>
+				<input type="text" class="field" id="name" th:value="${subject.name}" th:field="*{name}">
 			</div>
-			<label class="textDiv" for="username">Username:</label>
-			<textarea rows = "5" cols = "60" name = "description" th:field="*{objectives}">
-            	Enter details here...
-         	</textarea>
-			<div class="elementDiv">
-				<label class="textDiv" for="password">Password:</label>
-				<button type="submit" id="password" class="button">Change</button>
+			<br>
+			<label class="textDiv" for="objectives">Objectives:</label>
+			<br>
+			<textarea rows="5" cols="60" id="objectives" th:value="${subject.objectives}" th:field="*{objectives}" />
+			<div class="elementDiv" style="text-align: center;">
+				<button type="submit" class="button">Save</button>
 			</div>
 		</form>
 	</div>
