@@ -33,6 +33,17 @@
 	.red {color: #b40000;}
 	.green {color: #009408;}
 	.yellow {color: #b39c00;}
+	
+	#message {
+		display:block;
+		background: #f1f1f1;
+		color: #000;
+		margin: auto;
+		padding-top: 1px;
+		padding-bottom: 1px;
+		text-align: center;
+		width: 330px;
+}
 	</style>
 </head>
 
@@ -99,6 +110,15 @@
 	<div class="red message" th:if="${param.HugePassword}">Password is too large!</div>
 	<div class="red message" th:if="${param.WeakPassword}">Password is not strong enough!</div>
 	<div class="red message" th:if="${param.DifferentPasswords}">Passwords are not the same!</div>
+	
+	<div id="message">
+		<h3>A valid password:</h3>
+		<h4>* is between 8 and 25 characters long </h4> 
+		<h4>* has at least one letter, number and symbol</h4>
+		<h3>A valid username:</h3>
+		<h4>contains only letters, numbers and _ </h4> 
+		<h4>* does not start with a number</h4>
+	</div>
 
 </body>
 </html>
