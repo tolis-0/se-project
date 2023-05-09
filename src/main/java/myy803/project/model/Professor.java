@@ -53,12 +53,16 @@ public class Professor{
 		this.subjectList = subjectList;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	
 	public String getFullName() {
-		return this.fullName;
+		return fullName;
 	}
 	
 	public String getSpecialty() {
-		return this.specialty;
+		return specialty;
 	}
 	
 	public List<Subject> getSubjectList() {

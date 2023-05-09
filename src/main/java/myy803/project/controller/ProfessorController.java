@@ -46,7 +46,7 @@ public class ProfessorController {
 				new ProfessorDTO(professor.getFullName(), professor.getSpecialty()));
 		model.addAttribute("subjects", professor.getSubjectList());
 		
-		return "professor";
+		return "professor/dashboard";
 	}
 	
 	@PostMapping("/post/details")
@@ -86,10 +86,10 @@ public class ProfessorController {
 		model.addAttribute("subject", subject);
 		model.addAttribute("subjectDetails", new SubjectDTO(subject.getName(), subject.getObjectives()));
 		
-		return "subject";
+		return "professor/subject";
 	}
 	
-	@PostMapping("/subject/edit")
+	@PostMapping("/post/subject/edit")
 	public String editSubject(@RequestParam(name="id") int subjectId, 
 			@ModelAttribute("subjectDetails") SubjectDTO subjectDetails) {
 		
@@ -101,6 +101,30 @@ public class ProfessorController {
 		subject.setObjectives(subjectDetails.getObjectives());
 		subjectService.saveSubject(subject);
 
+		return "redirect:/professor/dashboard";
+	}
+	
+	@PostMapping("/post/subject/new")
+	public String newSubject() {
+		return "redirect:/professor/subject/new";
+	}
+	
+	@GetMapping("/subject/new")
+	public String createSubjectPage(Model model) {
+		model.addAttribute("subjectDetails", new SubjectDTO());
+		return "professor/newsubject";
+	}
+	
+	@PostMapping("/post/subject/create")
+	public String createSubject(@ModelAttribute("subjectDetails") SubjectDTO subjectDetails,
+			@AuthenticationPrincipal User user) {
+		
+		Optional<Professor> opt = professorService.getProfessorById(user.getId());
+		if (!opt.isPresent()) {/*TODO*/}
+		
+		Subject subject = new Subject(opt.get(), subjectDetails.getName(), subjectDetails.getObjectives());
+		subjectService.saveSubject(subject);
+		
 		return "redirect:/professor/dashboard";
 	}
 	

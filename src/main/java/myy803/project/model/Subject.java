@@ -18,8 +18,11 @@ public class Subject {
 	@Column(name="id", nullable=false)
 	private int id;
 	
+	@Column(name="professor", nullable=false)
+	private int professorId;
+	
 	@ManyToOne
-	@JoinColumn(name = "professor", nullable=false)
+	@JoinColumn(name="professor", insertable=false, updatable=false)
 	private Professor professor;
 	
 	@Column(name="name", nullable = false)
@@ -33,6 +36,16 @@ public class Subject {
 	
 	@OneToMany(mappedBy="subject")
 	private List<Application> applications;
+	
+	public Subject() {}
+	
+	public Subject(Professor professor, String name, String objectives) {
+		this.professor = professor;
+		this.professorId = professor.getId();
+		this.name = name;
+		this.objectives = objectives;
+		this.assigned = false;
+	}
 	
 	public int getId() {
 		return id;

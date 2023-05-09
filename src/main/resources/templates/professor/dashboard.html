@@ -15,8 +15,8 @@
   		background-color: lightblue;
   		text-align: center;
   		font-style: italic;
-  		margin-bottom: 40px;
 	}
+	.space {height: 40px;}
 	.formDiv {
 		width: 300px;
 		height: 100%;
@@ -53,11 +53,13 @@
 		<h1>Professor Dashboard</h1>
 	</div>
 	
+	<div class=space></div>
+	
 	<div class="formDiv">
 		<form th:action="@{post/password}" method="post"> 
 			<div class="elementDiv">
 				<h2 style="text-align: center;">Profile Information</h2>
-			</div><br></br>
+			</div>
 			<div class="elementDiv">
 				<label class="textDiv" for="username">Username:</label>
 				<div style="text-align: left;" id="username" sec:authentication="principal.username"></div>
@@ -86,13 +88,22 @@
 	</div>
 	
 	<div class="successMessage" th:if="${param.ChangedInfo}">Profile Information Updated!</div>
+	<br>
 	
-	<hr>
-	
-	<div class="list-group" style="text-align: center;" th:each="subject : ${subjects}">
-		<a th:href="@{/professor/subject(id=${subject.id})}">
-			<p th:text="${subject.name}" />
-		</a>
+	<div class="formDiv">
+		<div class="elementDiv" style="margin: auto;">
+			<h2 style="text-align: center;">Subjects</h2>
+		</div>
+		<div class="list-group" style="text-align: center;" th:each="subject : ${subjects}">
+			<a class="ElementDiv" th:href="@{/professor/subject(id=${subject.id})}">
+				<p th:text="${subject.name}" />
+			</a>
+		</div>
+		<form th:action="@{post/subject/new}" method="post">
+			<div class="elementDiv" style="text-align: center;">
+				<button type="submit" class= "button">New</button>
+			</div>
+		</form>
 	</div>
 </body>
 

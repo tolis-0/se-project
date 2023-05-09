@@ -42,21 +42,21 @@
 
 <body style="background-color:lightgray;">
 	<div class="titleDiv">
-		<h1>Edit Subject</h1>
+		<h1>Create Subject</h1>
 	</div>
 	
 	<div class="space"></div>
 	
 	<div class="formDiv">
-		<form th:action="@{subject/edit(id=${subject.id})}" th:object="${subjectDetails}" method="post">
+		<form th:action="@{/professor/post/subject/create}" th:object="${subjectDetails}" method="post">
 			<div class="elementDiv">
 				<label class="textDiv" for="name">Name:</label>
-				<input type="text" class="field" id="name" th:value="${subject.name}" th:field="*{name}">
+				<input type="text" class="field" id="name" th:field="*{name}">
 			</div>
 			<br>
 			<label class="textDiv" for="objectives">Objectives:</label>
 			<br>
-			<textarea rows="5" cols="60" id="objectives" th:value="${subject.objectives}" th:field="*{objectives}" />
+			<textarea rows="5" cols="60" id="objectives" th:field="*{objectives}" />
 			<div class="elementDiv" style="text-align: center;">
 				<button type="submit" class="button">Save</button>
 			</div>

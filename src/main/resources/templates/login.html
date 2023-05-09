@@ -75,7 +75,8 @@
 		</form>
 	</div>
 	
-	<div class="red message" th:if="${param.LoginError}">Username or Password is invalid!</div> <br/>
+	<div class="red message" th:if="${param.LoginError}">Username or Password is invalid!</div> 
+	<br>
 
 	<div class="formDiv">
 		<form th:action="@{/post/register}" th:object="${registerDTO}" method="post">
@@ -106,7 +107,7 @@
 			</div>
 		</form>
 	</div>
-	<br> <br/>
+	<br>
 	<div class="yellow message" th:if="${param.AlreadyRegistered}">User already registered!</div>
 	<div class="green message" th:if="${param.RegisterSuccess}">Account successfully created!</div>
 	<div class="red message" th:if="${param.InvalidUsername}">Invalid username!</div>
