@@ -84,7 +84,7 @@ public class AuthController {
 			return "redirect:/login?DifferentPasswords=true";
 		}*/
 
-        userService.saveUser(user);
+        user = userService.saveUser(user);
         saveRoleSpecificData(user, registerDTO.getFullName());
         
         return "redirect:/login?RegisterSuccess=true";
@@ -187,7 +187,7 @@ public class AuthController {
 	private void saveRoleSpecificData(User user, String fullName) {
         String roleValue = user.getRole().getValue();
         if (roleValue == "Student") {
-        	studentService.saveStudent(new Student(user.getId(), fullName));
+        	studentService.saveStudent(new Student(user, fullName));
         } else if (roleValue == "Professor") {
         	professorService.saveProfessor(new Professor(user, fullName));
         }
