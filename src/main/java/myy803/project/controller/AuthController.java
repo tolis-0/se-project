@@ -189,7 +189,7 @@ public class AuthController {
         if (roleValue == "Student") {
         	studentService.saveStudent(new Student(user.getId(), fullName));
         } else if (roleValue == "Professor") {
-        	professorService.saveProfessor(new Professor(user.getId(), fullName));
+        	professorService.saveProfessor(new Professor(user, fullName));
         }
 	}
 }

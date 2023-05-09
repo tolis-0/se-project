@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -18,7 +17,6 @@ public class Professor{
 	@Column(name="id", nullable=false)
 	private int id;
 	
-	@OneToOne
 	@PrimaryKeyJoinColumn(name="id", referencedColumnName="id")
 	private User user;
 	
@@ -34,8 +32,9 @@ public class Professor{
 	@OneToMany(mappedBy="professor")
 	private List<Thesis> thesisList;
 	
-	public Professor(int id, String fullname) {
-		this.id = id;
+	public Professor(User user, String fullname) {
+		this.user = user;
+		this.id = user.getId();
 		this.fullName = fullname;
 	}
 	
@@ -55,6 +54,10 @@ public class Professor{
 	
 	public int getId() {
 		return id;
+	}
+	
+	public User getUser() {
+		return user;
 	}
 	
 	public String getFullName() {

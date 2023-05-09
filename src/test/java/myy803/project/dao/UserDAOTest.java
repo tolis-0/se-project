@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.DirtiesContext;
 
 import myy803.project.model.User;
@@ -68,6 +69,35 @@ public class UserDAOTest {
 		Assertions.assertEquals(user1.getId(), 1);
 		Assertions.assertEquals(user1.getRole().getValue(), "Admin");
 		Assertions.assertEquals(user1.getPassword(), "strongPassword1");
+	}
+	
+	@Test
+	@Order(4)
+	public void UserDAO_changePassword() {
+		System.out.println("TEST 4");
+		userDAO.save(new User("giorgos", "somePassword", Role.PROFESSOR));
+		userDAO.save(new User("tolis0", "veryWeakPassword", Role.ADMIN));
+		
+		User user = userDAO.findByUsername("tolis0").orElse(null);
+		Assertions.assertNotNull(user);
+		Assertions.assertEquals(user.getId(), 2);
+		
+		user.setPassword("veryStrongPassword");
+		User changedUser = userDAO.save(user);
+		
+		Assertions.assertEquals(changedUser.getPassword(), "veryStrongPassword");
+	}
+	
+	@Test
+	@Order(5)
+	public void UserDAO_emptyFields() {
+		System.out.println("TEST 5");
+		Assertions.assertThrows( DataIntegrityViolationException.class,
+			() -> userDAO.save(new User("marios", "password", null)) );
+		Assertions.assertThrows( DataIntegrityViolationException.class,
+				() -> userDAO.save(new User("marios", null, Role.STUDENT)) );
+		Assertions.assertThrows( DataIntegrityViolationException.class,
+				() -> userDAO.save(new User(null, "password", Role.STUDENT)) );
 	}
 	
 }
