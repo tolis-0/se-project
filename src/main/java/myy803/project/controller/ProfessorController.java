@@ -1,7 +1,5 @@
 package myy803.project.controller;
 
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +36,9 @@ public class ProfessorController {
 	@GetMapping("/dashboard")
 	public String professorDashboardPage(Model model, @AuthenticationPrincipal User user) {
 		
-		Optional<Professor> opt = professorService.getProfessorById(user.getId());
-		if (!opt.isPresent()) {/*TODO*/}
+		Professor professor = professorService.getProfessorById(user.getId()).orElse(null);
+		if (professor == null) {/*TODO*/}
 		
-		Professor professor = opt.get();
 		model.addAttribute("professorDetails", 
 				new ProfessorDTO(professor.getFullName(), professor.getSpecialty()));
 		model.addAttribute("subjects", professor.getSubjectList());
@@ -53,10 +50,9 @@ public class ProfessorController {
 	public String changeProfileInformation(@ModelAttribute("professorDetails") ProfessorDTO professorDetails,
 			@AuthenticationPrincipal User user) {
 		
-		Optional<Professor> opt = professorService.getProfessorById(user.getId());
-		if (!opt.isPresent()) {/*TODO*/}
+		Professor professor = professorService.getProfessorById(user.getId()).orElse(null);
+		if (professor == null) {/*TODO*/}
 		
-		Professor professor = opt.get();
 		professor.setFullName(professorDetails.getFullName());
 		professor.setSpecialty(professorDetails.getSpecialty());
 		professorService.saveProfessor(professor);
@@ -93,10 +89,9 @@ public class ProfessorController {
 	public String editSubject(@RequestParam(name="id") int subjectId, 
 			@ModelAttribute("subjectDetails") SubjectDTO subjectDetails) {
 		
-		Optional<Subject> opt = subjectService.getSubjectById(subjectId);
-		if (!opt.isPresent()) {/*TODO*/}
+		Subject subject = subjectService.getSubjectById(subjectId).orElse(null);
+		if (subject == null) {/*TODO*/}
 		
-		Subject subject = opt.get();
 		subject.setName(subjectDetails.getName());
 		subject.setObjectives(subjectDetails.getObjectives());
 		subjectService.saveSubject(subject);
@@ -119,10 +114,10 @@ public class ProfessorController {
 	public String createSubject(@ModelAttribute("subjectDetails") SubjectDTO subjectDetails,
 			@AuthenticationPrincipal User user) {
 		
-		Optional<Professor> opt = professorService.getProfessorById(user.getId());
-		if (!opt.isPresent()) {/*TODO*/}
+		Professor professor = professorService.getProfessorById(user.getId()).orElse(null);
+		if (professor == null) {/*TODO*/}
 		
-		Subject subject = new Subject(opt.get(), subjectDetails.getName(), subjectDetails.getObjectives());
+		Subject subject = new Subject(professor, subjectDetails.getName(), subjectDetails.getObjectives());
 		subjectService.saveSubject(subject);
 		
 		return "redirect:/professor/dashboard";
