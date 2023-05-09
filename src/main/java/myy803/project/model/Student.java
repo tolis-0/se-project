@@ -37,8 +37,9 @@ public class Student{
 	@OneToMany(mappedBy="student")
 	private List<Application> applications;
 	
-	public Student(int id, String fullname) {
-		this.id = id;
+	public Student(User user, String fullname) {
+		this.user = user;
+		this.id = user.getId();
 		this.fullName = fullname;
 	}
 	
