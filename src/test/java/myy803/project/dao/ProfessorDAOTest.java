@@ -39,11 +39,11 @@ public class ProfessorDAOTest {
 	public void ProfessorDAO_save() {
 		System.out.println("TEST 2");
 		User user1 = userDAO.save(new User("apostolos", "password123", Role.PROFESSOR));
-		Professor prof1 = professorDAO.save(new Professor(user1.getId(), "Apostolos Pappas"));
+		Professor prof1 = professorDAO.save(new Professor(user1, "Apostolos Pappas"));
 		User user2 = userDAO.save(new User("patroklos", "321password", Role.PROFESSOR));
-		Professor prof2 = professorDAO.save(new Professor(user2.getId(), "Patroklos Pappas"));
+		Professor prof2 = professorDAO.save(new Professor(user2, "Patroklos Pappas"));
 		User user3 = userDAO.save(new User("hlias", "12password23", Role.PROFESSOR));
-		Professor prof3 = professorDAO.save(new Professor(user3.getId(), "Hlias Konstantoulas"));
+		Professor prof3 = professorDAO.save(new Professor(user3, "Hlias Konstantoulas"));
 		
 		Assertions.assertNotNull(prof1);
 		Assertions.assertNotNull(prof2);
@@ -59,9 +59,9 @@ public class ProfessorDAOTest {
 	public void ProfessorDAO_findById() {
 		System.out.println("TEST 3");
 		User user1 = userDAO.save(new User("stef", "password", Role.PROFESSOR));
-		professorDAO.save(new Professor(user1.getId(), "Stefanos Anagnostou"));
+		professorDAO.save(new Professor(user1, "Stefanos Anagnostou"));
 		User user2 = userDAO.save(new User("antonis", "wordpass", Role.PROFESSOR));
-		professorDAO.save(new Professor(user2.getId(), "Antonis Papadopoulos"));
+		professorDAO.save(new Professor(user2, "Antonis Papadopoulos"));
 		
 		Professor prof1 = professorDAO.findById(2).orElse(null);
 		Professor prof2 = professorDAO.findById(3).orElse(null);
