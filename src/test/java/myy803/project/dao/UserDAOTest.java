@@ -4,14 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import myy803.project.model.User;
 import myy803.project.model.Role;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 @DataJpaTest
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+@TestMethodOrder(OrderAnnotation.class)
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class UserDAOTest {
 
@@ -19,20 +25,19 @@ public class UserDAOTest {
 	UserDAO userDAO;
 	
 	@Test
-	public void UserDAOSave() {
-		User user = new User("tolis0", "password", Role.ADMIN);
-		
-		User savedUser = userDAO.save(user);
-		
-		Assertions.assertNotNull(savedUser);
-		Assertions.assertEquals(savedUser.getId(), 4);
+	@Order(1)
+	public void UserDAO_notNull() {
+		System.out.println("TEST 1");
+		Assertions.assertNotNull(userDAO);
 	}
 	
 	@Test
-	public void UserDAOMultipleSaves() {
-		User user1 = new User("tolis0", "password1", Role.ADMIN);
-		User user2 = new User("paaaat", "password2", Role.PROFESSOR);
-		User user3 = new User("liakos", "password3", Role.STUDENT);
+	@Order(2)
+	public void UserDAO_save() {
+		System.out.println("TEST 2");
+		User user1 = new User("tolis0", "strongPassword1", Role.ADMIN);
+		User user2 = new User("paaaat", "strongPassword2", Role.PROFESSOR);
+		User user3 = new User("liakos", "strongPassword3", Role.STUDENT);
 		
 		User savedUser1 = userDAO.save(user1);
 		User savedUser2 = userDAO.save(user2);
@@ -41,9 +46,28 @@ public class UserDAOTest {
 		Assertions.assertNotNull(savedUser1);
 		Assertions.assertNotNull(savedUser2);
 		Assertions.assertNotNull(savedUser3);
+
 		Assertions.assertEquals(savedUser1.getId(), 1);
 		Assertions.assertEquals(savedUser2.getId(), 2);
 		Assertions.assertEquals(savedUser3.getId(), 3);
+	}
+	
+	@Test
+	@Order(3)
+	public void UserDAO_findByUsername() {
+		System.out.println("TEST 3");
+		userDAO.save(new User("tolis0", "strongPassword1", Role.ADMIN));
+		userDAO.save(new User("paaaat", "strongPassword2", Role.PROFESSOR));
+		userDAO.save(new User("liakos", "strongPassword3", Role.STUDENT));
+		
+		User user1 = userDAO.findByUsername("tolis0").orElse(null);
+		User user2 = userDAO.findByUsername("giorgos").orElse(null);
+		
+		Assertions.assertNotNull(user1);
+		Assertions.assertNull(user2);
+		Assertions.assertEquals(user1.getId(), 1);
+		Assertions.assertEquals(user1.getRole().getValue(), "Admin");
+		Assertions.assertEquals(user1.getPassword(), "strongPassword1");
 	}
 	
 }

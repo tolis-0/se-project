@@ -105,4 +105,8 @@ public class User implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+	
+	public String toString() {
+		return id + ", " + username + ", " + password + ", " + role.getValue();
+	}
 }
