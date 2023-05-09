@@ -51,6 +51,10 @@ public class Subject {
 		return id;
 	}
 	
+	public int getProfessorId() {
+		return professorId;
+	}
+	
 	public String getName() {
 		return name;
 	}

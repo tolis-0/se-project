@@ -74,7 +74,7 @@ public class ProfessorController {
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Invalid Resource");
 		}
 		
-		Professor professor = professorService.getProfessorById(subject.getId()).orElse(null);
+		Professor professor = professorService.getProfessorById(subject.getProfessorId()).orElse(null);
 		if (professor == null) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
 		}

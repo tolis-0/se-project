@@ -31,10 +31,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Override
-	public void saveUser(User user) {
+	public User saveUser(User user) {
 		String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        userDAO.save(user);
+        return userDAO.save(user);
 	}
 
 	@Override
@@ -44,10 +44,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Override
-	public void changePassword(User user, String password) {
+	public User changePassword(User user, String password) {
 		String encodedPassword = bCryptPasswordEncoder.encode(password);
 		user.setPassword(encodedPassword);
-		userDAO.save(user);
+		return userDAO.save(user);
 	}
 
 }

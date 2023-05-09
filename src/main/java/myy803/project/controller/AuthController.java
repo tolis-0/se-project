@@ -84,7 +84,7 @@ public class AuthController {
 			return "redirect:/login?DifferentPasswords=true";
 		}*/
 
-        userService.saveUser(user);
+        user = userService.saveUser(user);
         saveRoleSpecificData(user, registerDTO.getFullName());
         
         return "redirect:/login?RegisterSuccess=true";
