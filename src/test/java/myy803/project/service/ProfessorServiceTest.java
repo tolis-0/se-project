@@ -35,6 +35,8 @@ public class ProfessorServiceTest {
 	public void ProfessorService_notNull() {
 		System.out.println("TEST 1");
 		Assertions.assertNotNull(professorService);
+		Assertions.assertNotNull(userService);
+		Assertions.assertNotNull(subjectService);
 	}
 	
 	@Test

@@ -48,6 +48,8 @@ public class SubjectServiceTest {
 	public void SubjectService_notNull() {
 		System.out.println("TEST 1");
 		Assertions.assertNotNull(subjectService);
+		Assertions.assertNotNull(professorService);
+		Assertions.assertNotNull(userService);
 	}
 	
 	@Test
