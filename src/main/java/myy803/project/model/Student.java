@@ -9,6 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="students")
@@ -19,6 +20,7 @@ public class Student{
 	private int id;
 	
 	@OneToOne
+	@Transient
 	@PrimaryKeyJoinColumn(name="id", referencedColumnName="id")
 	private User user;
 	
