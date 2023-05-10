@@ -1,5 +1,6 @@
 package myy803.project.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,4 +31,10 @@ public class SubjectServiceImpl implements SubjectService {
 	public void deleteById(int theId) {
 		subjectDAO.deleteById(theId);
 	}
+	
+	@Override
+	public List<Subject> getAllAvailableSubjects(){
+		List<Subject> a = subjectDAO.getAllAvailableSubjects();
+		return a;
+	};
 }

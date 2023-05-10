@@ -35,6 +35,8 @@ public class Student{
 	@OneToMany(mappedBy="student")
 	private List<Application> applications;
 	
+	private static List<Subject> subjectList;
+	
 	
 	public Student(User _user, String fullname) {
 		this.user = _user;
@@ -82,6 +84,10 @@ public class Student{
 	
 	public float getAvg_grades() {
 		return this.averageGrade;
+	}
+	
+	public List<Subject> getSubjectList() {
+		return subjectList;
 	}
 	
 	@Override
