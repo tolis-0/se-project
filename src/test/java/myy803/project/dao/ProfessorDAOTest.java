@@ -28,7 +28,7 @@ public class ProfessorDAOTest {
 	UserDAO userDAO;
 	
 	@Autowired
-	SubjectDAO subjectDAO;
+	SubjectDAOTest subjectDAO;
 	
 	@Test
 	@Order(1)
@@ -36,6 +36,8 @@ public class ProfessorDAOTest {
 		System.out.println("TEST 1");
 		
 		Assertions.assertNotNull(professorDAO);
+		Assertions.assertNotNull(userDAO);
+		Assertions.assertNotNull(subjectDAO);
 	}
 	
 	@Test
