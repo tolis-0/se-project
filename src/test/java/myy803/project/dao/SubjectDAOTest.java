@@ -1,5 +1,7 @@
 package myy803.project.dao;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
@@ -77,6 +79,62 @@ public class SubjectDAOTest {
 		
 		Assertions.assertEquals(subject1.getId(), 1);
 		Assertions.assertEquals(subject2.getId(), 2);
+	}
+	
+	@Test
+	@Order(3)
+	public void SubjectDAO_findById() {
+		System.out.println("TEST 3");
+		
+		subjectDAO.save(new Subject(prof1, "Compilers", "Designing the Cimple programming language."));
+		subjectDAO.save( new Subject(prof1, "Computer Architecture", "Simulating multi-level cache hierarchy and branch detection."));
+		
+		Subject subject1 = subjectDAO.findById(2).orElse(null);
+		Subject subject2 = subjectDAO.findById(3).orElse(null);
+		
+		Assertions.assertNotNull(subject1);
+		Assertions.assertNull(subject2);
+		
+		Assertions.assertEquals(subject1.getId(), 2);
+		Assertions.assertEquals(subject1.getName(), "Computer Architecture");
+		Assertions.assertEquals(subject1.getObjectives(), "Simulating multi-level cache hierarchy and branch detection.");
+	}
+	
+	@Test
+	@Order(4)
+	public void SubjectDAO_deleteById() {
+		System.out.println("TEST 4");
+		
+		subjectDAO.save(new Subject(prof1, "Networking I", "An Introduction to Basic Networking Concepts and Principles."));
+		subjectDAO.save(new Subject(prof1, "Networking II", "Inventing the Internet."));
+		
+		subjectDAO.deleteById(1);
+		
+		Subject subject1 = subjectDAO.findById(1).orElse(null);
+		Subject subject2 = subjectDAO.findById(2).orElse(null);
+		
+		Assertions.assertNull(subject1);
+		Assertions.assertNotNull(subject2);
+	}
+	
+	@Test
+	@Order(5)
+	public void SubjectDAO_getAllAvailableSubjects() {
+		Subject s1 = subjectDAO.save(new Subject(prof1, "Networking I", "An Introduction to Basic Networking Concepts and Principles."));
+		Subject subject = new Subject(prof1, "Networking II", "Inventing the Internet.");
+		subject.assign();
+		Subject s2 = subjectDAO.save(subject);
+		Subject s3 = subjectDAO.save(new Subject(prof2, "Compilers", "Designing the Cimple programming language."));
+		Subject s4 = subjectDAO.save(new Subject(prof2, "Computer Architecture", "Simulating multi-level cache hierarchy and branch detection."));
+		
+		subjectDAO.deleteById(4);
+		
+		List<Subject> subjectList = subjectDAO.getAllAvailableSubjects();
+		
+		Assertions.assertTrue(subjectList.contains(s1));
+		Assertions.assertFalse(subjectList.contains(s2));
+		Assertions.assertTrue(subjectList.contains(s3));
+		Assertions.assertFalse(subjectList.contains(s4));
 	}
 	
 }

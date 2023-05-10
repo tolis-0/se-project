@@ -73,6 +73,10 @@ public class Subject {
 	public void setObjectives(String objectives) {
 		this.objectives = objectives ;
 	}
+	
+	public void assign() {
+		this.assigned = true;
+	}
 
 	@Override
 	public String toString() {
