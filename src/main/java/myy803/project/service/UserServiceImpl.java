@@ -50,4 +50,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		return userDAO.save(user);
 	}
 
+	@Override
+	public User getUserById(int id) {
+		return userDAO.findById(id).orElse(null);
+	}
+
 }
