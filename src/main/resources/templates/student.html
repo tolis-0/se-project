@@ -20,7 +20,7 @@
 	.formDiv {
 		width: 300px;
 		height: 100%;
-		margin: auto;
+		margin-left: 40%;
 	}
 	.elementDiv {
 		height: 32px;
@@ -45,9 +45,20 @@
 		text-align: center;
 		font-style: italic;
 	}
-	table, th, td {
-		border:1px solid cornflowerblue;
+	table {
+		width: 50%;
 	}
+	th {
+		border-style: groove;
+		border-color: cornflowerblue;
+	}
+	
+	td {
+		border-style: groove;
+		border-color: cornflowerblue;
+	}
+	
+	tr:hover {background-color: lightblue;}
 	</style>
 </head>
 
@@ -102,19 +113,17 @@
 	<br></br>
 	<div class="formDiv">
 		<form th:action="@{post/details}" th:object="${subjects}" method="post">
-			<table style="width:150%">
+			<table>
  				<tr>
 					<th>Subjects</th>
     				<th>Description</th>
-  				</tr>
-  				
+  				</tr>			
   				<div th:each="subject : ${subjects}">	
   				<tr>		
-					<td>	<p th:text="${subject.name}" /></td>
-					<td>	<p th:text="${subject.objectives}" />	</td>	
+					<td><p th:text="${subject.name}" /></td>
+					<td><p th:text="${subject.objectives}" /></td>	
 				</tr>
-				</div>
-				
+				</div>			
 			</table>
 		</form>
 	</div>
