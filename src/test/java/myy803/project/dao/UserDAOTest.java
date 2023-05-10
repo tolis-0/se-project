@@ -3,7 +3,7 @@ package myy803.project.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.DirtiesContext;
 
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-@DataJpaTest
+@SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @TestMethodOrder(OrderAnnotation.class)
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
@@ -99,9 +99,9 @@ public class UserDAOTest {
 		Assertions.assertThrows( DataIntegrityViolationException.class,
 			() -> userDAO.save(new User("marios", "password", null)) );
 		Assertions.assertThrows( DataIntegrityViolationException.class,
-				() -> userDAO.save(new User("marios", null, Role.STUDENT)) );
+			() -> userDAO.save(new User("marios", null, Role.STUDENT)) );
 		Assertions.assertThrows( DataIntegrityViolationException.class,
-				() -> userDAO.save(new User(null, "password", Role.STUDENT)) );
+			() -> userDAO.save(new User(null, "password", Role.STUDENT)) );
 	}
 	
 }
