@@ -11,5 +11,6 @@ public interface SubjectService {
 
 	public void saveSubject(Subject subject);
 	public Optional<Subject> getSubjectById(int id);
+	public void deleteById(int theId);
 
 }

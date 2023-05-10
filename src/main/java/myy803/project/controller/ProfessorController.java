@@ -123,4 +123,15 @@ public class ProfessorController {
 		return "redirect:/professor/dashboard";
 	}
 	
+	@PostMapping("/post/subject/delete")
+	public String deleteSubject(@RequestParam(name="id") int subjectId, 
+			@ModelAttribute("subjectDetails") SubjectDTO subjectDetails) {
+		
+
+		subjectService.deleteById(subjectId);
+		
+		return "redirect:/professor/dashboard";
+		
+	}
+	
 }

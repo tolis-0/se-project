@@ -5,7 +5,12 @@
 	<meta charset="UTF-8">
 	
 	<style>
-	.button {background-color: #e7e7e7;}
+	.button {
+		background-color: cornflowerblue;
+		color: white;
+		width: 100px;
+		margin-top: 30px;
+	}
 	.titleDiv {
   		height: 50px;
   		background-color: lightblue;
@@ -14,7 +19,7 @@
 	}
 	.space {height: 40px;}
 	.formDiv {
-		width: 300px;
+		width: 400px;
 		height: 100%;
 		margin: auto;
 	}
@@ -29,6 +34,8 @@
 		height: 18px;
 		width: 150px;
 		display: inline-block;
+		font-style: normal;
+		font-family: Arial;
 		float: left;
 	}
 	.field {
@@ -37,10 +44,21 @@
 		display: inline-block;
 		float: right;
 	}
+	textarea {
+		margin-top: 8px;
+ 		resize: none;
+	}
+	.elementDiv {
+		height: 32px;
+		text-align: center;
+		font-style: normal;
+		font-family: Arial;
+		margin-top: 2px;
+	}
 	</style>
 </head>
 
-<body style="background-color:lightgray;">
+<body style="background-color:azure;">
 	<div class="titleDiv">
 		<h1>Edit Subject</h1>
 	</div>
@@ -53,12 +71,17 @@
 				<label class="textDiv" for="name">Name:</label>
 				<input type="text" class="field" id="name" th:value="${subject.name}" th:field="*{name}">
 			</div>
-			<br>
 			<label class="textDiv" for="objectives">Objectives:</label>
-			<br>
 			<textarea rows="5" cols="60" id="objectives" th:value="${subject.objectives}" th:field="*{objectives}" />
-			<div class="elementDiv" style="text-align: center;">
+			<div class="elementDiv">
 				<button type="submit" class="button">Save</button>
+			</div>
+		</form>
+	</div>
+	<div class="formDiv">
+		<form th:action="@{post/subject/delete(id=${subject.id})}" th:object="${subjectDetails}" method="post">
+			<div class="elementDiv">
+				<button type="submit" class="button">Delete</button>
 			</div>
 		</form>
 	</div>
