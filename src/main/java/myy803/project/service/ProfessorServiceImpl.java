@@ -16,8 +16,8 @@ public class ProfessorServiceImpl implements ProfessorService {
 	private UserService userService;
 	
 	@Override
-	public void saveProfessor(Professor professor) {
-		professorDAO.save(professor);
+	public Professor saveProfessor(Professor professor) {
+		return professorDAO.save(professor);
 	}
 
 	@Override
