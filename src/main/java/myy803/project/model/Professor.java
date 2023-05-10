@@ -36,10 +36,6 @@ public class Professor{
 	@OneToMany(mappedBy="professor")
 	private List<Thesis> thesisList;
 	
-	public Professor(int id, String fullname) {
-		this.id = id;
-		this.fullName = fullname;
-	}
 	
 	public Professor(User _user, String fullname) {
 		this.user = _user;
