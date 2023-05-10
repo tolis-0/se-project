@@ -71,4 +71,9 @@ public class Subject {
 		this.objectives = objectives ;
 	}
 
+	@Override
+	public String toString() {
+		return "[id=" + id + ", professor=" + professorId  + ", name=" + name + ", objectives=" + objectives + "]";
+	}
+	
 }

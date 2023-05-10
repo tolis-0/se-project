@@ -79,6 +79,6 @@ public class Professor{
 	
 	@Override
 	public String toString() {
-		return "Professor [full_name=" + fullName + ", specialty=" + specialty + "]";
+		return "[id=" + id + ", full_name=" + fullName + ", specialty=" + specialty + "]";
 	}
 }

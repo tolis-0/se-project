@@ -33,8 +33,7 @@ public class SubjectServiceImpl implements SubjectService {
 	}
 	
 	@Override
-	public List<Subject> getAllAvailableSubjects(){
-		List<Subject> a = subjectDAO.getAllAvailableSubjects();
-		return a;
+	public List<Subject> getAllAvailableSubjects() {
+		return subjectDAO.getAllAvailableSubjects();
 	};
 }

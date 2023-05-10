@@ -118,6 +118,7 @@ public class ProfessorController {
 		if (professor == null) {/*TODO*/}
 		
 		Subject subject = new Subject(professor, subjectDetails.getName(), subjectDetails.getObjectives());
+		System.out.println("Added subject: " + subject);
 		subjectService.saveSubject(subject);
 		
 		return "redirect:/professor/dashboard";

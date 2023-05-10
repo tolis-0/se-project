@@ -57,8 +57,14 @@ public class SubjectServiceTest {
 		
 		System.out.println("prof1: " + prof1);
 		System.out.println("prof2: " + prof2);
-		Subject subject1 = subjectService.saveSubject(new Subject(prof1, "Name1", "Objectives ... 1"));
-		Subject subject2 = subjectService.saveSubject(new Subject(prof1, "Name2", "Objectives ... 2"));
+		
+		Subject subject1 = new Subject(prof1, "Name1", "Objectives ... 1");
+		Subject subject2 = new Subject(prof1, "Name1", "Objectives ... 1");
+		System.out.println("subject1: " + subject1);
+		System.out.println("subject2: " + subject2);
+		
+		subject1 = subjectService.saveSubject(subject1);
+		subject2 = subjectService.saveSubject(subject2);
 		
 		Assertions.assertNotNull(subject1);
 		Assertions.assertNotNull(subject2);

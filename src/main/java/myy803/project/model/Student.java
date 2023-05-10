@@ -35,8 +35,6 @@ public class Student{
 	@OneToMany(mappedBy="student")
 	private List<Application> applications;
 	
-	private static List<Subject> subjectList;
-	
 	public Student(User _user, String fullname) {
 		this.user = _user;
 		this.id = _user.getId();
@@ -85,12 +83,9 @@ public class Student{
 		return this.averageGrade;
 	}
 	
-	public List<Subject> getSubjectList() {
-		return subjectList;
-	}
-	
 	@Override
 	public String toString() {
-		return "Student [full_name=" + fullName + ", rem_courses=" + remainingCourses + ", year=" + year + ", avg_grade=" + averageGrade + "]";
+		return "[id=" + id + ", full_name=" + fullName + ", rem_courses=" + 
+				remainingCourses + ", year=" + year + ", avg_grade=" + averageGrade + "]";
 	}
 }

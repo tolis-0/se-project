@@ -9,7 +9,7 @@ import myy803.project.model.Subject;
 
 public interface SubjectDAO extends JpaRepository<Subject, Integer> {
 	
-	@Query(value = "select * from subjects where assigned = 0 ", nativeQuery = true)
+	@Query(value = "SELECT * FROM subjects WHERE assigned = 0", nativeQuery = true)
 	List<Subject> getAllAvailableSubjects();
 
 }
