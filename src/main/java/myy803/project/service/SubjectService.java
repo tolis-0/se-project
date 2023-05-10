@@ -9,7 +9,7 @@ import myy803.project.model.Subject;
 @Service
 public interface SubjectService {
 
-	public void saveSubject(Subject subject);
+	public Subject saveSubject(Subject subject);
 	public Optional<Subject> getSubjectById(int id);
 	public void deleteById(int theId);
 

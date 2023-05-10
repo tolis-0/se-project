@@ -99,9 +99,9 @@ public class UserDAOTest {
 		Assertions.assertThrows( DataIntegrityViolationException.class,
 			() -> userDAO.save(new User("marios", "password", null)) );
 		Assertions.assertThrows( DataIntegrityViolationException.class,
-				() -> userDAO.save(new User("marios", null, Role.STUDENT)) );
+			() -> userDAO.save(new User("marios", null, Role.STUDENT)) );
 		Assertions.assertThrows( DataIntegrityViolationException.class,
-				() -> userDAO.save(new User(null, "password", Role.STUDENT)) );
+			() -> userDAO.save(new User(null, "password", Role.STUDENT)) );
 	}
 	
 }
