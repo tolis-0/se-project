@@ -1,14 +1,10 @@
 package myy803.project.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import myy803.project.dto.StudentDTO;
@@ -25,10 +21,9 @@ public class StudentController {
 	
 	@GetMapping("/dashboard")
 	public String studentDashboardPage(Model model, @AuthenticationPrincipal User user) {
-		Optional<Student> opt = studentService.getStudentById(user.getId());
-		if (!opt.isPresent()) {/*TODO*/}
+		Student student = studentService.getStudentById(user.getId());
+		if (student == null) {/*TODO*/}
 		
-		Student student = opt.get();
 		model.addAttribute("studentDetails", 
 				new StudentDTO(student.getFull_name(), student.getRem_courses(), student.getYear(), student.getAvg_grades())); 
 		

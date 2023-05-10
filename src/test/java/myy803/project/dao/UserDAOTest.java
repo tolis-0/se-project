@@ -36,6 +36,7 @@ public class UserDAOTest {
 	@Order(2)
 	public void UserDAO_save() {
 		System.out.println("TEST 2");
+		
 		User user1 = new User("tolis0", "strongPassword1", Role.ADMIN);
 		User user2 = new User("paaaat", "strongPassword2", Role.PROFESSOR);
 		User user3 = new User("liakos", "strongPassword3", Role.STUDENT);
@@ -57,6 +58,7 @@ public class UserDAOTest {
 	@Order(3)
 	public void UserDAO_findByUsername() {
 		System.out.println("TEST 3");
+		
 		userDAO.save(new User("tolis0", "strongPassword1", Role.ADMIN));
 		userDAO.save(new User("paaaat", "strongPassword2", Role.PROFESSOR));
 		userDAO.save(new User("liakos", "strongPassword3", Role.STUDENT));
@@ -75,6 +77,7 @@ public class UserDAOTest {
 	@Order(4)
 	public void UserDAO_changePassword() {
 		System.out.println("TEST 4");
+		
 		userDAO.save(new User("giorgos", "somePassword", Role.PROFESSOR));
 		userDAO.save(new User("tolis0", "veryWeakPassword", Role.ADMIN));
 		
@@ -92,6 +95,7 @@ public class UserDAOTest {
 	@Order(5)
 	public void UserDAO_emptyFields() {
 		System.out.println("TEST 5");
+		
 		Assertions.assertThrows( DataIntegrityViolationException.class,
 			() -> userDAO.save(new User("marios", "password", null)) );
 		Assertions.assertThrows( DataIntegrityViolationException.class,

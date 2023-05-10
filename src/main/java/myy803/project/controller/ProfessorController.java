@@ -36,7 +36,7 @@ public class ProfessorController {
 	@GetMapping("/dashboard")
 	public String professorDashboardPage(Model model, @AuthenticationPrincipal User user) {
 		
-		Professor professor = professorService.getProfessorById(user.getId()).orElse(null);
+		Professor professor = professorService.getProfessorById(user.getId());
 		if (professor == null) {/*TODO*/}
 		
 		model.addAttribute("professorDetails", 
@@ -50,7 +50,7 @@ public class ProfessorController {
 	public String changeProfileInformation(@ModelAttribute("professorDetails") ProfessorDTO professorDetails,
 			@AuthenticationPrincipal User user) {
 		
-		Professor professor = professorService.getProfessorById(user.getId()).orElse(null);
+		Professor professor = professorService.getProfessorById(user.getId());
 		if (professor == null) {/*TODO*/}
 		
 		professor.setFullName(professorDetails.getFullName());
@@ -74,7 +74,7 @@ public class ProfessorController {
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Invalid Resource");
 		}
 		
-		Professor professor = professorService.getProfessorById(subject.getProfessorId()).orElse(null);
+		Professor professor = professorService.getProfessorById(subject.getProfessorId());
 		if (professor == null) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
 		}
@@ -114,7 +114,7 @@ public class ProfessorController {
 	public String createSubject(@ModelAttribute("subjectDetails") SubjectDTO subjectDetails,
 			@AuthenticationPrincipal User user) {
 		
-		Professor professor = professorService.getProfessorById(user.getId()).orElse(null);
+		Professor professor = professorService.getProfessorById(user.getId());
 		if (professor == null) {/*TODO*/}
 		
 		Subject subject = new Subject(professor, subjectDetails.getName(), subjectDetails.getObjectives());

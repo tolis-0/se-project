@@ -10,5 +10,6 @@ public interface UserService {
 	public User saveUser(User user);
     public boolean isUserPresent(User user);
     public User changePassword(User user, String password);
+    public User getUserById(int id);
 
 }

@@ -6,8 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -19,9 +17,7 @@ public class Student{
 	@Column(name="id", nullable=false)
 	private int id;
 	
-	@OneToOne
 	@Transient
-	@PrimaryKeyJoinColumn(name="id", referencedColumnName="id")
 	private User user;
 	
 	@Column(name="full_name", length=64)
@@ -48,6 +44,10 @@ public class Student{
 	
 	public Student() {}
 	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 	public void setFull_name(String full_name) {
 		this.fullName = full_name;
 	}
@@ -62,6 +62,10 @@ public class Student{
 	
 	public void setAvg_grade(float avg_grade) {
 		this.averageGrade = avg_grade;
+	}
+	
+	public int getId() {
+		return id;
 	}
 	
 	public String getFull_name() {

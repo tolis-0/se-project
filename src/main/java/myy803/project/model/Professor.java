@@ -6,8 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -19,9 +17,7 @@ public class Professor{
 	@Column(name="id", nullable=false)
 	private int id;
 	
-	@OneToOne
 	@Transient
-	@PrimaryKeyJoinColumn(name="id", referencedColumnName="id")
 	private User user;
 	
 	@Column(name="full_name", length=64)
@@ -44,6 +40,10 @@ public class Professor{
 	}
 	
 	public Professor() {}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 	public void setFullName(String full_name) {
 		this.fullName = full_name;
