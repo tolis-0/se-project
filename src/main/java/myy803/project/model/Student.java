@@ -37,7 +37,6 @@ public class Student{
 	
 	private static List<Subject> subjectList;
 	
-	
 	public Student(User _user, String fullname) {
 		this.user = _user;
 		this.id = _user.getId();

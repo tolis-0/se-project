@@ -45,6 +45,9 @@
 		text-align: center;
 		font-style: italic;
 	}
+	table, th, td {
+		border:1px solid cornflowerblue;
+	}
 	</style>
 </head>
 
@@ -96,17 +99,23 @@
 	<div class="successMessage" th:if="${param.ChangedInfo}">Profile Information Updated!</div>
 	
 	<hr>
-	
+	<br></br>
 	<div class="formDiv">
 		<form th:action="@{post/details}" th:object="${subjects}" method="post">
-			<div class="elementDiv">
-				<h2 style="text-align: center;">Subjects</h2>
-			</div>
-			<div class="list-group" style="text-align: center;" th:each="subject : ${subjects}">
-				<a class="ElementDiv" th:href="@{/student/subject(id=${subject.id})}">
-					<p th:text="${subject.name}" />
-				</a>
-			</div>
-		</div>
-	
+			<table style="width:150%">
+ 				<tr>
+					<th>Subjects</th>
+    				<th>Description</th>
+  				</tr>
+  				
+  				<div th:each="subject : ${subjects}">	
+  				<tr>		
+					<td>	<p th:text="${subject.name}" /></td>
+					<td>	<p th:text="${subject.objectives}" />	</td>	
+				</tr>
+				</div>
+				
+			</table>
+		</form>
+	</div>
 </body>
