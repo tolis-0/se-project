@@ -28,7 +28,7 @@ public class ProfessorDAOTest {
 	UserDAO userDAO;
 	
 	@Autowired
-	SubjectDAOTest subjectDAO;
+	SubjectDAO subjectDAO;
 	
 	@Test
 	@Order(1)

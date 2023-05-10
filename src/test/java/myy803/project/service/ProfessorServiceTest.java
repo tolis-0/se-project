@@ -1,7 +1,6 @@
 package myy803.project.service;
 
 import org.junit.jupiter.api.TestMethodOrder;
-import org.hibernate.Hibernate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -14,7 +13,6 @@ import org.springframework.test.annotation.DirtiesContext;
 
 import myy803.project.model.Professor;
 import myy803.project.model.Role;
-import myy803.project.model.Subject;
 import myy803.project.model.User;
 
 @SpringBootTest

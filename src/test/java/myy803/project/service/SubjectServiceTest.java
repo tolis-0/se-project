@@ -45,14 +45,14 @@ public class SubjectServiceTest {
 	
 	@Test
 	@Order(1)
-	public void ProfessorService_notNull() {
+	public void SubjectService_notNull() {
 		System.out.println("TEST 1");
 		Assertions.assertNotNull(subjectService);
 	}
 	
 	@Test
 	@Order(2)
-	public void ProfessorService_saveSubject() {
+	public void SubjectService_saveSubject() {
 		System.out.println("TEST 2");
 		
 		Subject subject1 = new Subject(prof1, "Name1", "Objectives ... 1");
