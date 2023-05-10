@@ -107,6 +107,6 @@ public class User implements UserDetails {
 	}
 	
 	public String toString() {
-		return id + ", " + username + ", " + password + ", " + role.getValue();
+		return "[id=" + id + ", username=" + username + ", password=" + password + ", role=" + role.getValue() + "]";
 	}
 }
