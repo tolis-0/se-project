@@ -74,7 +74,8 @@
 		</form>
 	</div>
 	
-	<div class="red message" th:if="${param.LoginError}">Username or Password is invalid!</div> 
+	<div class="red message" th:if="${param.LoginError}">Username or Password is invalid!</div>
+	<div class="red message" th:if="${param.UserIdError}">User ID was not found!</div> 
 	<br>
 
 	<div class="formDiv">
