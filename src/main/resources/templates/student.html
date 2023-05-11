@@ -47,6 +47,7 @@
 	}
 	table {
 		width: 50%;
+		float: left;
 	}
 	th {
 		border-style: groove;
@@ -112,16 +113,21 @@
 	<hr>
 	<br></br>
 	<div class="formDiv">
-		<form th:action="@{post/details}" th:object="${subjects}" method="post">
+		<form th:action="@{post/application/new}" th:object="${subjects}" method="post">
 			<table>
  				<tr>
 					<th>Subjects</th>
     				<th>Description</th>
+    				<th>Professor</th>
   				</tr>			
   				<div th:each="subject : ${subjects}">	
   				<tr>		
 					<td><p th:text="${subject.name}" /></td>
-					<td><p th:text="${subject.objectives}" /></td>	
+					<td><p th:text="${subject.objectives}" /></td>
+					<td>professor name</td>
+					<td>
+						<button type="submit" class="button">Apply</button>
+					</td>
 				</tr>
 				</div>			
 			</table>
