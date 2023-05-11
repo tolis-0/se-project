@@ -8,4 +8,9 @@
 
 		<h1>Application</h1>
 
+	<form th:action="@{/student/post/application/create(id=${param.id})}" th:object="${applicationDetails}" method="post">
+		<textarea rows="5" cols="60" th:field="*{message}" />
+		<button type="submit" class="button">Submit</button>
+	</form>
+
 </body>

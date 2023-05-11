@@ -4,6 +4,8 @@ public class ApplicationDTO {
 
 	private String message;
 	
+	public ApplicationDTO() {}
+	
 	public ApplicationDTO(String message) {
 		this.message = message;
 	}

@@ -4,8 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,17 +12,23 @@ import javax.persistence.Table;
 public class Application {
 	
 	@Id
-	@ManyToOne
-	@JoinColumn(name="subject", nullable=false)
-	private Subject subject;
+	@Column(name="subject", nullable=false)
+	private int subject;
 	
 	@Id
-	@ManyToOne
-	@JoinColumn(name="student", nullable=false)
-	private Student student;
+	@Column(name="student", nullable=false)
+	private int student;
 	
 	@Column(name="message")
 	private String message;
+	
+	public Application() {}
+	
+	public Application(int subject, int student, String message) {
+		this.subject = subject;
+		this.student = student;
+		this.message = message;
+	}
 
 }
 
