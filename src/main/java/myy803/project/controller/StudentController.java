@@ -33,7 +33,9 @@ public class StudentController {
 	@GetMapping("/dashboard")
 	public String studentDashboardPage(Model model, @AuthenticationPrincipal User user) {
 		Student student = studentService.getStudentById(user.getId());
-		if (student == null) {/*TODO*/}
+		if (student == null) {
+			return "redirect:/login?UserIdError=true";
+		}
 		
 		model.addAttribute("studentDetails", 
 				new StudentDTO(student.getFull_name(), student.getRem_courses(), student.getYear(), student.getAvg_grades())); 

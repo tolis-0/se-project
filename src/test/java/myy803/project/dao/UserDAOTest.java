@@ -3,7 +3,7 @@ package myy803.project.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.DirtiesContext;
 
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-@SpringBootTest
+@DataJpaTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @TestMethodOrder(OrderAnnotation.class)
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
@@ -41,9 +41,16 @@ public class UserDAOTest {
 		User user2 = new User("paaaat", "strongPassword2", Role.PROFESSOR);
 		User user3 = new User("liakos", "strongPassword3", Role.STUDENT);
 		
+		System.out.println("User 1 (before save): " + user1);
+		System.out.println("User 2 (before save): " + user2);
+		System.out.println("User 3 (before save): " + user3);
+		
 		User savedUser1 = userDAO.save(user1);
+		System.out.println("User 1 (after save): " + user1);
 		User savedUser2 = userDAO.save(user2);
+		System.out.println("User 2 (after save): " + user2);
 		User savedUser3 = userDAO.save(user3);
+		System.out.println("User 3 (after save): " + user3);
 		
 		Assertions.assertNotNull(savedUser1);
 		Assertions.assertNotNull(savedUser2);

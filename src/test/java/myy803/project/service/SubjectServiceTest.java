@@ -45,18 +45,17 @@ public class SubjectServiceTest {
 	
 	@Test
 	@Order(1)
-	public void ProfessorService_notNull() {
+	public void SubjectService_notNull() {
 		System.out.println("TEST 1");
 		Assertions.assertNotNull(subjectService);
+		Assertions.assertNotNull(professorService);
+		Assertions.assertNotNull(userService);
 	}
 	
 	@Test
 	@Order(2)
-	public void ProfessorService_saveSubject() {
+	public void SubjectService_saveSubject() {
 		System.out.println("TEST 2");
-		
-		System.out.println("prof1: " + prof1);
-		System.out.println("prof2: " + prof2);
 		
 		Subject subject1 = new Subject(prof1, "Name1", "Objectives ... 1");
 		Subject subject2 = new Subject(prof1, "Name1", "Objectives ... 1");
@@ -64,7 +63,9 @@ public class SubjectServiceTest {
 		System.out.println("subject2: " + subject2);
 		
 		subject1 = subjectService.saveSubject(subject1);
+		System.out.println("subject1 after save: " + subject1);
 		subject2 = subjectService.saveSubject(subject2);
+		System.out.println("subject2 after save: " + subject2);
 		
 		Assertions.assertNotNull(subject1);
 		Assertions.assertNotNull(subject2);

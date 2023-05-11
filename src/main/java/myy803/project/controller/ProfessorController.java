@@ -37,7 +37,9 @@ public class ProfessorController {
 	public String professorDashboardPage(Model model, @AuthenticationPrincipal User user) {
 		
 		Professor professor = professorService.getProfessorById(user.getId());
-		if (professor == null) {/*TODO*/}
+		if (professor == null) {
+			return "redirect:/login?UserIdError=true";
+		}
 		
 		model.addAttribute("professorDetails", 
 				new ProfessorDTO(professor.getFullName(), professor.getSpecialty()));
@@ -51,7 +53,9 @@ public class ProfessorController {
 			@AuthenticationPrincipal User user) {
 		
 		Professor professor = professorService.getProfessorById(user.getId());
-		if (professor == null) {/*TODO*/}
+		if (professor == null) {
+			return "redirect:/login?UserIdError=true";
+		}
 		
 		professor.setFullName(professorDetails.getFullName());
 		professor.setSpecialty(professorDetails.getSpecialty());
@@ -69,7 +73,7 @@ public class ProfessorController {
 	public String subjectPage(@RequestParam(name="id") int subjectId, Model model, @AuthenticationPrincipal User user,
 			HttpServletResponse response) {
 		
-		Subject subject = subjectService.getSubjectById(subjectId).orElse(null);
+		Subject subject = subjectService.getSubjectById(subjectId);
 		if (subject == null) {
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Invalid Resource");
 		}
@@ -89,8 +93,10 @@ public class ProfessorController {
 	public String editSubject(@RequestParam(name="id") int subjectId, 
 			@ModelAttribute("subjectDetails") SubjectDTO subjectDetails) {
 		
-		Subject subject = subjectService.getSubjectById(subjectId).orElse(null);
-		if (subject == null) {/*TODO*/}
+		Subject subject = subjectService.getSubjectById(subjectId);
+		if (subject == null) {
+			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Invalid Resource");
+		}
 		
 		subject.setName(subjectDetails.getName());
 		subject.setObjectives(subjectDetails.getObjectives());
@@ -115,7 +121,9 @@ public class ProfessorController {
 			@AuthenticationPrincipal User user) {
 		
 		Professor professor = professorService.getProfessorById(user.getId());
-		if (professor == null) {/*TODO*/}
+		if (professor == null) {
+			return "redirect:/login?UserIdError=true";
+		}
 		
 		Subject subject = new Subject(professor, subjectDetails.getName(), subjectDetails.getObjectives());
 		System.out.println("Added subject: " + subject);
