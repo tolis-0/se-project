@@ -3,14 +3,43 @@
 <head>
 	<title>Thesis Manager</title>
 	<meta charset="UTF-8">
+	<style>
+	textarea {
+		margin-top: 30px;
+		margin-left: 730px;
+ 		resize: none;
+	}
+	.button {
+		background-color: cornflowerblue;
+		color: white;
+		width: 100px;
+		margin-top: 5px;
+		margin-left: 900px;
+	}
+	.titleDiv {
+  		height: 50px;
+  		background-color: lightblue;
+  		text-align: center;
+  		font-style: italic;
+	}
+	.formDiv {
+		width: 400px;
+		height: 100%;
+		margin: auto;
+	}
+	</style>
 </head>
 <body style="background-color: azure;">
 
+	<div class="titleDiv">
 		<h1>Application</h1>
-
-	<form th:action="@{/student/post/application/create(id=${param.id})}" th:object="${applicationDetails}" method="post">
-		<textarea rows="5" cols="60" th:field="*{message}" />
-		<button type="submit" class="button">Submit</button>
-	</form>
+	</div>
+	<div class = formdiv>
+		<form th:action="@{/student/post/application/create(id=${param.id})}" th:object="${applicationDetails}" method="post">
+			<textarea rows="5" cols="60" th:field="*{message}" placeholder="Describe yourself here..." />
+			<br></br>
+			<button type="submit" class="button">Submit</button>
+		</form>
+	</div>
 
 </body>
