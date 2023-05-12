@@ -1,5 +1,7 @@
 package myy803.project.controller;
 
+import java.util.regex.Pattern;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -153,35 +155,18 @@ public class AuthController {
 		return "";
 	}
 	
+	// Password has at least one letter, number and symbol
 	private boolean passwordMeetsRequirements(String password) {
-		boolean hasLetter = false;
-		boolean hasDigit = false;
-		boolean hasSymbol = false;
-		
-		for (int i = 0; i < password.length(); i++) {
-			if (Character.isLetter(password.charAt(i)) ) {
-				hasLetter = true;
-			}
-			if (Character.isDigit(password.charAt(i)) ) {
-				hasDigit = true;
-			}
-			if (!password.substring(i, i+1).matches("[A-Za-z0-9]")) {
-				hasSymbol = true;
-			}			
-		}
-		
+		boolean hasLetter = Pattern.compile("[a-zA-Z]").matcher(password).find();
+		boolean hasDigit = Pattern.compile("[0-9]").matcher(password).find();
+		boolean hasSymbol = !Pattern.matches("[a-zA-Z0-9]+", password);
+
 		return hasLetter && hasDigit && hasSymbol;
 	}
 	
+	// Username contains only letters, numbers and underscore
 	private boolean usernameMeetsRequirements(String username) {
-		for (int i = 0; i < username.length(); i++) {
-			if (!Character.isLetterOrDigit(username.charAt(i))) {
-				if(username.charAt(i) != '_') {
-					return false;
-				}
-			}
-		}
-		return true;
+		return Pattern.matches("[a-zA-Z0-9_]+", username);
 	}
 	
 	private void saveRoleSpecificData(User user, String fullName) {
