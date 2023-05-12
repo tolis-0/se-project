@@ -65,6 +65,10 @@ public class Subject {
 	public String getObjectives() {
 		return objectives;
 	}
+	
+	public Professor getProfessor() {
+		return professor;
+	}
 
 	public void setName(String name) {
 		this.name= name ;
@@ -72,6 +76,10 @@ public class Subject {
 	
 	public void setObjectives(String objectives) {
 		this.objectives = objectives ;
+	}
+	
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
 	
 	public void assign() {
