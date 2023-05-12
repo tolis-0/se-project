@@ -78,11 +78,28 @@
 			</div>
 		</form>
 	</div>
+	
 	<div class="formDiv">
 		<form th:action="@{post/subject/delete(id=${subject.id})}" th:object="${subjectDetails}" method="post">
 			<div class="elementDiv">
 				<button type="submit" class="button">Delete</button>
 			</div>
 		</form>
+	</div>
+
+	<div class="formDiv">
+		<table>
+ 			<tr>
+				<th>Students</th>
+    			<th>Message</th>
+  			</tr>			
+  			<div th:each="subjectApplication : ${applications}">	
+  				<tr>
+					<td><p th:text="${subjectApplication.student.fullName}" /></td>
+					<td><p th:text="${subjectApplication.message}" /></td>
+					</td>
+				</tr>
+			</div>			
+		</table>
 	</div>
 </body>

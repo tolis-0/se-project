@@ -40,7 +40,7 @@ public class StudentController {
 		}
 		
 		model.addAttribute("studentDetails", 
-				new StudentDTO(student.getFull_name(), student.getRem_courses(), student.getYear(), student.getAvg_grades())); 
+				new StudentDTO(student.getFullName(), student.getRem_courses(), student.getYear(), student.getAvg_grades())); 
 		model.addAttribute("subjects", subjectService.getAllAvailableSubjects());
 		
 		return "student";

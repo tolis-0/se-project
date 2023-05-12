@@ -19,6 +19,7 @@ import myy803.project.dto.SubjectDTO;
 import myy803.project.model.Professor;
 import myy803.project.model.Subject;
 import myy803.project.model.User;
+import myy803.project.service.ApplicationService;
 import myy803.project.service.ProfessorService;
 import myy803.project.service.SubjectService;
 
@@ -32,6 +33,8 @@ public class ProfessorController {
     @Autowired
     SubjectService subjectService;
 	
+    @Autowired
+    ApplicationService applicationService;
     
 	@GetMapping("/dashboard")
 	public String professorDashboardPage(Model model, @AuthenticationPrincipal User user) {
@@ -85,6 +88,7 @@ public class ProfessorController {
 		
 		model.addAttribute("subject", subject);
 		model.addAttribute("subjectDetails", new SubjectDTO(subject.getName(), subject.getObjectives()));
+		model.addAttribute("applications", applicationService.getApplicationsBySubjectId(subjectId));
 		
 		return "professor/subject";
 	}

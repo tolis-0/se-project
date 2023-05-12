@@ -74,7 +74,7 @@ public class StudentDAOTest {
 		Assertions.assertNull(stud2);
 		
 		Assertions.assertEquals(stud1.getId(), 2);
-		Assertions.assertEquals(stud1.getFull_name(), "Antonis Papadopoulos");
+		Assertions.assertEquals(stud1.getFullName(), "Antonis Papadopoulos");
 	}
 	
 }

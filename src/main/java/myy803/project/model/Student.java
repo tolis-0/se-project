@@ -1,11 +1,8 @@
 package myy803.project.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -32,8 +29,8 @@ public class Student{
 	@Column(name="average_grade")
 	private float averageGrade;
 	
-	@OneToMany(mappedBy="student")
-	private List<Application> applications;
+	/*@OneToMany(mappedBy="student")
+	private List<Application> applications;*/
 	
 	public Student(User _user, String fullname) {
 		this.user = _user;
@@ -47,7 +44,7 @@ public class Student{
 		this.user = user;
 	}
 	
-	public void setFull_name(String full_name) {
+	public void setFullName(String full_name) {
 		this.fullName = full_name;
 	}
 	
@@ -67,7 +64,7 @@ public class Student{
 		return id;
 	}
 	
-	public String getFull_name() {
+	public String getFullName() {
 		return this.fullName;
 	}
 	
