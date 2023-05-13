@@ -10,7 +10,7 @@ import myy803.project.model.Thesis;
 
 @Service
 public interface ThesisService {
-	public Thesis chooseThesisAssignment(List<Application> list, SelectStrategy strategy);
+	public Thesis chooseThesisAssignment(List<Application> list, SelectStrategy strategy, int th1, int th2);
 	public Thesis saveThesis(Thesis thesis);
 	public float showTotalGrade(Thesis thesis);
 }

@@ -23,8 +23,11 @@ public class ThesisServiceImpl implements ThesisService{
 	@Autowired
 	private ThesisDAO thesisDAO;
 
-	public Thesis chooseThesisAssignment(List<Application> list, SelectStrategy strategy) {
-		List<Student> students = list.stream().map(Application::getStudent).collect(Collectors.toList());
+	public Thesis chooseThesisAssignment(List<Application> list, SelectStrategy strategy, int th1, int th2) {
+		List<Student> students = list.stream().map(Application::getStudent)
+				.filter(p -> p.getAvg_grades() >= th1)
+				.filter(p -> p.getRem_courses() <= th2)
+				.collect(Collectors.toList());
 		Student student;
 		switch (strategy) {
 			case RANDOM:
