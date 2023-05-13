@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import myy803.project.dto.ProfessorDTO;
+import myy803.project.dto.SelectApplicationDTO;
 import myy803.project.dto.SubjectDTO;
 import myy803.project.model.Professor;
 import myy803.project.model.Subject;
@@ -89,6 +90,7 @@ public class ProfessorController {
 		model.addAttribute("subject", subject);
 		model.addAttribute("subjectDetails", new SubjectDTO(subject.getName(), subject.getObjectives()));
 		model.addAttribute("applications", applicationService.getApplicationsBySubjectId(subjectId));
+		model.addAttribute("strategySelection", new SelectApplicationDTO());
 		
 		return "professor/subject";
 	}
@@ -144,6 +146,13 @@ public class ProfessorController {
 		
 		return "redirect:/professor/dashboard";
 		
+	}
+	
+	@PostMapping("/post/assign")
+	public String assignSubject(@RequestParam(name="id") int subjectId,
+			@ModelAttribute("strategySelection") SelectApplicationDTO strategy) {
+		// TODO
+		return null;
 	}
 	
 	@PostMapping("post/back")

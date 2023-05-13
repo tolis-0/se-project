@@ -135,17 +135,17 @@
 	<br>
 	
 	<div class="formDiv">
-		<form method="post">
+		<form th:action="@{post/assign(id=${subject.id})}" th:object="${strategySelection}" method="post">
 			<div class="elementDiv">
 				<h2>Select Strategy</h2>
 			</div>
 			<div style="height: 10px;"></div>
 			<div class="elementDiv">
-			    <select  required>
-      			<option value="">Random</option>
-      			<option value="">Highest Grade Average</option>
-      			<option value="">Fewest Remaining Courses</option>
-      			<option value="">Thresholds</option>
+			    <select th:field="*{selectStrategy}" required>
+      			<option value="RANDOM">Random</option>
+      			<option value="AVERAGE_GRADE">Highest Grade Average</option>
+      			<option value="REMAINING_COURSES">Fewest Remaining Courses</option>
+      			<option value="THRESHOLD">Thresholds</option>
     			</select>
 			</div>
 			<div style="height: 20px;"></div>
