@@ -11,5 +11,6 @@ public interface ApplicationService {
 
 	public Application saveApplication(Application application);
 	public List<Application> getApplicationsBySubjectId(int subjectId);
+	public void deleteApplications();
 	
 }

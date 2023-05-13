@@ -33,4 +33,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 		return list;
 	}
 	
+	@Override
+	public void deleteApplications() {
+		
+	}
+	
 }
