@@ -46,7 +46,26 @@ public class ProfessorServiceImpl implements ProfessorService {
 		}
 		if (strategy == 2) {
 			int student_id = list.get(0).getStudentId();
-//			int best_avg_grades = 
+			float best_avg_grades = list.get(0).getStudent().getAvg_grades();
+			for (int i = 1; i<list.size(); i++) {
+				if (best_avg_grades<list.get(i).getStudent().getAvg_grades()) {
+					best_avg_grades = list.get(i).getStudent().getAvg_grades();
+					student_id = list.get(i).getStudentId();
+				}
+			}
+		}
+		if (strategy == 3) {
+			int student_id = list.get(0).getStudentId();
+			int rem_courses = list.get(0).getStudent().getRem_courses();
+			for (int i = 1; i<list.size(); i++) {
+				if (rem_courses>list.get(i).getStudent().getRem_courses()) {
+					rem_courses = list.get(i).getStudent().getRem_courses();
+					student_id = list.get(i).getStudentId();
+				}
+			}
+		}
+		if (strategy == 4) {
+			
 		}
 	}
 }
