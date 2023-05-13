@@ -43,7 +43,7 @@ public class StudentController {
 				new StudentDTO(student.getFullName(), student.getRem_courses(), student.getYear(), student.getAvg_grades())); 
 		model.addAttribute("subjects", subjectService.getAllAvailableSubjects());
 		
-		return "student";
+		return "student/dashboard";
 	}
 		
 	@PostMapping("/post/application/new")
@@ -54,7 +54,7 @@ public class StudentController {
 	@GetMapping("/subject/new")
 	public String createApplicationPage(@RequestParam(name="id") int subjectId, Model model) {
 		model.addAttribute("applicationDetails", new ApplicationDTO());
-		return "newapplication";
+		return "student/newapplication";
 	}
 	
 	@PostMapping("/post/application/create")

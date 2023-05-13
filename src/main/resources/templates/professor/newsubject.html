@@ -66,6 +66,12 @@
 	<div class="space"></div>
 	
 	<div class="formDiv">
+		<form th:action="@{/professor/post/back}" method="post">
+		<button type="submit" class= "button" style="margin-top: 10px; margin-left:150px; background-color: gold;">Back</button>
+		</form>
+	</div>
+	
+	<div class="formDiv">
 		<form th:action="@{/professor/post/subject/create}" th:object="${subjectDetails}" method="post">
 			<div class="elementDiv">
 				<label class="textDiv" for="name">Name:</label>
