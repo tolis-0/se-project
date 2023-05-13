@@ -6,8 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Formula;
 
@@ -19,8 +19,7 @@ public class Thesis {
 	@Column(name="id", nullable=false)
 	private int id;
 	
-	@OneToOne
-	@PrimaryKeyJoinColumn(name="id", referencedColumnName="id")
+	@Transient
 	private Subject subject;
 	
 	@OneToOne
@@ -41,6 +40,11 @@ public class Thesis {
 	
 	@Formula("0.7*imp_grade + 0.15*rep_grade + 0.15*pres_grade")
 	private float totalGrade;
+	
+	public Thesis(int id, Student student) {
+		this.id = id;
+		this.student = student;
+	}
 	
 	public float getTotalGrade() {
 		return totalGrade;

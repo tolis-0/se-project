@@ -33,6 +33,10 @@ public class Application {
 		this.studentId = studentId;
 		this.message = message;
 	}
+	
+	public int getSubjectId() {
+		return subjectId;
+	}
 
 	public int getStudentId() {
 		return studentId;

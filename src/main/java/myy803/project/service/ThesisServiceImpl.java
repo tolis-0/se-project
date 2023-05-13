@@ -37,10 +37,11 @@ public class ThesisServiceImpl implements ThesisService{
 			case REMAINING_COURSES:
 				student = students.stream().min(Comparator.comparing(Student::getRem_courses)).get();
 				break;
-			case MANUALLY:
+			default:
 				return null;
 		}
-		return null;
+		if (student == null) return null;
+		return thesisDAO.save(new Thesis(list.get(0).getSubjectId(), student));
 	}
 	
 	@Override
