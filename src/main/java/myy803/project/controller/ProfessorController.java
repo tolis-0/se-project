@@ -1,5 +1,6 @@
 package myy803.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -160,14 +161,21 @@ public class ProfessorController {
 	@PostMapping("/post/assign")
 	public String assignSubject(@RequestParam(name="id") int subjectId,
 			@ModelAttribute("strategySelection") SelectApplicationDTO strategy,
-			@ModelAttribute("applications") List<Application> applicationList) {
-		
+			@ModelAttribute("applications") ArrayList<Application> applicationList) {
+
 		List<Student> filteredStudents = thesisService.filterStudentsForThesis(applicationList, 
 				strategy.getTh1(), strategy.getTh2());
 		Thesis thesis = thesisService.chooseThesisAssignment(subjectId, filteredStudents, strategy.getStrategy());
-		if (thesis == null) {/*TODO*/}
+		if (thesis == null) {
+			return "redirect:/professor/subject?id=" + subjectId + "&studentNotFound=true";
+		}
 		
-		return null; //TODO
+		return "redirect:/professor/thesis";
+	}
+	
+	@GetMapping("/thesis")
+	public String thesisPage () {
+		return "professor/thesis";
 	}
 	
 	@PostMapping("post/back")

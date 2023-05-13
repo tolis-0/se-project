@@ -23,7 +23,7 @@ public class ThesisServiceImpl implements ThesisService{
 	@Autowired
 	private ThesisDAO thesisDAO;
 
-	public List<Student> filterStudentsForThesis(List<Application> list, int th1, int th2) {
+	public List<Student> filterStudentsForThesis(List<Application> list, float th1, int th2) {
 		return list.stream().map(Application::getStudent)
 				.filter(p -> p.getAvg_grades() >= th1)
 				.filter(p -> p.getRem_courses() <= th2)
@@ -31,6 +31,7 @@ public class ThesisServiceImpl implements ThesisService{
 	}
 	
 	public Thesis chooseThesisAssignment(int subjectId, List<Student> list, SelectStrategy strategy) {
+		if (list == null) return null;
 		Student student;
 		switch (strategy) {
 			case RANDOM:
@@ -46,7 +47,6 @@ public class ThesisServiceImpl implements ThesisService{
 			default:
 				return null;
 		}
-		if (student == null) return null;
 		return thesisDAO.save(new Thesis(subjectId, student));
 	}
 	

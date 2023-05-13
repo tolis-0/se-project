@@ -6,21 +6,21 @@ public class SelectApplicationDTO {
 	      RANDOM, AVERAGE_GRADE, REMAINING_COURSES, MANUALLY
 	}
 	
-	Integer th1;
-	Integer th2;
+	float th1 = 0;
+	int th2 = 46;
 	private SelectStrategy strategy;
 	
 	public SelectApplicationDTO() {}
 	
-	public Integer getTh1() {
+	public float getTh1() {
 		return th1;
 	}
 
-	public void setTh1(int th1) {
+	public void setTh1(float th1) {
 		this.th1 = th1;
 	}
 	
-	public Integer getTh2() {
+	public int getTh2() {
 		return th2;
 	}
 
@@ -28,7 +28,6 @@ public class SelectApplicationDTO {
 		this.th2 = th2;
 	}
 	
-
 	public SelectStrategy getStrategy() {
 		return strategy;
 	}

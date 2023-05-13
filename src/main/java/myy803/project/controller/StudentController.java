@@ -45,7 +45,26 @@ public class StudentController {
 		
 		return "student/dashboard";
 	}
+	
+	@PostMapping("/post/details")
+	public String changeProfileInformation(@ModelAttribute("studentDetails") StudentDTO studentDetails,
+			@AuthenticationPrincipal User user) {
 		
+		Student student = studentService.getStudentById(user.getId());
+		if (student == null) {
+			return "redirect:/login?UserIdError=true";
+		}
+		
+		student.setFullName(studentDetails.getFullName());
+		student.setRem_courses(studentDetails.getRemCourses());
+		student.setYear(studentDetails.getYear());
+		student.setAvg_grade(studentDetails.getAvgGrade());
+		studentService.saveStudent(student);
+		
+		return "redirect:/student/dashboard?ChangedInfo=true";
+	}
+	
+	
 	@PostMapping("/post/application/new")
 	public String newApplication(@RequestParam(name="id") int subjectId) {
 		return "redirect:/student/subject/new?id=" + subjectId;
