@@ -9,7 +9,6 @@
 		background-color: cornflowerblue;
 		color: white;
 		width: 100px;
-		margin-top: 30px;
 	}
 	.titleDiv {
   		height: 50px;
@@ -17,7 +16,6 @@
   		text-align: center;
   		font-style: italic;
 	}
-	.space {height: 40px;}
 	.formDiv {
 		width: 400px;
 		height: 100%;
@@ -60,19 +58,27 @@
 
 <body style="background-color:azure;">
 	<div class="titleDiv">
-		<h1>Edit Subject</h1>
+		<h1>Manage Subject</h1>
 	</div>
 	
-	<div class="space"></div>
+	<div style="height: 40px;"></div>
 	
 	<div class="formDiv">
 		<form th:action="@{post/subject/edit(id=${subject.id})}" th:object="${subjectDetails}" method="post">
+			<div class="elementDiv">
+				<h2>Details</h2>
+			</div>
+			<div class="elementDiv">
+				<label class="textDiv" for="subjectId">ID:</label>
+				<div class="field" style="text-align: left;" id="subjectId" th:text="${subject.id}"></div>
+			</div>
 			<div class="elementDiv">
 				<label class="textDiv" for="name">Name:</label>
 				<input type="text" class="field" id="name" th:value="${subject.name}" th:field="*{name}">
 			</div>
 			<label class="textDiv" for="objectives">Objectives:</label>
 			<textarea rows="5" cols="60" id="objectives" th:value="${subject.objectives}" th:field="*{objectives}" />
+			<div style="height: 30px;"></div>
 			<div class="elementDiv">
 				<button type="submit" class="button">Save</button>
 			</div>
@@ -86,8 +92,13 @@
 			</div>
 		</form>
 	</div>
-
+	
+	<br>
+	
 	<div class="formDiv">
+		<div class="elementDiv">
+			<h2>Applicants</h2>
+		</div>
 		<table>
  			<tr>
 				<th>Students</th>
@@ -102,4 +113,29 @@
 			</div>			
 		</table>
 	</div>
+	
+	<br>
+	
+	<div class="formDiv">
+		<form method="post">
+			<div class="elementDiv">
+				<h2>Select Strategy</h2>
+			</div>
+			<div style="height: 10px;"></div>
+			<div class="elementDiv">
+			    <select  required>
+      			<option value="">Random</option>
+      			<option value="">Highest Grade Average</option>
+      			<option value="">Fewest Remaining Courses</option>
+      			<option value="">Thresholds</option>
+    			</select>
+			</div>
+			<div style="height: 20px;"></div>
+			<div class="elementDiv">
+				<button type="submit" class="button">Sumbit</button>
+			</div>
+		</form>
+	</div>
+	
+	<div style="height: 100px;"></div>
 </body>
