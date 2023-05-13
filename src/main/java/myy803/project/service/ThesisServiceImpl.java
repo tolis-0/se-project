@@ -8,12 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import myy803.project.model.Application;
+import myy803.project.model.Thesis;
+import myy803.project.dao.ThesisDAO;
 
 @Service
-public class ThesisServiceImpl {
+public class ThesisServiceImpl implements ThesisService{
 	
 	@Autowired
 	private ApplicationService applicationService;
+	
+	@Autowired
+	private ThesisDAO thesisDAO;
 
 	public void chooseThesisAssignment(int subjectId, int strategy) {
 		List<Application> list = applicationService.getApplicationsBySubjectId(subjectId);
@@ -43,5 +48,10 @@ public class ThesisServiceImpl {
 				}
 			}
 		}
+	}
+	
+	@Override
+	public Thesis saveThesis(Thesis thesis) {
+		return thesisDAO.save(thesis);
 	}
 }
