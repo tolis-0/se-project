@@ -8,4 +8,5 @@ import myy803.project.model.Thesis;
 public interface ThesisService {
 	public void chooseThesisAssignment(int subjectId, int strategy);
 	public Thesis saveThesis(Thesis thesis);
+	public float showTotalGrade(Thesis thesis);
 }

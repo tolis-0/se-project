@@ -42,4 +42,7 @@ public class Thesis {
 	@Formula("0.7*imp_grade + 0.15*rep_grade + 0.15*pres_grade")
 	private float totalGrade;
 	
+	public float getTotalGrade() {
+		return totalGrade;
+	}
 }

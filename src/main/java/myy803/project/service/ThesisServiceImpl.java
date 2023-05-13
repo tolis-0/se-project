@@ -51,6 +51,11 @@ public class ThesisServiceImpl implements ThesisService{
 	}
 	
 	@Override
+	public float showTotalGrade(Thesis thesis) {
+		return thesis.getTotalGrade();			
+	}
+	
+	@Override
 	public Thesis saveThesis(Thesis thesis) {
 		return thesisDAO.save(thesis);
 	}
