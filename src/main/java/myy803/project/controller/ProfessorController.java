@@ -146,7 +146,7 @@ public class ProfessorController {
 		
 	}
 	
-	@PostMapping("post/back/dashboard")
+	@PostMapping("post/back")
 	public String returnToDashboard() {
 		return "redirect:/professor/dashboard";
 	}

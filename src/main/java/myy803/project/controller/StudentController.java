@@ -73,8 +73,8 @@ public class StudentController {
 		return "redirect:/student/dashboard";
 	}
 	
-	@GetMapping("post/back/dashboard")
-	public String returnToStudent() {
-		return "redirect:/student";
+	@PostMapping("post/back")
+	public String returnToDashboard() {
+		return "redirect:/student/dashboard";
 	}
 }

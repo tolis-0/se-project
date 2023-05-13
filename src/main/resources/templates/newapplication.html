@@ -34,6 +34,14 @@
 	<div class="titleDiv">
 		<h1>Application</h1>
 	</div>
+	
+	<div class="formDiv">
+		<form th:action="@{/student/post/back}" method="post">
+		<button type="submit" class= "button" style="margin-top: 10px; margin-left:150px; background-color: gold;">Back</button>
+		</form>
+	</div>
+	
+	
 	<div class = formdiv>
 		<form th:action="@{/student/post/application/create(id=${param.id})}" th:object="${applicationDetails}" method="post">
 			<textarea rows="5" cols="60" th:field="*{message}" placeholder="Describe yourself here..." />
@@ -41,10 +49,5 @@
 			<button type="submit" class="button">Submit</button>
 		</form>
 	</div>
-	<div class="formDiv">
-		<form th:action="@{post/back/dashboard}" method="post">
-		<button type="submit" class= "button" style="margin-top: 10px; margin-left:150px; background-color: gold;">Back</button>
-		</form>
-	</div>
-
+	
 </body>
