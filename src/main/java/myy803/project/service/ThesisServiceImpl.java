@@ -23,28 +23,31 @@ public class ThesisServiceImpl implements ThesisService{
 	@Autowired
 	private ThesisDAO thesisDAO;
 
-	public Thesis chooseThesisAssignment(List<Application> list, SelectStrategy strategy, int th1, int th2) {
-		List<Student> students = list.stream().map(Application::getStudent)
+	public List<Student> filterStudentsForThesis(List<Application> list, int th1, int th2) {
+		return list.stream().map(Application::getStudent)
 				.filter(p -> p.getAvg_grades() >= th1)
 				.filter(p -> p.getRem_courses() <= th2)
 				.collect(Collectors.toList());
+	}
+	
+	public Thesis chooseThesisAssignment(int subjectId, List<Student> list, SelectStrategy strategy) {
 		Student student;
 		switch (strategy) {
 			case RANDOM:
 				Random rand = new Random();
-				student = list.get(rand.nextInt(list.size())).getStudent();
+				student = list.get(rand.nextInt(list.size()));
 				break;
 			case AVERAGE_GRADE:
-				student = students.stream().max(Comparator.comparing(Student::getAvg_grades)).get();
+				student = list.stream().max(Comparator.comparing(Student::getAvg_grades)).get();
 				break;
 			case REMAINING_COURSES:
-				student = students.stream().min(Comparator.comparing(Student::getRem_courses)).get();
+				student = list.stream().min(Comparator.comparing(Student::getRem_courses)).get();
 				break;
 			default:
 				return null;
 		}
 		if (student == null) return null;
-		return thesisDAO.save(new Thesis(list.get(0).getSubjectId(), student));
+		return thesisDAO.save(new Thesis(subjectId, student));
 	}
 	
 	@Override

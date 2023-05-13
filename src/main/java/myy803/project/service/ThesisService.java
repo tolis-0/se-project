@@ -6,11 +6,15 @@ import org.springframework.stereotype.Service;
 
 import myy803.project.dto.SelectApplicationDTO.SelectStrategy;
 import myy803.project.model.Application;
+import myy803.project.model.Student;
 import myy803.project.model.Thesis;
 
 @Service
 public interface ThesisService {
-	public Thesis chooseThesisAssignment(List<Application> list, SelectStrategy strategy, int th1, int th2);
+	
+	public List<Student> filterStudentsForThesis(List<Application> list, int th1, int th2);
+	public Thesis chooseThesisAssignment(int subjectId, List<Student> list, SelectStrategy strategy);
 	public Thesis saveThesis(Thesis thesis);
 	public float showTotalGrade(Thesis thesis);
+	
 }

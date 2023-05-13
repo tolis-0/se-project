@@ -1,5 +1,7 @@
 package myy803.project.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,16 @@ import org.springframework.web.server.ResponseStatusException;
 import myy803.project.dto.ProfessorDTO;
 import myy803.project.dto.SelectApplicationDTO;
 import myy803.project.dto.SubjectDTO;
+import myy803.project.model.Application;
 import myy803.project.model.Professor;
+import myy803.project.model.Student;
 import myy803.project.model.Subject;
+import myy803.project.model.Thesis;
 import myy803.project.model.User;
 import myy803.project.service.ApplicationService;
 import myy803.project.service.ProfessorService;
 import myy803.project.service.SubjectService;
+import myy803.project.service.ThesisService;
 
 @Controller
 @RequestMapping("/professor")
@@ -36,6 +42,9 @@ public class ProfessorController {
 	
     @Autowired
     ApplicationService applicationService;
+    
+    @Autowired
+    ThesisService thesisService;
     
 	@GetMapping("/dashboard")
 	public String professorDashboardPage(Model model, @AuthenticationPrincipal User user) {
@@ -150,9 +159,15 @@ public class ProfessorController {
 	
 	@PostMapping("/post/assign")
 	public String assignSubject(@RequestParam(name="id") int subjectId,
-			@ModelAttribute("strategySelection") SelectApplicationDTO strategy) {
-		// TODO
-		return null;
+			@ModelAttribute("strategySelection") SelectApplicationDTO strategy,
+			@ModelAttribute("applications") List<Application> applicationList) {
+		
+		List<Student> filteredStudents = thesisService.filterStudentsForThesis(applicationList, 
+				strategy.getTh1(), strategy.getTh2());
+		Thesis thesis = thesisService.chooseThesisAssignment(subjectId, filteredStudents, strategy.getStrategy());
+		if (thesis == null) {/*TODO*/}
+		
+		return null; //TODO
 	}
 	
 	@PostMapping("post/back")
