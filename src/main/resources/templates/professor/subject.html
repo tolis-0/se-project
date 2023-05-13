@@ -141,12 +141,21 @@
 			</div>
 			<div style="height: 10px;"></div>
 			<div class="elementDiv">
-			    <select th:field="*{selectStrategy}" required>
+			    <select th:field="*{strategy}" required>
       			<option value="RANDOM">Random</option>
       			<option value="AVERAGE_GRADE">Highest Grade Average</option>
       			<option value="REMAINING_COURSES">Fewest Remaining Courses</option>
-      			<option value="THRESHOLD">Thresholds</option>
+      			<option value="MANUALLY">Manually</option>
     			</select>
+			</div>
+			<h4 style="text-align: center;">Thresholds:</h4>
+			<div class="elementDiv">
+				<label class="textDiv" id="leastgrade" for="name">Least Grade:</label>
+				<input type="text" class="field" id="leastgrade" th:field="*{th1}">
+			</div>
+			<div class="elementDiv">
+				<label class="textDiv" id="leastgrade" for="name">Maximum Remaining Years:</label>
+				<input type="text" class="field" th:field="*{th2}">
 			</div>
 			<div style="height: 20px;"></div>
 			<div class="elementDiv">
