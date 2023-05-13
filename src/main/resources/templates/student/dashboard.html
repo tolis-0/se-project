@@ -72,7 +72,8 @@
 		<form th:action="@{post/password}" method="post"> 
 			<div class="elementDiv">
 				<h2 style="text-align: center;">Profile Information</h2>
-			</div><br></br>
+			</div>
+			<br>
 			<div class="elementDiv">
 				<label class="textDiv" for="username">Username:</label>
 				<div style="text-align: left;" id="username" sec:authentication="principal.username"></div>
@@ -110,12 +111,15 @@
 	
 	<div class="successMessage" th:if="${param.ChangedInfo}">Profile Information Updated!</div>
 	
-	<hr>
-	<br></br>
+	<br>
+
 	<div class="formDiv">
+		<div class="elementDiv">
+			<h2 style="text-align: center;">Available Thesis Subjects</h2>
+		</div>
 		<table>
  			<tr>
-				<th>Subjects</th>
+				<th>Subject</th>
     			<th>Description</th>
     			<th>Professor</th>
   			</tr>			

@@ -40,7 +40,7 @@ public class StudentController {
 		}
 		
 		model.addAttribute("studentDetails", 
-				new StudentDTO(student.getFullName(), student.getRem_courses(), student.getYear(), student.getAvg_grades())); 
+				new StudentDTO(student.getFullName(), student.getRemainingCourses(), student.getYear(), student.getAverageGrade()));
 		model.addAttribute("subjects", subjectService.getAllAvailableSubjects());
 		
 		return "student/dashboard";
@@ -56,9 +56,9 @@ public class StudentController {
 		}
 		
 		student.setFullName(studentDetails.getFullName());
-		student.setRem_courses(studentDetails.getRemCourses());
+		student.setRemainingCourses(studentDetails.getRemCourses());
 		student.setYear(studentDetails.getYear());
-		student.setAvg_grade(studentDetails.getAvgGrade());
+		student.setAverageGrade(studentDetails.getAvgGrade());
 		studentService.saveStudent(student);
 		
 		return "redirect:/student/dashboard?ChangedInfo=true";

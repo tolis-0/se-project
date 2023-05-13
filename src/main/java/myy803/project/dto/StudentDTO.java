@@ -7,6 +7,8 @@ public class StudentDTO {
 	private int year;
 	private float avgGrade;
 
+	public StudentDTO() {}
+	
 	public StudentDTO(String fullname, int rem_courses, int year, float average_grade) {
 		this.fullName = fullname;
 		this.remCourses = rem_courses;

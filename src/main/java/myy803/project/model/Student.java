@@ -48,7 +48,7 @@ public class Student{
 		this.fullName = full_name;
 	}
 	
-	public void setRem_courses(int rem_courses) {
+	public void setRemainingCourses(int rem_courses) {
 		this.remainingCourses = rem_courses;
 	}
 	
@@ -56,7 +56,7 @@ public class Student{
 		this.year = year;
 	}
 	
-	public void setAvg_grade(float avg_grade) {
+	public void setAverageGrade(float avg_grade) {
 		this.averageGrade = avg_grade;
 	}
 	
@@ -68,7 +68,7 @@ public class Student{
 		return this.fullName;
 	}
 	
-	public int getRem_courses() {
+	public int getRemainingCourses() {
 		return this.remainingCourses;
 	}
 	
@@ -76,7 +76,7 @@ public class Student{
 		return this.year;
 	}
 	
-	public float getAvg_grades() {
+	public float getAverageGrade() {
 		return this.averageGrade;
 	}
 	
@@ -85,4 +85,5 @@ public class Student{
 		return "[id=" + id + ", full_name=" + fullName + ", rem_courses=" + 
 				remainingCourses + ", year=" + year + ", avg_grade=" + averageGrade + "]";
 	}
+	
 }

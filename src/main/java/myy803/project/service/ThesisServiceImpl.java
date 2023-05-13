@@ -25,8 +25,8 @@ public class ThesisServiceImpl implements ThesisService{
 
 	public List<Student> filterStudentsForThesis(List<Application> list, float th1, int th2) {
 		return list.stream().map(Application::getStudent)
-				.filter(p -> p.getAvg_grades() >= th1)
-				.filter(p -> p.getRem_courses() <= th2)
+				.filter(p -> p.getAverageGrade() >= th1)
+				.filter(p -> p.getRemainingCourses() <= th2)
 				.collect(Collectors.toList());
 	}
 	
@@ -39,10 +39,10 @@ public class ThesisServiceImpl implements ThesisService{
 				student = list.get(rand.nextInt(list.size()));
 				break;
 			case AVERAGE_GRADE:
-				student = list.stream().max(Comparator.comparing(Student::getAvg_grades)).get();
+				student = list.stream().max(Comparator.comparing(Student::getAverageGrade)).get();
 				break;
 			case REMAINING_COURSES:
-				student = list.stream().min(Comparator.comparing(Student::getRem_courses)).get();
+				student = list.stream().min(Comparator.comparing(Student::getRemainingCourses)).get();
 				break;
 			default:
 				return null;
