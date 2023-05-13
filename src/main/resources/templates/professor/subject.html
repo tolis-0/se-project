@@ -53,6 +53,18 @@
 		font-family: Arial;
 		margin-top: 2px;
 	}
+	table {
+		width: 100%;
+	}
+	th {
+		border-style: groove;
+		border-color: cornflowerblue;
+	}
+	
+	td {
+		border-style: groove;
+		border-color: cornflowerblue;
+	}
 	</style>
 </head>
 
@@ -63,6 +75,11 @@
 	
 	<div style="height: 40px;"></div>
 	
+	<div class="formDiv">
+		<form th:action="@{post/back/dashboard}" method="post">
+		<button type="submit" class= "button" style="margin-top: 10px; margin-left:150px; background-color: gold;">Back</button>
+		</form>
+	</div>
 	<div class="formDiv">
 		<form th:action="@{post/subject/edit(id=${subject.id})}" th:object="${subjectDetails}" method="post">
 			<div class="elementDiv">
@@ -132,7 +149,7 @@
 			</div>
 			<div style="height: 20px;"></div>
 			<div class="elementDiv">
-				<button type="submit" class="button">Sumbit</button>
+				<button type="submit" class="button">Submit</button>
 			</div>
 		</form>
 	</div>

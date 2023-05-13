@@ -13,6 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ThesisManager</name>
 	<description>MYY803 Project - 2023</description>
+	
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -69,6 +70,7 @@
     		<scope>runtime</scope>
 		</dependency>
 	</dependencies>
+
 
 	<build>
 		<plugins>

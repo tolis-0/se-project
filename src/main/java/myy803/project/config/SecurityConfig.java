@@ -46,7 +46,10 @@ public class SecurityConfig {
 			.loginProcessingUrl("/post/login")
 			.failureUrl("/login?LoginError=true")
 			.successHandler(loginSuccessHandler);
-		
+		http
+			.logout()
+			.logoutSuccessUrl("/login.html")
+			.invalidateHttpSession(true);
 
 		return http.build();
 	}
