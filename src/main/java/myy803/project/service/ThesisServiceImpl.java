@@ -31,7 +31,7 @@ public class ThesisServiceImpl implements ThesisService{
 	}
 	
 	public Thesis chooseThesisAssignment(int subjectId, List<Student> list, SelectStrategy strategy) {
-		if (list == null) return null;
+		if (list.isEmpty()) return null;
 		Student student;
 		switch (strategy) {
 			case RANDOM:

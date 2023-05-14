@@ -34,9 +34,6 @@ public class Subject {
 	@Column(name="assigned", columnDefinition = "boolean default false")
 	private boolean assigned;
 	
-	/*@OneToMany(mappedBy="subject")
-	private List<Application> applications;*/
-	
 	public Subject() {}
 	
 	public Subject(Professor professor, String name, String objectives) {

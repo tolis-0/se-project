@@ -29,7 +29,7 @@ public class Professor{
 	@OneToMany(mappedBy="professor")
 	private List<Subject> subjectList;
 	
-	@OneToMany(mappedBy="professor")
+	@Transient
 	private List<Thesis> thesisList;
 	
 	

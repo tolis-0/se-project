@@ -160,9 +160,9 @@ public class ProfessorController {
 	
 	@PostMapping("/post/assign")
 	public String assignSubject(@RequestParam(name="id") int subjectId,
-			@ModelAttribute("strategySelection") SelectApplicationDTO strategy,
-			@ModelAttribute("applications") ArrayList<Application> applicationList) {
+			@ModelAttribute("strategySelection") SelectApplicationDTO strategy) {
 
+		List<Application> applicationList = applicationService.getApplicationsBySubjectId(subjectId);
 		List<Student> filteredStudents = thesisService.filterStudentsForThesis(applicationList, 
 				strategy.getTh1(), strategy.getTh2());
 		Thesis thesis = thesisService.chooseThesisAssignment(subjectId, filteredStudents, strategy.getStrategy());

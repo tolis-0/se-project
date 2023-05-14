@@ -29,9 +29,6 @@ public class Student{
 	@Column(name="average_grade")
 	private float averageGrade;
 	
-	/*@OneToMany(mappedBy="student")
-	private List<Application> applications;*/
-	
 	public Student(User _user, String fullname) {
 		this.user = _user;
 		this.id = _user.getId();

@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -26,7 +25,7 @@ public class Thesis {
 	@JoinColumn(name="student")
 	private Student student;
 	
-	@ManyToOne(targetEntity=Professor.class)
+	@Transient
 	private Professor professor;
 	
 	@Column(name="imp_grade")
@@ -40,6 +39,8 @@ public class Thesis {
 	
 	@Formula("0.7*imp_grade + 0.15*rep_grade + 0.15*pres_grade")
 	private float totalGrade;
+	
+	public Thesis() {}
 	
 	public Thesis(int id, Student student) {
 		this.id = id;
