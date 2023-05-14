@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import myy803.project.model.Application;
 
 import myy803.project.model.Student;
+import myy803.project.model.Subject;
 import myy803.project.model.Thesis;
 import myy803.project.dao.ThesisDAO;
 import myy803.project.dto.SelectApplicationDTO.SelectStrategy;
@@ -19,6 +20,9 @@ import myy803.project.dto.SelectApplicationDTO.SelectStrategy;
 
 @Service
 public class ThesisServiceImpl implements ThesisService{
+	
+	@Autowired
+	private SubjectService subjectService;
 	
 	@Autowired
 	private ThesisDAO thesisDAO;
@@ -47,16 +51,15 @@ public class ThesisServiceImpl implements ThesisService{
 			default:
 				return null;
 		}
-		return thesisDAO.save(new Thesis(subjectId, student));
-	}
-	
-	@Override
-	public float showTotalGrade(Thesis thesis) {
-		return thesis.getTotalGrade();			
+		return saveThesis(new Thesis(subjectId, student));
 	}
 	
 	@Override
 	public Thesis saveThesis(Thesis thesis) {
+		Subject subject = subjectService.getSubjectById(thesis.getId());
+		subject.assign();
+		subjectService.saveSubject(subject);
 		return thesisDAO.save(thesis);
 	}
+	
 }

@@ -29,6 +29,9 @@ public class Student{
 	@Column(name="average_grade")
 	private float averageGrade;
 	
+	@Transient
+	private Thesis thesis;
+	
 	public Student(User _user, String fullname) {
 		this.user = _user;
 		this.id = _user.getId();

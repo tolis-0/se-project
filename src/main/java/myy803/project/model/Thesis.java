@@ -47,6 +47,10 @@ public class Thesis {
 		this.student = student;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	
 	public float getTotalGrade() {
 		return totalGrade;
 	}
