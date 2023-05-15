@@ -57,7 +57,12 @@ public class ProfessorController {
 		
 		model.addAttribute("professorDetails", 
 				new ProfessorDTO(professor.getFullName(), professor.getSpecialty()));
-		model.addAttribute("subjects", professor.getSubjectList());
+		
+		List<Subject> assignedsubjects = new ArrayList<Subject>(), notAssignedSubjects = new ArrayList<Subject>();
+		subjectService.divideListIntoAssignedAndNot(professor.getSubjectList(), assignedsubjects, notAssignedSubjects);
+		
+		model.addAttribute("AvailableSubjects", notAssignedSubjects);
+		model.addAttribute("AssignedSubjects", assignedsubjects);
 		
 		return "professor/dashboard";
 	}
@@ -170,7 +175,7 @@ public class ProfessorController {
 			return "redirect:/professor/subject?id=" + subjectId + "&studentNotFound=true";
 		}
 		
-		return "redirect:/professor/thesis";
+		return "redirect:/professor/thesis?id=" + subjectId;
 	}
 	
 	@GetMapping("/thesis")

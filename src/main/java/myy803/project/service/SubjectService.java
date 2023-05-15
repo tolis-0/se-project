@@ -13,5 +13,6 @@ public interface SubjectService {
 	public Subject getSubjectById(int id);
 	public void deleteById(int theId);
 	public List<Subject> getAllAvailableSubjects();
+	public void divideListIntoAssignedAndNot(List<Subject> input, List<Subject> assigned, List<Subject> notAssigned);
 
 }

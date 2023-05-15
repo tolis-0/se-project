@@ -1,6 +1,8 @@
 package myy803.project.service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,5 +43,16 @@ public class SubjectServiceImpl implements SubjectService {
 			subject.setProfessor(professor);
 		}
 		return subjectlist;
+	}
+
+	@Override
+	public void divideListIntoAssignedAndNot(List<Subject> input, List<Subject> assigned, List<Subject> notAssigned) {
+		Map<Boolean, List<Subject>> partitioned = 
+				input.stream().collect(Collectors.partitioningBy(Subject::isAssigned));
+		
+		assigned.addAll(partitioned.get(true));
+		notAssigned.addAll(partitioned.get(false));
 	};
+	
+	
 }

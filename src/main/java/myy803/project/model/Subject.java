@@ -63,6 +63,10 @@ public class Subject {
 	public Professor getProfessor() {
 		return professor;
 	}
+	
+	public boolean isAssigned() {
+		return assigned;
+	}
 
 	public void setName(String name) {
 		this.name= name ;
