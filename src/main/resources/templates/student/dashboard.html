@@ -113,7 +113,7 @@
 	
 	<br>
 
-	<div class="formDiv">
+	<div class="formDiv" th:if="${thesis == null}">
 		<div class="elementDiv">
 			<h2 style="text-align: center;">Available Thesis Subjects</h2>
 		</div>
@@ -142,4 +142,10 @@
 		<button type="submit" class= "button" style="margin-top: 10px;margin-left:200px;background-color: crimson;">Logout</button>
 		</form>
 	</div>
+	
+	<div style="text-align: center;" th:if="${thesis != null}">
+			<a class="ElementDiv" th:href="@{/student/thesis}">
+			<p th:text="${thesis.subject.name}" />
+			</a>
+		</div>
 </body>

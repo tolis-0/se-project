@@ -18,6 +18,7 @@ import myy803.project.model.User;
 import myy803.project.service.ApplicationService;
 import myy803.project.service.StudentService;
 import myy803.project.service.SubjectService;
+import myy803.project.service.ThesisService;
 
 @Controller
 @RequestMapping("/student")
@@ -32,6 +33,9 @@ public class StudentController {
 	@Autowired
 	ApplicationService applicationService;
 	
+	@Autowired
+	ThesisService thesisService;
+	
 	@GetMapping("/dashboard")
 	public String studentDashboardPage(Model model, @AuthenticationPrincipal User user) {
 		Student student = studentService.getStudentById(user.getId());
@@ -42,7 +46,7 @@ public class StudentController {
 		model.addAttribute("studentDetails", 
 				new StudentDTO(student.getFullName(), student.getRemainingCourses(), student.getYear(), student.getAverageGrade()));
 		model.addAttribute("subjects", subjectService.getAllAvailableSubjects());
-		
+		model.addAttribute("thesis", thesisService.getStudentThesis(student.getId()));
 		return "student/dashboard";
 	}
 	

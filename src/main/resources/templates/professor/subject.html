@@ -16,6 +16,16 @@
   		text-align: center;
   		font-style: italic;
 	}
+	.smalltitleDiv{
+		background-color: lightblue;
+		height: 32px;
+		text-align: center;
+		font-style: italic;
+		font-family: Arial;
+		margin-top: 2px;
+		width: 200px;
+		margin-left: 100px;
+	}
 	.formDiv {
 		width: 400px;
 		height: 100%;
@@ -83,7 +93,7 @@
 	
 	<div class="formDiv">
 		<form th:action="@{post/subject/edit(id=${subject.id})}" th:object="${subjectDetails}" method="post">
-			<div class="elementDiv">
+			<div class="smalltitleDiv">
 				<h2>Details</h2>
 			</div>
 			<div class="elementDiv">
@@ -111,10 +121,8 @@
 		</form>
 	</div>
 	
-	<br>
-	
 	<div class="formDiv">
-		<div class="elementDiv">
+		<div class="smalltitleDiv" style="margin-bottom: 20px;">
 			<h2>Applicants</h2>
 		</div>
 		<table>
@@ -136,7 +144,7 @@
 	
 	<div class="formDiv">
 		<form th:action="@{post/assign(id=${subject.id})}" th:object="${strategySelection}" method="post">
-			<div class="elementDiv">
+			<div class="smalltitleDiv" style="margin-bottom: 20px;">
 				<h2>Select Strategy</h2>
 			</div>
 			<div style="height: 10px;"></div>

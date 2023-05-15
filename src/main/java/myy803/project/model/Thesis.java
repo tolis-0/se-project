@@ -22,7 +22,7 @@ public class Thesis {
 	private Subject subject;
 	
 	@OneToOne
-	@JoinColumn(name="student")
+	@JoinColumn(name="student", unique=true)
 	private Student student;
 	
 	@Transient
@@ -37,6 +37,7 @@ public class Thesis {
 	@Column(name="pres_grade")
 	private float presentationGrade;
 	
+	@Transient
 	@Formula("0.7*imp_grade + 0.15*rep_grade + 0.15*pres_grade")
 	private float totalGrade;
 	
@@ -53,5 +54,13 @@ public class Thesis {
 	
 	public float getTotalGrade() {
 		return totalGrade;
+	}
+	
+	public Subject getSubject() {
+		return subject;
+	}
+	
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 }
