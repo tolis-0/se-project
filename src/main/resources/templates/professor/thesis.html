@@ -36,6 +36,11 @@
 		display: inline-block;
 		float: right;
 	}
+	.successMessage {
+		color: #009408;
+		text-align: center;
+		font-style: italic;
+	}
 	textarea {
 		margin-top: 8px;
  		resize: none;
@@ -73,24 +78,30 @@
 		</form>
 	</div>
 	
-	<div class="formDiv" style="margin-top: 20px;">
-		<table>
- 			<tr>
-				<th>Student</th>
-    			<th>Implementation Grade</th>
-    			<th>Report Grade</th>
-    			<th>Presentation Grade</th>
-  			</tr>			
-  			<div th:object="${thesis}">	
-  				<tr>
-					<td><p th:text="${thesis.student.fullName}" /></td>
-					<td><p th:text="${thesis.implementationGrade}" /></td>
-					<td><p th:text="${thesis.reportGrade}" /></td>
-					<td><p th:text="${thesis.presentationGrade}" /></td>
-					</td>
-				</tr>
-			</div>			
-		</table>
+	<div class="formDiv">
+		<form th:action="@{post/thesis(id=${thesis.id})}" th:object="${thesisDetails}" method="post"> 
+			<div class="elementDiv" style="margin-top: 10px;">
+				<label class="textDiv" for="studname">Student Name:</label>
+				<div style="text-align: left;" id="studname" th:text="${thesis.student.fullName}"></div>
+			</div>
+			<div class="elementDiv">
+				<label class="textDiv" for="impgrade">Implementaion Grade:</label>
+				<input type="text" class="field" id="impgrade" th:field="*{impGrade}">
+			</div>
+			<div class="elementDiv">
+				<label class="textDiv" for="repgrade">Report Grade:</label>
+				<input type="text" class="field" id="repgrade" th:field="*{repGrade}">
+			</div>
+			<div class="elementDiv">
+				<label class="textDiv" for="presgrade">Presentation Grade:</label>
+				<input type="text" class="field" id="presgrade" th:field="*{presGrade}">
+			</div>
+			<div class="elementDiv" style="text-align: center;">
+				<button type="submit" class="button">Save</button>
+			</div>
+		</form>
 	</div>
+	
+	<div class="successMessage" th:if="${param.SavedGrade}">Thesis Grades Updated!</div>
 	
 </body>

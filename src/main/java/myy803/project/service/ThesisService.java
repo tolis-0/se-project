@@ -14,8 +14,9 @@ public interface ThesisService {
 	
 	public List<Student> filterStudentsForThesis(List<Application> list, float th1, int th2);
 	public Thesis chooseThesisAssignment(int subjectId, List<Student> list, SelectStrategy strategy);
+	public Thesis saveNewThesis(Thesis thesis);
 	public Thesis saveThesis(Thesis thesis);
-	public Thesis getStudentThesis(int studentid);
-	public Thesis getSubjectThesis(int subjectid);
+	public Thesis getStudentThesis(int studentId);
+	public Thesis getThesisById(int thesisId);
 	
 }

@@ -88,4 +88,15 @@ public class Thesis {
 		this.professor = professor;
 	}
 	
+	public void setImplementationGrade(float grade) {
+		this.implementationGrade = grade;
+	}
+	
+	public void setReportGrade(float grade) {
+		this.reportGrade = grade;
+	}
+	
+	public void setPresentationGrade(float grade) {
+		this.presentationGrade = grade;
+	}
 }

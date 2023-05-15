@@ -51,11 +51,11 @@ public class ThesisServiceImpl implements ThesisService{
 			default:
 				return null;
 		}
-		return saveThesis(new Thesis(subjectId, student));
+		return saveNewThesis(new Thesis(subjectId, student));
 	}
 	
 	@Override
-	public Thesis saveThesis(Thesis thesis) {
+	public Thesis saveNewThesis(Thesis thesis) {
 		Subject subject = subjectService.getSubjectById(thesis.getId());
 		subject.assign();
 		subjectService.saveSubject(subject);
@@ -63,8 +63,13 @@ public class ThesisServiceImpl implements ThesisService{
 	}
 	
 	@Override
-	public Thesis getStudentThesis(int studentid){
-		Thesis assignedThesis = thesisDAO.getStudentThesis(studentid);
+	public Thesis saveThesis(Thesis thesis) {
+		return thesisDAO.save(thesis);
+	}
+	
+	@Override
+	public Thesis getStudentThesis(int studentId){
+		Thesis assignedThesis = thesisDAO.getStudentThesis(studentId);
 		if (assignedThesis != null) {
 			Subject subject = subjectService.getSubjectById(assignedThesis.getId());
 			assignedThesis.setSubject(subject);
@@ -74,10 +79,10 @@ public class ThesisServiceImpl implements ThesisService{
 	}
 	
 	@Override
-	public Thesis getSubjectThesis(int subjectid){
-		Thesis assignedThesis = thesisDAO.getSubjectThesis(subjectid);
+	public Thesis getThesisById(int thesisId){
+		Thesis assignedThesis = thesisDAO.getSubjectThesis(thesisId);
 		if (assignedThesis != null) {
-			Subject subject = subjectService.getSubjectById(subjectid);
+			Subject subject = subjectService.getSubjectById(thesisId);
 			assignedThesis.setSubject(subject);
 			assignedThesis.setProfessor(subject.getProfessor());
 		}

@@ -20,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 import myy803.project.dto.ProfessorDTO;
 import myy803.project.dto.SelectApplicationDTO;
 import myy803.project.dto.SubjectDTO;
+import myy803.project.dto.ThesisDTO;
 import myy803.project.model.Application;
 import myy803.project.model.Professor;
 import myy803.project.model.Student;
@@ -178,18 +179,34 @@ public class ProfessorController {
 	}
 	
 	@GetMapping("/thesis")
-	public String thesisPage (Model model,@RequestParam(name="id") int subjectId, 
+	public String thesisPage(Model model, @RequestParam(name="id") int thesisId, 
 			@ModelAttribute("subjectDetails") SubjectDTO subjectDetails,
 			@AuthenticationPrincipal User user) {
 		
-		Thesis thesis = thesisService.getSubjectThesis(subjectId);
+		Thesis thesis = thesisService.getThesisById(thesisId);
 		Professor professor = professorService.getProfessorById(user.getId());
 		if (thesis == null || professor.getId() != thesis.getProfessor().getId()) {
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN);
 		}
 		
 		model.addAttribute("thesis", thesis);
+		model.addAttribute("thesisDetails", 
+				new ThesisDTO(thesis.getImplementationGrade(), thesis.getReportGrade(), thesis.getPresentationGrade()));
 		return "professor/thesis";
+	}
+	
+	@PostMapping("post/thesis")
+	public String changeThesisDetails(@ModelAttribute("thesisDetails") ThesisDTO thesisDetails,
+			@RequestParam(name="id") int thesisId) {
+		Thesis thesis = thesisService.getThesisById(thesisId);
+		
+		thesis.setImplementationGrade(thesisDetails.getImpGrade());
+		thesis.setPresentationGrade(thesisDetails.getPresGrade());
+		thesis.setReportGrade(thesisDetails.getRepGrade());
+		
+		thesisService.saveThesis(thesis);
+		
+		return "redirect:/professor/thesis?id=" + thesisId + "&SavedGrade=true";
 	}
 	
 	@PostMapping("post/back")
