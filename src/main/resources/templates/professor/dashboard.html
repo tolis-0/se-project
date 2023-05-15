@@ -92,7 +92,7 @@
 	
 	<div class="formDiv">
 		<div class="elementDiv" style="margin: auto;">
-			<h2 style="text-align: center;">Available Subjects</h2>
+			<h2 style="text-align: center; background-color: lightblue;">Available Subjects</h2>
 		</div>
 		<div class="list-group" style="text-align: center;" th:each="availableSubject : ${AvailableSubjects}">
 			<a class="ElementDiv" th:href="@{/professor/subject(id=${availableSubject.id})}">
@@ -108,7 +108,7 @@
 	
 	<div class="formDiv">
 		<div class="elementDiv" style="margin: auto;">
-			<h2 style="text-align: center;">Diploma Thesis Projects</h2>
+			<h2 style="text-align: center;margin-top:50px;background-color: lightblue;">Diploma Thesis Projects</h2>
 		</div>
 		<div class="list-group" style="text-align: center;" th:each="assignedSubject : ${AssignedSubjects}">
 			<a class="ElementDiv" th:href="@{/professor/thesis(id=${assignedSubject.id})}">

@@ -68,10 +68,10 @@
 		<h1>Student Dashboard</h1>
 	</div>
 	
-	<div class="formDiv">
+	<div class="formDiv" style="text-align: center;margin-left:800px">
 		<form th:action="@{post/password}" method="post"> 
 			<div class="elementDiv">
-				<h2 style="text-align: center;">Profile Information</h2>
+				<h2 style="text-align: center;background-color: lightblue;">Profile Information</h2>
 			</div>
 			<br>
 			<div class="elementDiv">
@@ -85,7 +85,7 @@
 		</form>
 	</div>
 	
-	<div class="formDiv">
+	<div class="formDiv" style="margin-left:800px">
 		<form th:action="@{post/details}" th:object="${studentDetails}" method="post">
 			<div class="elementDiv">
 				<label class="textDiv" for="fullname">Full Name:</label>
@@ -113,10 +113,10 @@
 	
 	<br>
 
-	<div class="formDiv" th:if="${thesis == null}" style = "width:2000px;margin-left: 500px">
 		<div class="elementDiv">
-			<h2 style="text-align: center;">Available Thesis Subjects</h2>
+			<h2 style="margin-top:30px;margin-left: 800px;width:300px;background-color: lightblue;">Available Thesis Subjects</h2>
 		</div>
+	<div class="formDiv" th:if="${thesis == null}" style = "width:2000px;margin-left: 500px;margin-top:10px;">
 		<table>
  			<tr>
 				<th>Subject</th>
@@ -139,7 +139,7 @@
 	</div>
 	<div class="formDiv">
 		<form th:action="@{/logout}" method="post">
-		<button type="submit" class= "button" style="margin-top: 10px;margin-left:200px;background-color: crimson;">Logout</button>
+		<button type="submit" class= "button" style="margin-top: 10px;margin-left:150px;background-color: crimson;">Logout</button>
 		</form>
 	</div>
 	
