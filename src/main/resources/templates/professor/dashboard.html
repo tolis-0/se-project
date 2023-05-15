@@ -92,11 +92,11 @@
 	
 	<div class="formDiv">
 		<div class="elementDiv" style="margin: auto;">
-			<h2 style="text-align: center;">Subjects</h2>
+			<h2 style="text-align: center;">Available Subjects</h2>
 		</div>
-		<div class="list-group" style="text-align: center;" th:each="subject : ${subjects}">
-			<a class="ElementDiv" th:href="@{/professor/subject(id=${subject.id})}">
-				<p th:text="${subject.name}" />
+		<div class="list-group" style="text-align: center;" th:each="availableSubject : ${AvailableSubjects}">
+			<a class="ElementDiv" th:href="@{/professor/subject(id=${availableSubject.id})}">
+				<p th:text="${availableSubject.name}" />
 			</a>
 		</div>
 		<form th:action="@{post/subject/new}" method="post">
@@ -105,7 +105,19 @@
 			</div>
 		</form>
 	</div>
-		<div class="formDiv">
+	
+	<div class="formDiv">
+		<div class="elementDiv" style="margin: auto;">
+			<h2 style="text-align: center;">Diploma Thesis Projects</h2>
+		</div>
+		<div class="list-group" style="text-align: center;" th:each="assignedSubject : ${AssignedSubjects}">
+			<a class="ElementDiv" th:href="@{/professor/thesis(id=${assignedSubject.id})}">
+				<p th:text="${assignedSubject.name}" />
+			</a>
+		</div>
+	</div>
+	
+	<div class="formDiv">
 		<form th:action="@{/logout}" method="post">
 		<button type="submit" class= "button" style="margin-top: 10px;margin-left:110px;background-color: crimson;">Logout</button>
 		</form>
