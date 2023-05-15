@@ -2,10 +2,80 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Thesis Manager</title>
+	
+	<style>
+	.button {
+		background-color: cornflowerblue;
+		color: white;
+		width: 80px;
+	}
+	.titleDiv {
+  		height: 50px;
+  		background-color: lightblue;
+  		text-align: center;
+  		font-style: italic;
+  		margin-bottom: 40px;
+	}
+	.formDiv {
+		width: 300px;
+		height: 100%;
+		margin-left: 40%;
+	}
+	.successMessage {
+		color: #009408;
+		text-align: center;
+		font-style: italic;
+	}
+	table {
+		width: 50%;
+		float: left;
+	}
+	th {
+		border-style: groove;
+		border-color: cornflowerblue;
+	}
+	
+	td {
+		border-style: groove;
+		border-color: cornflowerblue;
+	}
+	tr:hover {background-color: lightblue;}
+	</style>
 </head>
 
 <body>
 	<div class="titleDiv">
 		<h1>Admin Dashboard</h1>
 	</div>
+	
+	<div class="successMessage" th:if="${param.UserDeleted}">User Deleted!</div>
+	
+	<div class="formDiv">
+		<table>
+ 			<tr>
+				<th>ID</th>
+    			<th>Username</th>
+    			<th>Role</th>
+  			</tr>
+  			<div th:each="userObj : ${userList}">
+  				<form th:action="@{/admin/delete/user(id=${userObj.id})}" method="post">
+  					<tr>		
+						<td><p th:text="${userObj.id}" /></td>
+						<td><p th:text="${userObj.username}" /></td>
+						<td><p th:text="${userObj.role.value}" /></td>
+						<td>
+						<button type="submit" class="button">Delete</button>
+						</td>
+					</tr>
+				</form>
+			</div>			
+		</table>
+	</div>
+	
+	<div class="formDiv">
+		<form th:action="@{/logout}" method="post">
+			<button type="submit" class= "button" style="margin-top: 10px;margin-left:110px;background-color: crimson;">Logout</button>
+		</form>
+	</div>
+	
 </body>

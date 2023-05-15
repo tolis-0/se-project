@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS students (
 	average_grade real,
 	rem_courses int,
 	year int,
-	constraint fk_stuid foreign key (id) references users(id)
+	constraint fk_stuid foreign key (id) references users(id) on delete cascade
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS professors (
 	id int not null primary key,
 	full_name varchar(64) default null,
 	specialty varchar(32) default null,
-	constraint fk_proid foreign key (id) references users(id)
+	constraint fk_proid foreign key (id) references users(id) on delete cascade
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS subjects (
 	name text not null,
 	objectives text not null,
 	assigned boolean default false,
-	constraint fk_subid foreign key (professor) references professors(id)
+	constraint fk_subid foreign key (professor) references professors(id) on delete cascade
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 
@@ -48,8 +48,8 @@ CREATE TABLE IF NOT EXISTS thesis (
 	imp_grade real,
 	rep_grade real,
 	pres_grade real,
-	constraint fk_thesub foreign key (id) references subjects(id),
-	constraint fk_thestu foreign key (student) references students(id)
+	constraint fk_thesub foreign key (id) references subjects(id) on delete cascade,
+	constraint fk_thestu foreign key (student) references students(id) on delete cascade
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 
@@ -59,8 +59,10 @@ CREATE TABLE IF NOT EXISTS applications (
 	message text,
 	primary key (subject, student),
 	constraint fk_appsub foreign key (subject) references subjects(id) on delete cascade,
-	constraint fk_appstu foreign key (student) references students(id)
+	constraint fk_appstu foreign key (student) references students(id) on delete cascade
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
+
+
 
 -- Password is 123 for everyone
 INSERT INTO users VALUES (1, "admin", "$2a$10$0APP3/oiEWh08ryVXmPeZubk13F9oxaQS2p5qVPTNkJIl.D2YGI5q", "ADMIN");
@@ -101,4 +103,6 @@ INSERT INTO applications VALUES (4, 6, "Hello, I am sending you this application
 INSERT INTO applications VALUES (4, 7, "Greetings, I am interested in the thesis diploma ... I have enjoyed developing compilers ...");
 
 INSERT INTO thesis VALUES (3, 2, 0, 0, 0);
+
+
 

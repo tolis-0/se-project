@@ -16,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import myy803.project.service.ProfessorService;
 import myy803.project.service.StudentService;
@@ -60,8 +59,8 @@ public class AuthController {
     
     @GetMapping("/error")
     public String handleError(Model model, HttpServletRequest request) {
-        Object statusCode = Integer.valueOf((String) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE));
-        Object statusMessage = (String) request.getAttribute(RequestDispatcher.ERROR_MESSAGE);
+        Object statusCode = Integer.valueOf(request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE).toString());
+        Object statusMessage = request.getAttribute(RequestDispatcher.ERROR_MESSAGE).toString();
         
         model.addAttribute("message", statusMessage);
         model.addAttribute("code", statusCode);

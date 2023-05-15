@@ -1,5 +1,6 @@
 package myy803.project.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	@Override
 	public User getUserById(int id) {
 		return userDAO.findById(id).orElse(null);
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		return userDAO.findAll();
+	}
+	
+	@Override
+	public void deleteUserById(int id) {
+		userDAO.deleteById(id);
 	}
 
 }
