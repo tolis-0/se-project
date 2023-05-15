@@ -47,7 +47,7 @@
 	}
 	table {
 		margin-left:auto;margin-right:auto;
-		width: 300%;
+		width: 50%;
 	}
 	th {
 		border-style: groove;
@@ -116,7 +116,7 @@
 		<div class="formDiv">
 			<h2 style="background-color: lightblue;">Available Thesis Subjects</h2>
 		</div>
-	<div class="formDiv" th:if="${thesis == null}" style = "margin-top:10px;">
+	<div th:if="${thesis == null}" style = "margin-top:10px;">
 		<table>
  			<tr>
 				<th>Subject</th>
@@ -126,7 +126,7 @@
   			<div th:each="subject : ${subjects}">	
   				<form th:action="@{post/application/new(id=${subject.id})}" method="post">
   					<tr>		
-						<td><p th:text="${subject.name}" /></td>
+						<td style = "width:25%;"><p th:text="${subject.name}" /></td>
 						<td><p th:text="${subject.objectives}" /></td>
 						<td><p th:text="${subject.professor.fullName}" /></td>
 						<td>
@@ -139,7 +139,9 @@
 	</div>
 	<div class="formDiv">
 		<form th:action="@{/logout}" method="post">
+			<div class="elementDiv" style="text-align: center;">
 		<button type="submit" class= "button" style="margin-top: 10px;background-color: crimson;">Logout</button>
+			</div>
 		</form>
 	</div>
 	
