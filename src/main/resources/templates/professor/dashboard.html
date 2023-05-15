@@ -58,9 +58,9 @@
 	<div class="formDiv">
 		<form th:action="@{post/password}" method="post"> 
 			<div class="elementDiv">
-				<h2 style="text-align: center;">Profile Information</h2>
+				<h2 style="text-align: center;background-color: lightblue;">Profile Information</h2>
 			</div>
-			<div class="elementDiv">
+			<div class="elementDiv" style="margin-top: 10px;">
 				<label class="textDiv" for="username">Username:</label>
 				<div style="text-align: left;" id="username" sec:authentication="principal.username"></div>
 			</div>
