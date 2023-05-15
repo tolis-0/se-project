@@ -82,10 +82,10 @@
 		<form th:action="@{post/thesis(id=${thesis.id})}" th:object="${thesisDetails}" method="post"> 
 			<div class="elementDiv" style="margin-top: 10px;">
 				<label class="textDiv" for="studname">Student Name:</label>
-				<div style="text-align: left;" id="studname" th:text="${thesis.student.fullName}"></div>
+				<div style="text-align: right;" id="studname" th:text="${thesis.student.fullName}"></div>
 			</div>
 			<div class="elementDiv">
-				<label class="textDiv" for="impgrade">Implementaion Grade:</label>
+				<label class="textDiv" for="impgrade">Implementation Grade:</label>
 				<input type="text" class="field" id="impgrade" th:field="*{impGrade}">
 			</div>
 			<div class="elementDiv">
