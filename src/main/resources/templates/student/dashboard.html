@@ -58,7 +58,12 @@
 		border-style: groove;
 		border-color: cornflowerblue;
 	}
-	
+	h2 {
+		background-color: lightblue;
+		font-family: Arial;
+		text-align: center; 
+		width: 320px;
+	}
 	tr:hover {background-color: lightblue;}
 	</style>
 </head>
@@ -71,7 +76,7 @@
 	<div class="formDiv">
 		<form th:action="@{post/password}" method="post"> 
 			<div class="elementDiv">
-				<h2 style="text-align: center;background-color: lightblue;">Profile Information</h2>
+				<h2>Profile Information</h2>
 			</div>
 			<br>
 			<div class="elementDiv">
@@ -113,10 +118,11 @@
 	
 	<br>
 
-		<div class="formDiv">
-			<h2 style="background-color: lightblue;font-family: Arial;text-align: center; width: 320px;">Available Thesis Subjects</h2>
-		</div>
+
 	<div th:if="${thesis == null}" style = "margin-top:10px;">
+		<div class="formDiv">
+			<h2>Available Thesis Subjects</h2>
+		</div>
 		<table>
  			<tr>
 				<th>Subject</th>
@@ -137,17 +143,21 @@
 			</div>			
 		</table>
 	</div>
+	
+	<div style="text-align: center;" th:if="${thesis != null}">
+		<div class="formDiv">
+			<h2>Diploma Thesis Project</h2>
+		</div>
+		<a class="ElementDiv" th:href="@{/student/thesis}">
+			<p th:text="${thesis.subject.name}" />
+		</a>
+	</div>
+	
 	<div class="formDiv">
 		<form th:action="@{/logout}" method="post">
 			<div class="elementDiv" style="text-align: center;">
-		<button type="submit" class= "button" style="margin-top: 10px;background-color: crimson;">Logout</button>
+				<button type="submit" class= "button" style="margin-top: 10px;background-color: crimson;">Logout</button>
 			</div>
 		</form>
 	</div>
-	
-	<div style="text-align: center;" th:if="${thesis != null}">
-			<a class="ElementDiv" th:href="@{/student/thesis}">
-			<p th:text="${thesis.subject.name}" />
-			</a>
-		</div>
 </body>
