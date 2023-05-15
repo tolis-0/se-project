@@ -65,7 +65,9 @@ public class ThesisServiceImpl implements ThesisService{
 	@Override
 	public Thesis getStudentThesis(int studentid){
 		Thesis assignedThesis = thesisDAO.getStudentThesis(studentid);
-		assignedThesis.setSubject(subjectService.getSubjectById(assignedThesis.getId()));
+		if (assignedThesis != null) {
+			assignedThesis.setSubject(subjectService.getSubjectById(assignedThesis.getId()));
+		}
 		return assignedThesis;
 	}
 	
