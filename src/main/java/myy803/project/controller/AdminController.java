@@ -10,6 +10,7 @@ public class AdminController {
 	
 	@GetMapping("/dashboard")
 	public String loginPage() {
-		return "admin";
+		
+		return "admin/dashboard";
 	}
 }
