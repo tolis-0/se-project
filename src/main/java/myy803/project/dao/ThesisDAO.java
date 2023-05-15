@@ -10,4 +10,7 @@ public interface ThesisDAO extends JpaRepository<Thesis, Integer> {
 	
 	@Query(value = "SELECT * FROM thesis WHERE student = :studentid", nativeQuery = true)
 	Thesis getStudentThesis(@Param("studentid") int studentid);
+	
+	@Query(value = "SELECT * FROM thesis WHERE id = :subjectid", nativeQuery = true)
+	Thesis getSubjectThesis(@Param("subjectid") int subjectid);
 }

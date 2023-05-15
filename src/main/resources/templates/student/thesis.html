@@ -83,10 +83,10 @@
   			</tr>			
   			<div th:object="${thesis}">	
   				<tr>
-					<td><p th:text="${thesis.student}" /></td>
-					<td><p th:text="${thesis.imp_grade}" /></td>
-					<td><p th:text="${thesis.rep_grade}" /></td>
-					<td><p th:text="${thesis.pres_grade}" /></td>
+					<td><p th:text="${thesis.student.fullName}" /></td>
+					<td><p th:text="${thesis.implementationGrade}" /></td>
+					<td><p th:text="${thesis.reportGrade}" /></td>
+					<td><p th:text="${thesis.presentationGrade}" /></td>
 					</td>
 				</tr>
 			</div>			

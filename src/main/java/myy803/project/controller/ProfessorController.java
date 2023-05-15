@@ -28,6 +28,7 @@ import myy803.project.model.Thesis;
 import myy803.project.model.User;
 import myy803.project.service.ApplicationService;
 import myy803.project.service.ProfessorService;
+import myy803.project.service.StudentService;
 import myy803.project.service.SubjectService;
 import myy803.project.service.ThesisService;
 
@@ -179,7 +180,9 @@ public class ProfessorController {
 	}
 	
 	@GetMapping("/thesis")
-	public String thesisPage () {
+	public String thesisPage (Model model,@RequestParam(name="id") int subjectId, 
+			@ModelAttribute("subjectDetails") SubjectDTO subjectDetails) {
+		model.addAttribute("thesis", thesisService.getSubjectThesis(subjectId));
 		return "professor/thesis";
 	}
 	

@@ -96,6 +96,13 @@ public class StudentController {
 		return "redirect:/student/dashboard";
 	}
 	
+	@GetMapping("/thesis")
+	public String thesisPage (Model model, @AuthenticationPrincipal User user) {
+		Student student = studentService.getStudentById(user.getId());
+		model.addAttribute("thesis", thesisService.getStudentThesis(student.getId()));
+		return "student/thesis";
+	}
+	
 	@PostMapping("post/back")
 	public String returnToDashboard() {
 		return "redirect:/student/dashboard";

@@ -60,6 +60,22 @@ public class Thesis {
 		return subject;
 	}
 	
+	public Student getStudent() {
+		return student;
+	}
+	
+	public float getImplementationGrade() {
+		return  implementationGrade;
+	}
+	
+	public float getReportGrade() {
+		return  reportGrade;
+	}
+	
+	public float getPresentationGrade() {
+		return  presentationGrade;
+	}
+	
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}

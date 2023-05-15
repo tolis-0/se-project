@@ -16,5 +16,6 @@ public interface ThesisService {
 	public Thesis chooseThesisAssignment(int subjectId, List<Student> list, SelectStrategy strategy);
 	public Thesis saveThesis(Thesis thesis);
 	public Thesis getStudentThesis(int studentid);
+	public Thesis getSubjectThesis(int subjectid);
 	
 }
