@@ -2,6 +2,9 @@ package myy803.project.controller;
 
 import java.util.regex.Pattern;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import myy803.project.service.ProfessorService;
 import myy803.project.service.StudentService;
@@ -52,6 +56,17 @@ public class AuthController {
     	String url = loginSuccessHandler.determineTargetUrl(authentication);
     	
     	return "redirect:" + url;
+    }
+    
+    @GetMapping("/error")
+    public String handleError(Model model, HttpServletRequest request) {
+        Object statusCode = Integer.valueOf((String) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE));
+        Object statusMessage = (String) request.getAttribute(RequestDispatcher.ERROR_MESSAGE);
+        
+        model.addAttribute("message", statusMessage);
+        model.addAttribute("code", statusCode);
+        
+        return "error";
     }
     
 	@GetMapping("/login")

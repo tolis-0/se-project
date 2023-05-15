@@ -94,8 +94,8 @@ public class ProfessorController {
 			HttpServletResponse response) {
 		
 		Subject subject = subjectService.getSubjectById(subjectId);
-		if (subject == null) {
-			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Invalid Resource");
+		if (subject == null || subject.isAssigned()) {
+			throw new ResponseStatusException(HttpStatus.FORBIDDEN);
 		}
 		
 		Professor professor = professorService.getProfessorById(subject.getProfessorId());
@@ -117,7 +117,7 @@ public class ProfessorController {
 		
 		Subject subject = subjectService.getSubjectById(subjectId);
 		if (subject == null) {
-			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Invalid Resource");
+			throw new ResponseStatusException(HttpStatus.FORBIDDEN);
 		}
 		
 		subject.setName(subjectDetails.getName());

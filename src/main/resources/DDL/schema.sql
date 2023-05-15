@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS applications (
 	student int not null,
 	message text,
 	primary key (subject, student),
-	constraint fk_appsub foreign key (subject) references subjects(id),
+	constraint fk_appsub foreign key (subject) references subjects(id) on delete cascade,
 	constraint fk_appstu foreign key (student) references students(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
