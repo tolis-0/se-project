@@ -76,7 +76,16 @@ public class Thesis {
 		return  presentationGrade;
 	}
 	
+	public Professor getProfessor() {
+		return professor;
+	}
+	
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
+	
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+	
 }

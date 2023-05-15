@@ -66,7 +66,9 @@ public class ThesisServiceImpl implements ThesisService{
 	public Thesis getStudentThesis(int studentid){
 		Thesis assignedThesis = thesisDAO.getStudentThesis(studentid);
 		if (assignedThesis != null) {
-			assignedThesis.setSubject(subjectService.getSubjectById(assignedThesis.getId()));
+			Subject subject = subjectService.getSubjectById(assignedThesis.getId());
+			assignedThesis.setSubject(subject);
+			assignedThesis.setProfessor(subject.getProfessor());
 		}
 		return assignedThesis;
 	}
@@ -75,7 +77,9 @@ public class ThesisServiceImpl implements ThesisService{
 	public Thesis getSubjectThesis(int subjectid){
 		Thesis assignedThesis = thesisDAO.getSubjectThesis(subjectid);
 		if (assignedThesis != null) {
-			assignedThesis.setSubject(subjectService.getSubjectById(assignedThesis.getId()));
+			Subject subject = subjectService.getSubjectById(subjectid);
+			assignedThesis.setSubject(subject);
+			assignedThesis.setProfessor(subject.getProfessor());
 		}
 		return assignedThesis;
 	}

@@ -179,9 +179,12 @@ public class ProfessorController {
 	
 	@GetMapping("/thesis")
 	public String thesisPage (Model model,@RequestParam(name="id") int subjectId, 
-			@ModelAttribute("subjectDetails") SubjectDTO subjectDetails) {
+			@ModelAttribute("subjectDetails") SubjectDTO subjectDetails,
+			@AuthenticationPrincipal User user) {
+		
 		Thesis thesis = thesisService.getSubjectThesis(subjectId);
-		if (thesis == null) {
+		Professor professor = professorService.getProfessorById(user.getId());
+		if (thesis == null || professor.getId() != thesis.getProfessor().getId()) {
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN);
 		}
 		
