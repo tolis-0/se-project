@@ -50,6 +50,11 @@ public class User implements UserDetails {
 		this.role = role;
 	}
 	
+	public User(String password, Role role) {
+		this.password = password;
+		this.role = role;
+	}
+	
 	public User() {}
 
 	@Override

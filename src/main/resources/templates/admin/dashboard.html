@@ -19,7 +19,15 @@
 	.formDiv {
 		width: 300px;
 		height: 100%;
-		margin-left: 40%;
+		margin: auto;
+	}
+	.elementDiv {
+		text-align:center;
+		height: 32px;
+		width: 300px;
+		font-style: normal;
+		font-family: Arial;
+		margin-top: 2px;
 	}
 	.successMessage {
 		color: #009408;
@@ -27,8 +35,8 @@
 		font-style: italic;
 	}
 	table {
+		margin-left:auto;margin-right:auto;
 		width: 50%;
-		float: left;
 	}
 	th {
 		border-style: groove;
@@ -43,7 +51,7 @@
 	</style>
 </head>
 
-<body>
+<body  style="background-color: azure;">
 	<div class="titleDiv">
 		<h1>Admin Dashboard</h1>
 	</div>
@@ -70,6 +78,31 @@
 				</form>
 			</div>			
 		</table>
+	</div>
+	
+		<div class="formDiv">
+		<form th:action="@{/post/register}" th:object="${AdminDTO}" method="post">
+			<div class="elementDiv">
+				<h2 style="text-align:center;background-color: lightblue;">Administrator Register</h2>
+			</div>
+			<div class="elementDiv">
+				<input type="text" th:field="*{username}" placeholder="Type your username" required>
+			</div>
+			<div class="elementDiv">
+				<input type="password" th:field="*{password1}" placeholder="Type your password" required>
+			</div>
+			<div class="elementDiv">
+				<input type="password" th:field="*{password2}" placeholder="Repeat your password" required>
+			</div>
+			<div class="elementDiv">
+			    <select th:field="*{role}" required>
+      			<option value="ADMIN">Admin</option>
+    			</select>
+    		</div>
+    		<div class="elementDiv">
+				<button type="submit" class= "button">Register</button>
+			</div>
+		</form>
 	</div>
 	
 	<div class="formDiv">
