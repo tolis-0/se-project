@@ -65,13 +65,6 @@ public class AuthController {
 		return "login";
 	}
 	
-	@GetMapping("/register")
-	public String registerPage(Model model) {
-		model.addAttribute("user", new User());
-		model.addAttribute("registerDTO", new RegisterDTO());
-		return "login";
-	}
-	
 	@PostMapping("/post/register")
 	public String registerAttempt(@ModelAttribute("registerDTO") RegisterDTO registerDTO) {
 		
