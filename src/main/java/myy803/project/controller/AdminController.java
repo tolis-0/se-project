@@ -42,4 +42,9 @@ public class AdminController {
 		return "redirect:/admin/dashboard?UserDeleted=true";
 	}
 	
+	@PostMapping("/post/password")
+	public String changePasswordPage() {
+		return "redirect:/password";
+	}
+	
 }

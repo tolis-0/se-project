@@ -22,12 +22,17 @@
 		margin: auto;
 	}
 	.elementDiv {
-		text-align:center;
 		height: 32px;
 		width: 300px;
 		font-style: normal;
 		font-family: Arial;
 		margin-top: 2px;
+	}
+	.textDiv {
+		text-align: left;
+		height: 18px;
+		width: 150px;
+		float: left;
 	}
 	.successMessage {
 		color: #009408;
@@ -47,6 +52,10 @@
 		border-style: groove;
 		border-color: cornflowerblue;
 	}
+	h2 {
+		text-align: center;
+		background-color: lightblue;
+	}
 	tr:hover {background-color: lightblue;}
 	</style>
 </head>
@@ -56,11 +65,28 @@
 		<h1>Admin Dashboard</h1>
 	</div>
 	
+	<div class="formDiv">
+		<form th:action="@{post/password}" method="post"> 
+			<div class="elementDiv">
+				<h2>Profile Information</h2>
+			</div>
+			<br>
+			<div class="elementDiv">
+				<label class="textDiv" for="username">Username:</label>
+				<div id="username" sec:authentication="principal.username"></div>
+			</div>
+			<div class="elementDiv">
+				<label class="textDiv" for="password">Password:</label>
+				<button type="submit" id="password" class="button">Change</button>
+			</div>
+		</form>
+	</div>
+	
 	<div class="successMessage" th:if="${param.UserDeleted}">User Deleted!</div>
 	
 	<div class="formDiv">
 		<div class="elementDiv">
-			<h2 style="text-align:center;background-color: lightblue;">Manage Users</h2>
+			<h2>Manage Users</h2>
 		</div>
 		<table>
  			<tr>
@@ -85,10 +111,10 @@
 	
 	<div style="height: 40px;"></div>
 	
-	<div class="formDiv">
+	<div class="formDiv" style="text-align:center;">
 		<form th:action="@{/post/register}" th:object="${AdminDTO}" method="post">
 			<div class="elementDiv">
-				<h2 style="text-align:center;background-color: lightblue;">Administrator Register</h2>
+				<h2>Administrator Register</h2>
 			</div>
 			<div class="elementDiv">
 				<input type="text" th:field="*{username}" placeholder="New admin username" required>
