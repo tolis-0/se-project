@@ -12,8 +12,15 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	private StudentDAO studentDAO;
 	
-	@Autowired
 	private UserService userService;
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    public UserService getUserService() {
+        return userService;
+    }
 	
 	@Override
 	public Student saveStudent(Student student) {

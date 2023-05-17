@@ -1,9 +1,5 @@
 package myy803.project.service;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +13,15 @@ public class ProfessorServiceImpl implements ProfessorService {
 	@Autowired
 	private ProfessorDAO professorDAO;
 	
-	@Autowired
 	private UserService userService;
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    public UserService getUserService() {
+        return userService;
+    }
 	
 	@Override
 	public Professor saveProfessor(Professor professor) {
@@ -32,4 +35,5 @@ public class ProfessorServiceImpl implements ProfessorService {
 		professor.setUser(userService.getUserById(professor.getId()));
 		return professor;
 	}
+
 }
