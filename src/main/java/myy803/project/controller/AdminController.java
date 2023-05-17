@@ -22,6 +22,11 @@ public class AdminController {
     @Autowired
     UserService userService;
 	
+    @RequestMapping("/")
+    public String redirectFromRoot() {
+    	return "redirect:/admin/dashboard";
+    }
+    
 	@GetMapping("/dashboard")
 	public String adminDashboardPage(Model model) {
 		
