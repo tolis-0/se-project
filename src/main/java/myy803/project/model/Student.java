@@ -80,6 +80,10 @@ public class Student{
 		return this.averageGrade;
 	}
 	
+	public User getUser() {
+		return user;
+	}
+	
 	@Override
 	public String toString() {
 		return "[id=" + id + ", full_name=" + fullName + ", rem_courses=" + 
