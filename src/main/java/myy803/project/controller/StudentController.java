@@ -36,6 +36,11 @@ public class StudentController {
 	@Autowired
 	ThesisService thesisService;
 	
+    @RequestMapping("/")
+    public String redirectFromRoot() {
+    	return "redirect:/student/dashboard";
+    }
+	
 	@GetMapping("/dashboard")
 	public String studentDashboardPage(Model model, @AuthenticationPrincipal User user) {
 		Student student = studentService.getStudentById(user.getId());

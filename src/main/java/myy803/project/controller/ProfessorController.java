@@ -48,6 +48,11 @@ public class ProfessorController {
     @Autowired
     ThesisService thesisService;
     
+    @RequestMapping("/")
+    public String redirectFromRoot() {
+    	return "redirect:/professor/dashboard";
+    }
+    
 	@GetMapping("/dashboard")
 	public String professorDashboardPage(Model model, @AuthenticationPrincipal User user) {
 		
