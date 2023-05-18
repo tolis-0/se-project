@@ -18,5 +18,6 @@ public interface ThesisService {
 	public Thesis saveThesis(Thesis thesis);
 	public Thesis getStudentThesis(int studentId);
 	public Thesis getThesisById(int thesisId);
+	public Thesis setGrades(int id, float impGrade, float repGrade, float presGrade) throws Exception;
 	
 }

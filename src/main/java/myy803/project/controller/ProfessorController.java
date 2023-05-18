@@ -195,7 +195,6 @@ public class ProfessorController {
 		}
 		
 		model.addAttribute("thesis", thesis);
-		System.out.println("Thesis:" + thesis);
 		model.addAttribute("thesisDetails", 
 				new ThesisDTO(thesis.getImplementationGrade(), thesis.getReportGrade(), thesis.getPresentationGrade()));
 		return "professor/thesis";
@@ -204,13 +203,13 @@ public class ProfessorController {
 	@PostMapping("post/thesis")
 	public String changeThesisDetails(@ModelAttribute("thesisDetails") ThesisDTO thesisDetails,
 			@RequestParam(name="id") int thesisId) {
-		Thesis thesis = thesisService.getThesisById(thesisId);
 		
-		thesis.setImplementationGrade(thesisDetails.getImpGrade());
-		thesis.setPresentationGrade(thesisDetails.getPresGrade());
-		thesis.setReportGrade(thesisDetails.getRepGrade());
-		
-		thesisService.saveThesis(thesis);
+		try {
+			thesisService.setGrades(thesisId,
+					thesisDetails.getImpGrade(), thesisDetails.getRepGrade(), thesisDetails.getPresGrade());
+		} catch (Exception e) {
+			return "redirect:/professor/thesis?id=" + thesisId + "&InvalidGrade=true";
+		}
 		
 		return "redirect:/professor/thesis?id=" + thesisId + "&SavedGrade=true";
 	}

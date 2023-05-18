@@ -36,8 +36,9 @@
 		display: inline-block;
 		float: right;
 	}
-	.successMessage {
-		color: #009408;
+	.green {color: #009408;}
+	.red {color: #b40000;}
+	.message {
 		text-align: center;
 		font-style: italic;
 	}
@@ -106,6 +107,7 @@
 		</form>
 	</div>
 	
-	<div class="successMessage" th:if="${param.SavedGrade}">Thesis Grades Updated!</div>
+	<div class="green message" th:if="${param.SavedGrade}">Thesis Grades Updated!</div>
+	<div class="red message" th:if="${param.InvalidGrade}">Grades can only be between 0 and 10!</div>
 	
 </body>

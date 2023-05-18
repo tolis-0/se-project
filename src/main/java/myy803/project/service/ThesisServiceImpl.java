@@ -88,5 +88,20 @@ public class ThesisServiceImpl implements ThesisService{
 		}
 		return assignedThesis;
 	}
+
+	@Override
+	public Thesis setGrades(int id, float impGrade, float repGrade, float presGrade) throws Exception {
+		Thesis thesis = getThesisById(id);
+		
+		if (impGrade < 0 || impGrade > 10 || repGrade < 0 || repGrade > 10 || presGrade < 0 || presGrade > 10) {
+			throw new Exception("Invalid Grade");
+		}
+		
+		thesis.setImplementationGrade(impGrade);
+		thesis.setPresentationGrade(presGrade);
+		thesis.setReportGrade(repGrade);
+		
+		return saveThesis(thesis);
+	}
 	
 }
