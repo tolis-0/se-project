@@ -80,6 +80,7 @@
     			<th>Implementation Grade</th>
     			<th>Report Grade</th>
     			<th>Presentation Grade</th>
+    			<th>Total Grade</th>
   			</tr>			
   			<div th:object="${thesis}">	
   				<tr>
@@ -87,6 +88,7 @@
 					<td><p th:text="${thesis.implementationGrade}" /></td>
 					<td><p th:text="${thesis.reportGrade}" /></td>
 					<td><p th:text="${thesis.presentationGrade}" /></td>
+					<td><p th:text="${thesis.totalGrade}" /></td>
 					</td>
 				</tr>
 			</div>			

@@ -96,6 +96,10 @@
 				<label class="textDiv" for="presgrade">Presentation Grade:</label>
 				<input type="text" class="field" id="presgrade" th:field="*{presGrade}">
 			</div>
+			<div class="elementDiv" style="margin-top: 10px;">
+				<label class="textDiv" for="totgrade">Total Grade:</label>
+				<div style="text-align: right;" id="totgrade" th:text="${thesis.totalGrade}"></div>
+			</div>
 			<div class="elementDiv" style="text-align: center;">
 				<button type="submit" class="button">Save</button>
 			</div>

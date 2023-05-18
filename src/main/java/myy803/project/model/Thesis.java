@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PostLoad;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -38,7 +39,6 @@ public class Thesis {
 	private float presentationGrade;
 	
 	@Transient
-	@Formula("0.7*imp_grade + 0.15*rep_grade + 0.15*pres_grade")
 	private float totalGrade;
 	
 	public Thesis() {}
@@ -46,6 +46,14 @@ public class Thesis {
 	public Thesis(int id, Student student) {
 		this.id = id;
 		this.student = student;
+	}
+	
+	@PostLoad
+	private void calculateTotalGrade() {
+		this.totalGrade = 	(float) (
+							0.70 * implementationGrade + 
+							0.15 * reportGrade + 
+							0.15 * presentationGrade);
 	}
 	
 	public int getId() {
@@ -99,4 +107,12 @@ public class Thesis {
 	public void setPresentationGrade(float grade) {
 		this.presentationGrade = grade;
 	}
+	
+	@Override
+	public String toString() {
+		return "[id=" + id + ", student=" + student.getId()  + ", impGrade=" + implementationGrade + 
+				", repGrade=" + reportGrade + ", presGrade=" + presentationGrade +  
+				", totalGrade=" + totalGrade + "]";
+	}
+	
 }

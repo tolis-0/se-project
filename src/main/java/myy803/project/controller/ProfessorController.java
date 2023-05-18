@@ -195,6 +195,7 @@ public class ProfessorController {
 		}
 		
 		model.addAttribute("thesis", thesis);
+		System.out.println("Thesis:" + thesis);
 		model.addAttribute("thesisDetails", 
 				new ThesisDTO(thesis.getImplementationGrade(), thesis.getReportGrade(), thesis.getPresentationGrade()));
 		return "professor/thesis";
