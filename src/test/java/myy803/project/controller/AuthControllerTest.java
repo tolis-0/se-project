@@ -56,8 +56,7 @@ public class AuthControllerTest {
 	@Test
 	void AuthController_LoginPage() throws Exception {
 		this.mockMvc
-			.perform(MockMvcRequestBuilders.get("/login")
-			)
+			.perform(MockMvcRequestBuilders.get("/login"))
 			.andExpect(MockMvcResultMatchers.status().isOk())
 			.andExpect(MockMvcResultMatchers.view().name("login"))
 			.andExpect(MockMvcResultMatchers.model().attributeExists("user"))

@@ -1,13 +1,17 @@
 package myy803.project.config;
 
 import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
+@Lazy
 @TestConfiguration
 public class TestConfig extends SecurityConfig {
 
 	@Override
+	@Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		http

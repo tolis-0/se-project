@@ -1,11 +1,17 @@
 package myy803.project.controller;
 
+import static org.mockito.Mockito.when;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -17,7 +23,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-
+import myy803.project.model.Student;
+import myy803.project.model.Subject;
+import myy803.project.model.Thesis;
+import myy803.project.model.User;
 import myy803.project.service.ApplicationService;
 import myy803.project.service.StudentService;
 import myy803.project.service.SubjectService;
@@ -27,7 +36,7 @@ import myy803.project.service.ThesisService;
 @AutoConfigureMockMvc(addFilters = false)
 @ExtendWith(MockitoExtension.class)
 public class StudentControllerTest {
-
+	
 	private MockMvc mockMvc;
 	
 	@MockBean
@@ -56,11 +65,16 @@ public class StudentControllerTest {
 		Assertions.assertNotNull(mockMvc);
 	}
 	
-	@WithMockUser("spring")
+	@WithMockUser(authorities = {"STUDENT"})
 	@Test
 	void StudentController_StudentDashboard() throws Exception {
+		Student student = new Student(new User(), "Full Name");
+		when(studentService.getStudentById(Mockito.anyInt())).thenReturn(student);
+		when(subjectService.getAllAvailableSubjects()).thenReturn(new ArrayList<Subject>());
+		when(thesisService.getStudentThesis(Mockito.anyInt())).thenReturn(new Thesis());
+		
 		mockMvc
-			.perform(MockMvcRequestBuilders.get("/dashboard"))
+			.perform(MockMvcRequestBuilders.get("/student/dashboard"))
 			.andExpect(MockMvcResultMatchers.status().isOk())
 			.andExpect(MockMvcResultMatchers.view().name("dashboard"))
 			.andExpect(MockMvcResultMatchers.model().attributeExists("studentDetails"))
@@ -68,12 +82,15 @@ public class StudentControllerTest {
 			.andExpect(MockMvcResultMatchers.model().attributeExists("thesis"));
 	}
 	
-	@WithMockUser(value = "pat")
+	@WithMockUser(username = "pat", roles = {"STUDENT"})
 	@Test
 	void StudentController_PasswordChange() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.post("/post/password"))
-		.andExpect(MockMvcResultMatchers.status().isFound())
-		.andExpect(MockMvcResultMatchers.redirectedUrl("redirect:/password"));
+		mockMvc
+			.perform(MockMvcRequestBuilders.post("/student/post/password")
+			.with(csrf()))
+			//.andDo(print())
+			.andExpect(MockMvcResultMatchers.status().isFound())
+			.andExpect(MockMvcResultMatchers.redirectedUrl("/password"));
 	}
 	
 	@Test
