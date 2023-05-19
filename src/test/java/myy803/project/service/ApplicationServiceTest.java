@@ -2,11 +2,11 @@ package myy803.project.service;
 
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Assertions;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -18,6 +18,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 
 import myy803.project.model.Application;
+import myy803.project.model.Student;
 
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -68,9 +69,9 @@ public class ApplicationServiceTest {
 		List<Application> appList2 = applicationService.getApplicationsBySubjectId(3);
 		List<Application> appList3 = applicationService.getApplicationsBySubjectId(2);
 		
-		Assertions.assertNotNull(appList1.get(0));
-		Assertions.assertNotNull(appList2.get(0));
-		assertTrue(appList3.isEmpty());
+		Assertions.assertFalse(appList1.isEmpty());
+		Assertions.assertFalse(appList2.isEmpty());
+		Assertions.assertTrue(appList3.isEmpty());
 		
 		Assertions.assertEquals(appList1.get(0).getStudentId(), 7);
 		Assertions.assertEquals(appList1.get(0).getSubjectId(), 4);
@@ -81,11 +82,25 @@ public class ApplicationServiceTest {
 	public void ApplicationService_deleteApplications() {
 		System.out.println("TEST 4");
 		
-		applicationService.saveApplication(new Application(4, 7, "Hello, I would like to take on this thesis diploma ..." ));
-		applicationService.saveApplication(new Application(3, 11, "Greetings, I am interested in the thesis ..." ));
+		applicationService.saveApplication(new Application(4, 7, "text1" ));
+		applicationService.saveApplication(new Application(4, 11, "text2" ));
+		applicationService.saveApplication(new Application(3, 7, "text3" ));
+		applicationService.saveApplication(new Application(3, 11, "text4" ));
 		
-		applicationService.deleteApplications();
-		applicationService.deleteApplications();
+		List<Application> appList1 = applicationService.getApplicationsBySubjectId(4);
+		List<Application> appList2 = applicationService.getApplicationsBySubjectId(3);
 		
+		Assertions.assertFalse(appList1.isEmpty());
+		Assertions.assertFalse(appList2.isEmpty());
+		
+		applicationService.deleteApplications(7, 4);
+		
+		List<Application> appList1After = applicationService.getApplicationsBySubjectId(4);
+		List<Application> appList2After = applicationService.getApplicationsBySubjectId(3);
+		
+		Assertions.assertTrue(appList1After.isEmpty());
+		Assertions.assertFalse(appList2After.isEmpty());
+		Assertions.assertEquals(appList2After.get(0).getMessage(), "text4");
+		Assertions.assertEquals(appList2After.size(), 1);
 	}
 }
