@@ -6,15 +6,14 @@
 	<style>
 	textarea {
 		margin-top: 30px;
-		margin-left: 730px;
  		resize: none;
+ 		display: block;
 	}
 	.button {
 		background-color: cornflowerblue;
 		color: white;
 		width: 100px;
-		margin-top: 5px;
-		margin-left: 900px;
+		margin-top: 15px;
 	}
 	.titleDiv {
   		height: 50px;
@@ -23,7 +22,8 @@
   		font-style: italic;
 	}
 	.formDiv {
-		width: 400px;
+		text-align: center;
+		width: 450px;
 		height: 100%;
 		margin: auto;
 	}
@@ -37,15 +37,14 @@
 	
 	<div class="formDiv">
 		<form th:action="@{/student/post/back}" method="post">
-		<button type="submit" class= "button" style="margin-top: 10px; margin-left:150px; background-color: gold;">Back</button>
+		<button type="submit" class= "button" style="margin-top: 10px; background-color: gold;">Back</button>
 		</form>
 	</div>
 	
 	
-	<div class = formdiv>
+	<div class="formDiv">
 		<form th:action="@{/student/post/application/create(id=${param.id})}" th:object="${applicationDetails}" method="post">
 			<textarea rows="5" cols="60" th:field="*{message}" placeholder="Describe yourself here..." />
-			<br></br>
 			<button type="submit" class="button">Submit</button>
 		</form>
 	</div>
