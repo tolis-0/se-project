@@ -103,4 +103,33 @@ public class ApplicationDAOTest {
 		Assertions.assertTrue(applications.contains(app3));
 	}
 	
+	@Test
+	public void ApplicationDAO_deleteApplicationsOfStudent() {
+		Application app1 = applicationDAO.save(new Application(subject.getId(), stud1.getId(), "..."));
+		Application app2 = applicationDAO.save(new Application(subject.getId(), stud2.getId(), "..."));
+		Application app3 = applicationDAO.save(new Application(subject.getId(), stud3.getId(), "..."));
+		
+		applicationDAO.deleteApplicationsOfStudent(stud2.getId());
+		
+		List<Application> applications = applicationDAO.getApplicationsForSubject(subject.getId());
+		
+		Assertions.assertTrue(applications.contains(app1));
+		Assertions.assertFalse(applications.contains(app2));
+		Assertions.assertTrue(applications.contains(app3));
+	}
+	
+	@Test
+	public void ApplicationDAO_deleteApplicationsForSubject() {
+		Application app1 = applicationDAO.save(new Application(subject.getId(), stud1.getId(), "..."));
+		Application app2 = applicationDAO.save(new Application(subject.getId(), stud2.getId(), "..."));
+		Application app3 = applicationDAO.save(new Application(subject.getId(), stud3.getId(), "..."));
+		
+		applicationDAO.deleteApplicationsForSubject(subject.getId());
+		
+		List<Application> applications = applicationDAO.getApplicationsForSubject(subject.getId());
+		
+		Assertions.assertFalse(applications.contains(app1));
+		Assertions.assertFalse(applications.contains(app2));
+		Assertions.assertFalse(applications.contains(app3));
+	}
 }
