@@ -32,10 +32,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 		}
 		return list;
 	}
-	
+
 	@Override
-	public void deleteApplications() {
-		
+	public void deleteApplications(int studentId, int subjectId) {
+		applicationDAO.deleteApplicationsOfStudent(studentId);
+		applicationDAO.deleteApplicationsForSubject(subjectId);
 	}
 	
 }

@@ -26,6 +26,9 @@ public class ThesisServiceImpl implements ThesisService{
 	
 	@Autowired
 	private ThesisDAO thesisDAO;
+	
+	@Autowired
+	private ApplicationService applicationService;
 
 	public List<Student> filterStudentsForThesis(List<Application> list, float th1, int th2) {
 		return list.stream().map(Application::getStudent)
@@ -51,6 +54,7 @@ public class ThesisServiceImpl implements ThesisService{
 			default:
 				return null;
 		}
+		applicationService.deleteApplications(student.getId(), subjectId);
 		return saveNewThesis(new Thesis(subjectId, student));
 	}
 	
