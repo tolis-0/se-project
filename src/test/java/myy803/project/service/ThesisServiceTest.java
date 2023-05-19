@@ -21,6 +21,7 @@ import myy803.project.model.Application;
 import myy803.project.model.Professor;
 import myy803.project.model.Role;
 import myy803.project.model.Student;
+import myy803.project.model.Subject;
 import myy803.project.model.Thesis;
 import myy803.project.model.User;
 
@@ -39,6 +40,12 @@ public class ThesisServiceTest {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	SubjectService subjectService;
+	
+	@Autowired
+	ProfessorService professorService;
 	
 	@Test
 	@Order(1)
@@ -85,8 +92,13 @@ public class ThesisServiceTest {
 		Student stud1 = studentService.saveStudent(new Student(user1, "Panagiotis Anagnostou"));		
 		Student stud2 = studentService.saveStudent(new Student(user2, "Stefanos Pappas"));
 		
+		User user3 = userService.saveUser(new User("antkar", "goodPassword", Role.PROFESSOR));
+		Professor prof1 = professorService.saveProfessor(new Professor(user3, "Antreas Karatzas"));
+		
 		thesisService.saveThesis(new Thesis(3, stud1));
 		thesisService.saveThesis(new Thesis(6, stud2));
+		
+		Subject subject1 = new Subject(prof1, "Name1", "Objectives ... 1");
 		
 		Thesis th1 = thesisService.getThesisById(3);
 		Thesis th2 = thesisService.getThesisById(6);
