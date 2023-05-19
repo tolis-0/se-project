@@ -1,5 +1,6 @@
 package myy803.project.controller;
 
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -66,12 +67,12 @@ public class AuthControllerTest {
 		registerDTO.setRole(Role.STUDENT);
 		
 		when(userService.isUserPresent(Mockito.any(User.class))).thenReturn(false);
-		when(userService.saveUser(Mockito.any(User.class), "name")).thenReturn(null);
+		when(userService.saveUser(Mockito.any(User.class), eq("name"))).thenReturn(null);
 		
-		this.mockMvc
+		mockMvc
 			.perform(MockMvcRequestBuilders.post("/post/register"))
-			.andExpect(MockMvcResultMatchers.status().isOk())
-			.andExpect(MockMvcResultMatchers.redirectedUrl("/login")); // TODO ?????
+			.andExpect(MockMvcResultMatchers.status().isFound())
+			.andExpect(MockMvcResultMatchers.redirectedUrl("/login?RegisterSuccess=true"));
 	}
 	
 }
