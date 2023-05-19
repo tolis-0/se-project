@@ -73,6 +73,11 @@ public class StudentController {
 		return "redirect:/student/dashboard?ChangedInfo=true";
 	}
 	
+	@PostMapping("/post/password")
+	public String changePasswordPage() {
+		return "redirect:/password";
+	}
+	
 	
 	@PostMapping("/post/application/new")
 	public String newApplication(@RequestParam(name="id") int subjectId) {
