@@ -74,7 +74,6 @@ public class ThesisDAOTest {
 	
 	@Test
 	public void ThesisDAO_notNull() {
-		System.out.println("TEST 1");
 		Assertions.assertNotNull(thesisDAO);
 	}
 	
