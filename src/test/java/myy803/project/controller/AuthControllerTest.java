@@ -15,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -56,7 +57,8 @@ public class AuthControllerTest {
 	@Test
 	void AuthController_LoginPage() throws Exception {
 		this.mockMvc
-			.perform(MockMvcRequestBuilders.get("/login"))
+			.perform(MockMvcRequestBuilders.get("/login")
+			)
 			.andExpect(MockMvcResultMatchers.status().isOk())
 			.andExpect(MockMvcResultMatchers.view().name("login"))
 			.andExpect(MockMvcResultMatchers.model().attributeExists("user"))
