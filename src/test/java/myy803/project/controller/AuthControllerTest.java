@@ -19,7 +19,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import myy803.project.config.LoginSuccessHandler;
-import myy803.project.controller.AuthController;
 import myy803.project.dto.RegisterDTO;
 import myy803.project.model.Role;
 import myy803.project.model.User;
@@ -59,19 +58,66 @@ public class AuthControllerTest {
 	@Test
 	public void AuthController_Register() throws Exception {
 		RegisterDTO registerDTO = new RegisterDTO();
-		registerDTO.setUsername("username");
+		registerDTO.setUsername("invalid#username");
 		registerDTO.setFullName("Some Name");
-		registerDTO.setPassword1("password");
-		registerDTO.setPassword2("password");
+		registerDTO.setPassword1("passwrd");
+		registerDTO.setPassword2("passwrd");
 		registerDTO.setRole(Role.STUDENT);
 		
-		when(userService.isUserPresent(Mockito.any(User.class))).thenReturn(false);
+		when(userService.isUserPresent(Mockito.any(User.class))).thenReturn(true);
 		when(userService.saveUser(Mockito.any(User.class), eq("name"))).thenReturn(null);
 		
 		mockMvc
-			.perform(MockMvcRequestBuilders.post("/post/register"))
+			.perform(MockMvcRequestBuilders.post("/post/register").flashAttr("registerDTO", registerDTO))
+			.andExpect(MockMvcResultMatchers.status().isFound())
+			.andExpect(MockMvcResultMatchers.redirectedUrl("/login?AlreadyRegistered=true"));
+		
+		when(userService.isUserPresent(Mockito.any(User.class))).thenReturn(false);
+		mockMvc
+			.perform(MockMvcRequestBuilders.post("/post/register").flashAttr("registerDTO", registerDTO))
+			.andExpect(MockMvcResultMatchers.status().isFound())
+			.andExpect(MockMvcResultMatchers.redirectedUrl("/login?InvalidUsername=true"));
+		
+		registerDTO.setUsername("6invalidusername");
+		mockMvc
+			.perform(MockMvcRequestBuilders.post("/post/register").flashAttr("registerDTO", registerDTO))
+			.andExpect(MockMvcResultMatchers.status().isFound())
+			.andExpect(MockMvcResultMatchers.redirectedUrl("/login?InvalidUsername=true"));
+		
+		registerDTO.setUsername("valid_username");
+		mockMvc
+			.perform(MockMvcRequestBuilders.post("/post/register").flashAttr("registerDTO", registerDTO))
+			.andExpect(MockMvcResultMatchers.status().isFound())
+			.andExpect(MockMvcResultMatchers.redirectedUrl("/login?SmallPassword=true"));
+		
+		registerDTO.setPassword1("this_is_a_huge_password_1234567890987645312");
+		mockMvc
+			.perform(MockMvcRequestBuilders.post("/post/register").flashAttr("registerDTO", registerDTO))
+			.andExpect(MockMvcResultMatchers.status().isFound())
+			.andExpect(MockMvcResultMatchers.redirectedUrl("/login?HugePassword=true"));
+		
+		registerDTO.setPassword1("password123");
+		mockMvc
+			.perform(MockMvcRequestBuilders.post("/post/register").flashAttr("registerDTO", registerDTO))
+			.andExpect(MockMvcResultMatchers.status().isFound())
+			.andExpect(MockMvcResultMatchers.redirectedUrl("/login?WeakPassword=true"));
+		
+		registerDTO.setPassword1("Good3947$Password.");
+		mockMvc
+			.perform(MockMvcRequestBuilders.post("/post/register").flashAttr("registerDTO", registerDTO))
+			.andExpect(MockMvcResultMatchers.status().isFound())
+			.andExpect(MockMvcResultMatchers.redirectedUrl("/login?DifferentPasswords=true"));
+		
+		registerDTO.setPassword2("Good3947$Password.");
+		mockMvc
+			.perform(MockMvcRequestBuilders.post("/post/register").flashAttr("registerDTO", registerDTO))
 			.andExpect(MockMvcResultMatchers.status().isFound())
 			.andExpect(MockMvcResultMatchers.redirectedUrl("/login?RegisterSuccess=true"));
+	}
+	
+	@Test
+	public void AuthController_Login() throws Exception {
+		
 	}
 	
 }
