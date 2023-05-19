@@ -52,6 +52,11 @@
 		display: inline-block;
 		float: right;
 	}
+	.red {color: #b40000;}
+	.message {
+		text-align: center;
+		font-style: italic;
+	}
 	textarea {
 		margin-top: 8px;
  		resize: none;
@@ -171,6 +176,8 @@
 			</div>
 		</form>
 	</div>
+	
+	<div class="red message" th:if="${param.studentNotFound}">No student found within these thresholds!</div>
 	
 	<div style="height: 100px;"></div>
 </body>
