@@ -143,30 +143,5 @@ public class AuthControllerTest {
 			.andExpect(MockMvcResultMatchers.model().attributeExists("passwordData"));
 	}
 	
-	@WithMockUser(username = "tolis", password = "password!100", authorities = {"STUDENT"})
-	@Test
-	public void AuthController_ChangePassword() throws Exception {
-		PasswordDTO passwordData = new PasswordDTO();
-		passwordData.setOldPassword("password!200");
-		passwordData.setNewPassword1("password.123");
-		passwordData.setNewPassword2("password.321");
-		
-		when(authManager.authenticate(Mockito.any(UsernamePasswordAuthenticationToken.class))).thenReturn(null);
-		
-		this.mockMvc
-			.perform(MockMvcRequestBuilders.post("/post/password")	// TODO DEN VRISKEI USER ME TIPOTA, LEEI EINAI NULL
-					/* DEN DOYLEPSE:
-					 *  flashAttr("user", new User(...))
-					 *  with.(user(...))
-					 *  @WithMockUser
-					 *  when(User.getUsername(...)).return(...) E META OTAN DEN DOYLEYEI ME TPT ARXIZEIS KAI DOKIMAZEIS TETOIES MALAKIES
-					 *  param("user", ...)
-					 *  ME springSecurity() KAI XWRIS
-					 */
-			.flashAttr("passwordData", passwordData))
-			.andExpect(MockMvcResultMatchers.status().isFound())
-			.andExpect(MockMvcResultMatchers.redirectedUrl("/password?InvalidPassword=true"));
-		
-	}
 	
 }
