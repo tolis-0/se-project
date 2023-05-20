@@ -65,9 +65,9 @@ public class ThesisDAOTest {
 		
 		Subject subject = subjectDAO.save(new Subject(prof, "Cloud Computing Project", "..."));
 		
-		applicationDAO.save(new Application(stud1.getId(), subject.getId(), "..."));
-		applicationDAO.save(new Application(stud2.getId(), subject.getId(), "..."));
-		applicationDAO.save(new Application(stud3.getId(), subject.getId(), "..."));
+		applicationDAO.save(new Application(subject.getId(), stud1.getId(), "..."));
+		applicationDAO.save(new Application(subject.getId(), stud2.getId(), "..."));
+		applicationDAO.save(new Application(subject.getId(), stud3.getId(), "..."));
 		
 		thesis = thesisDAO.save(new Thesis(subject.getId(), stud2));
 	}
